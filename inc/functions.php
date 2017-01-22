@@ -45,30 +45,35 @@ function numeroSemana($date){
 	return date("W", strtotime($date)); 
 }
 
+//soma(+) ou substrai(-) dias de um date(a-m-d)
+function somarDatas($data,$dias){ 
+	$data_final = date('Y-m-d', strtotime("$dias days",strtotime($data)));	
+	return $data_final;
+}
 
 function nextMonday($data){
 	$diasemana_numero = date('w', strtotime($data)); //data em sql Y-m-d
 	switch($diasemana_numero){
+		case 0:
+			return somarDatas($data,"+ 1");
+		break;		
 		case 1:
-			return date('Y-m-d', strtotime($data. ' + 1 days'));
+			return somarDatas($data,"+ 7");
 		break;		
 		case 2:
-			return date('Y-m-d', strtotime($data. ' + 7 days'));
+			return somarDatas($data,"+ 6");
 		break;		
 		case 3:
-			return date('Y-m-d', strtotime($data. ' + 6 days'));
+			return somarDatas($data,"+ 5");
 		break;		
 		case 4:
-			return date('Y-m-d', strtotime($data. ' + 5 days'));
+			return somarDatas($data,"+ 4");
 		break;		
 		case 5:
-			return date('Y-m-d', strtotime($data. ' + 4 days'));
+			return somarDatas($data,"+ 3");
 		break;		
 		case 6:
-			return date('Y-m-d', strtotime($data. ' + 3days'));
-		break;		
-		case 7:
-			return date('Y-m-d', strtotime($data. ' + 2 days'));
+			return somarDatas($data,"+ 2");
 		break;		
 
 	}
@@ -114,6 +119,61 @@ function ultObj($id){ //retorna dados do último objetivo
 function recTermo($id){
 	$x = recuperaDados("iap_termo",$id,"id");
 	return $x['termo'];	
+}
+
+function retornaSemanas($data){
+	$inicio = nextMonday($data);
+	$x[1]['inicio'] = $inicio;
+	$x[1]['fim'] = date('Y-m-d', strtotime($inicio. ' + 6 days'));
+	$x[1]['fase'] = 1;	
+	for($i = 2; $i <= 16; $i++){
+		$x[$i]['inicio'] = date('Y-m-d', strtotime($x[$i-1]['inicio']. ' + 7 days'));
+		$x[$i]['fim'] = date('Y-m-d', strtotime($x[$i]['inicio']. ' + 6 days'));
+		switch($i){
+			case 1:
+			case 2:
+			case 3:
+			case 4:
+				$x[$i]['fase'] = $i;
+			break;
+			
+			case 5:
+			case 6:
+				$x[$i]['fase'] = 5;
+			break;
+			
+			case 7:
+			case 8:
+				$x[$i]['fase'] = 6;			
+			break;
+
+			case 9:
+			case 10:
+				$x[$i]['fase'] = 7;			
+			break;
+				
+			case 11:
+			case 12:
+				$x[$i]['fase'] = 8;			
+			break;
+
+
+			case 13:
+			case 14:
+				$x[$i]['fase'] = 9;			
+			break;
+
+			case 15:
+			case 16:
+				$x[$i]['fase'] = 10;			
+			break;
+
+
+		}
+
+			
+	}
+	return $x;
 }
 
 ?>

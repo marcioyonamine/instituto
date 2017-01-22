@@ -12,34 +12,6 @@ if(isset($_GET['p'])){
 
 if(isset($_POST['inicio'])){
 	$i = 0;
-	foreach ($_POST as $key => $valor) {
-		$d[$i] = $key ;
-		$i++;
-	}
-	$num_des = $i - 1;
-	$mensagem = "Você escolheu $num_des desafios";
-	
-	for($i = 0; $i < $num_des; $i++){
-		//fazer funcao
-		$ultObj = ultObj($_SESSION['idUsuario']);
-		$des = $d[$i];
-		$hoje = date('Y-m-d');
-		$proxSeg = nextMonday($hoje);
-		echo $proxSeg;
-		$sql_insere = "INSERT INTO `iap_aceite` (`id`, `objetivo`, `desafio`, `foco`, `data_aceite`, `data_inicio`, `data_final`, `duracao`, `semana`, `fase`, `relatorio`, `resposta`) VALUES (NULL, '$ultObj', '$des', '', '$hoje', '$proxSeg', '', '', '1', '1', '', '')";
-		$query = mysqli_query($con,$sql_insere);
-		if($sql_insere){
-			$mensagem .= "<br />Desafio inserido."; 	
-					
-		}else{
-			$mensagem .= "<br />Erro ao inserir."; 	
-		
-		}
-	
-		
-	}
-	
-	
 }
 
 ?>
@@ -118,6 +90,10 @@ if(isset($_POST['inicio'])){
 		}else{ // o treinador avaliou o nível
 		?> 
 
+		<?php 
+		if($obj['data_inicio'] == '0000-00-00'){		
+		?>
+
 			<p class="lead">O seu treinador avaliou o seu desafio <strong> "<?php echo $obj['objetivo'] ?>"</strong> como de nível <strong><?php echo $obj['nivel']; ?></strong></p>
 			<p class="lead">Na tabela abaixo, escolha 1 desafio para começar o programa.</p>
           <div class="table-responsive">
@@ -153,6 +129,38 @@ if(isset($_POST['inicio'])){
     	<input type="hidden" value="1" name="inicio">
     	<input type="submit" class="btn btn-lg btn-success" value="Salvar">
 		</form>
+		<?php }else{ //caso já tenho inicio, lista as semanas 
+				$des = retornaSemanas($obj['data_inicio']); ?>
+   	<p class="lead">O seu treinador avaliou o seu desafio <strong> "<?php echo $obj['objetivo'] ?>"</strong> como de nível <strong><?php echo $obj['nivel']; ?></strong></p>    
+   	<p class="lead">Os desafios vão de <strong> <?php echo exibirDataBr($des[1]['inicio']) ?>  a <?php echo exibirDataBr($des[16]['fim']) ?> </strong></p>     
+   	<p class="lead">Serão 16 semanas com 10 fases.</p>     
+                 
+       <?php
+
+				for($i = 1; $i <= 16; $i++){
+		
+		?>
+        
+        
+        
+    	<h3>Semana <?php echo $i ?> - de <?php echo exibirDataBr($des[$i]['inicio']); ?> a <?php echo exibirDataBr($des[$i]['fim']); ?> - Nível: <?php echo $des[$i]['fase']; ?></h3>
+          <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th><center>Desafio</center></th>
+                <th><center>Ying/Yang</center></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+          <br />
+    </div>
+		<?php } //fim do laco for?>
+
+		<?php } // fim da condicao?>
 
 		<?php 
 		} // não tem objetivo válido no sistema
