@@ -30,7 +30,7 @@
         <p><a class="btn btn-lg btn-success" href="?p=insere" role="button">Inserir um objetivo</a></p>
 		<?php }else{ ?> 
 		<p class="lead">Você tem um objetivo inserido no sistema. Acompanhe os desafios!</p>
-        <p><a class="btn btn-lg btn-success" href="#" role="button">Ir para os desafios</a></p>
+        <p><a class="btn btn-lg btn-success" href="desafio.php" role="button">Ir para os desafios</a></p>
         <?php } ?>
 
       </div>
