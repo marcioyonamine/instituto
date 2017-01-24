@@ -14,13 +14,11 @@ $con = bancoMysqli();
 
 <body>
 <?php 
-$data = retornaSemanas(date('Y-m-d'));
+$tudo = array(1,2,3,4,5,6,7);
+$caixa = array(6,3,7,2);
 
-echo "<pre>";
-var_dump($data);
-echo "<pre>";
-
-
+	$dif =  array_diff($tudo, $caixa); // compara as duas arrays
+var_dump($dif);
 ?>
 
 </body>

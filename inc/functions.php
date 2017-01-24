@@ -176,4 +176,308 @@ function retornaSemanas($data){
 	return $x;
 }
 
+//Verifica se os desafios enviados em uma array obedecem a uma regra
+function desFas($objetivo,$desafios){ 
+	$con = bancoMysqli();
+	$sql_des = "SELECT id,desafio FROM iap_aceite WHERE objetivo = '$objetivo'"; //Seleciona todos os desafios do nível atual
+	$query_des = mysqli_query($con,$sql_des);
+	$i = 0;
+	$k = mysqli_fetch_array($query_des); // uma array com todos os ids da fase anterior
+	$n = mysqli_num_rows($query_des);
+	$obj = recuperaDados("iap_objetivo",$objetivo,"id"); //recupera dados do objetivo
+	$tudo = array(1,2,3,4,5,6,7);
+	foreach($desafios as $x){ //crio um numero na matriz 
+		$y[$i] = $x;	
+		$i++;
+	}
+	
+	switch($fase){
+		case 1:  //somente desafios de nível 1 (1)
+			$f['bool_des'] = 1;
+			$f['nivel'][0] = 1;
+			
+		break; 
+
+		case 2: // - 0, = 1,  + 1 (2)
+			if(count($y) == 2)){ // verifica se a array tem valor 02 (dois desafios)
+				$f['bool_des'] = 1;
+			}else{
+				$f['bool_des'] = 0;
+				$f['err_men'] = "Forma enviados ".$count($y).". Na fase 2 é permitido exatos 2 desafios.";
+
+				
+			} 
+
+		break;
+
+		case 3: // - 1, = 1, + 2 (3) / n e n - 1 (se n = 1, n - 1 = 7)
+			$i = 0;
+			if(count($y]) != 3){ //verifica se o número de opções está de acordo com o da fase. caso não,
+				$f['bool_des'] = 0;
+				$f['err_men'] = "Forma enviados ".$count($y).". Na fase 3 é permitido exatos 3 desafios.";
+			}else{ // caso esteja, é verificado se há duas novas
+				$t = 0;
+				for($i = 0; $i <= count($y), $i++){ 
+					while($k){
+						if($k['desafio'] == $y[$i]){
+							$t++;
+						}
+					}
+				}		
+				if($t == 1){ //se dois forem iguais, passa na condição
+					$f['bool_des'] = 1;
+				}else{
+					$f['bool_des'] = 0;
+					$f['err_men'] = "Pelo menos 1 dos desafios deve ser mantido.";
+				}
+			}
+
+		
+		break;
+
+		case 4: // -1, = 2 , + 3 (5) / n, n - 1, n + 1 (se n = 7, n+1 = 1) 
+		$i = 0;	
+			if(count($y]) != 5){ //verifica se o número de opções está de acordo com o da fase. caso não,
+				$f['bool_des'] = 0;
+				$f['err_men'] = "Forma enviados ".$count($y).". Na fase 4 é permitido exatos 5 desafios.";
+			}else{ // caso esteja, é verificado se há duas novas
+				$t = 0;
+				for($i = 0; $i <= count($y), $i++){ 
+					while($k){
+						if($k['desafio'] == $y[$i]){
+							$t++;
+						}
+					}
+				}		
+				if($t == 2){ //se numero de mantidos forem iguais, passa na condição
+					$f['bool_des'] = 1;
+				}else{
+					$f['bool_des'] = 0;
+					$f['err_men'] = "Pelo menos 2 dos desafios devem ser mantidos.";
+				}
+			}		
+		
+		break;
+
+		case 5: // -2, = 3 , + 5 (8) / n, n - 1, n + 1 (se n = 7, n+1 = 1) 
+
+			$i = 0;	
+			if(count($y]) != 8){ //verifica se o número de opções está de acordo com o da fase. caso não,
+				$f['bool_des'] = 0;
+				$f['err_men'] = "Forma enviados ".$count($y).". Na fase 5 é permitido exatos 8 desafios.";
+			}else{ // caso esteja, é verificado se há duas novas
+				$t = 0;
+				for($i = 0; $i <= count($y), $i++){ 
+					while($k){
+						if($k['desafio'] == $y[$i]){
+							$t++;
+						}
+					}
+				}		
+				if($t == 3){ //se numero de mantidos forem iguais, passa na condição
+					$f['bool_des'] = 1;
+				}else{
+					$f['bool_des'] = 0;
+					$f['err_men'] = "Pelo menos 3 dos desafios devem ser mantidos.";
+				}
+			}		
+		
+		break;
+
+		case 6:// -3, = 5, + 8 (13) // pelo menos 1n
+
+			$i = 0;	
+			if(count($y]) != 13){ //verifica se o número de opções está de acordo com o da fase. caso não,
+				$f['bool_des'] = 0;
+				$f['err_men'] = "Forma enviados ".$count($y).". Na fase 6 é permitido exatos 13 desafios.";
+			}else{ // caso esteja, é verificado se há duas novas
+				$t = 0;
+				for($i = 0; $i <= count($y), $i++){ 
+					while($k){
+						if($k['desafio'] == $y[$i]){
+							$t++;
+						}
+					}
+				}		
+				if($t == 5){ //se numero de mantidos forem iguais, passa na condição
+					//verifica se tem um cada nível
+					$caixa[]; //cria um array para inserir todos os niveis das opções selecionadas
+					for($i = 0; $i <= count($y[$i]), $i++){
+						$d = recuperaDados("iap_desafio",$y[$i],"id");
+						
+						if(!in_array($d['nivel'],$caixa){
+							array_push($caixa, $d['nivel']);
+						}		
+						
+					}		
+					
+					$dif =  array_diff($tudo, $caixa); // compara as duas arrays
+					if(count($dif) == 0){ //se não houver diferença é porque todos os níveis foram escolhidos
+						$f['bool_des'] = 1;
+					}else{ //caso não
+						$f['bool_des'] = 0;
+						$f['err_men'] = "Deve ser escolhido ao menos 1 desafio de cada nível.";
+
+					}
+				}else{
+					$f['bool_des'] = 0;
+					$f['err_men'] = "Pelo menos 5 dos desafios devem ser mantidos.";
+				}
+			}		
+		
+
+		
+		break;
+
+		case 7:// -5, = 8, + 13 (21) // pelo menos 1n
+
+			$i = 0;	
+			if(count($y]) != 21){ //verifica se o número de opções está de acordo com o da fase. caso não,
+				$f['bool_des'] = 0;
+				$f['err_men'] = "Forma enviados ".$count($y).". Na fase 7 é permitido exatos 21 desafios.";
+			}else{ // caso esteja, é verificado se há duas novas
+				$t = 0;
+				for($i = 0; $i <= count($y), $i++){ 
+					while($k){
+						if($k['desafio'] == $y[$i]){
+							$t++;
+						}
+					}
+				}		
+				if($t == 7){ //se numero de mantidos forem iguais, passa na condição
+					//verifica se tem um cada nível
+					$caixa[]; //cria um array para inserir todos os niveis das opções selecionadas
+					for($i = 0; $i <= count($y[$i]), $i++){
+						$d = recuperaDados("iap_desafio",$y[$i],"id");
+						
+						if(!in_array($d['nivel'],$caixa){
+							array_push($caixa, $d['nivel']);
+						}		
+						
+					}		
+					
+					$dif =  array_diff($tudo, $caixa); // compara as duas arrays
+					if(count($dif) == 0){ //se não houver diferença é porque todos os níveis foram escolhidos
+						$f['bool_des'] = 1;
+					}else{ //caso não
+						$f['bool_des'] = 0;
+						$f['err_men'] = "Deve ser escolhido ao menos 1 desafio de cada nível.";
+
+					}
+				}else{
+					$f['bool_des'] = 0;
+					$f['err_men'] = "Pelo menos 7 dos desafios devem ser mantidos.";
+				}
+			}		
+		
+
+		
+
+		
+		break;
+
+		case 8: // -8, = 13, + 21 (34) // pelo menos 1n
+		
+			$i = 0;	
+			if(count($y]) != 34){ //verifica se o número de opções está de acordo com o da fase. caso não,
+				$f['bool_des'] = 0;
+				$f['err_men'] = "Forma enviados ".$count($y).". Na fase 8 é permitido exatos 34 desafios.";
+			}else{ // caso esteja, é verificado se há duas novas
+				$t = 0;
+				for($i = 0; $i <= count($y), $i++){ 
+					while($k){
+						if($k['desafio'] == $y[$i]){
+							$t++;
+						}
+					}
+				}		
+				if($t == 13){ //se numero de mantidos forem iguais, passa na condição
+					//verifica se tem um cada nível
+					$caixa[]; //cria um array para inserir todos os niveis das opções selecionadas
+					for($i = 0; $i <= count($y[$i]), $i++){
+						$d = recuperaDados("iap_desafio",$y[$i],"id");
+						
+						if(!in_array($d['nivel'],$caixa){
+							array_push($caixa, $d['nivel']);
+						}		
+						
+					}		
+					
+					$dif =  array_diff($tudo, $caixa); // compara as duas arrays
+					if(count($dif) == 0){ //se não houver diferença é porque todos os níveis foram escolhidos
+						$f['bool_des'] = 1;
+					}else{ //caso não
+						$f['bool_des'] = 0;
+						$f['err_men'] = "Deve ser escolhido ao menos 1 desafio de cada nível.";
+
+					}
+				}else{
+					$f['bool_des'] = 0;
+					$f['err_men'] = "Pelo menos 13 dos desafios devem ser mantidos.";
+				}
+			}		
+		
+
+		
+		
+		
+		break;
+
+		case 9: // pelo menos 1n (14)
+					$i = 0;	
+			if(count($y]) != 14){ //verifica se o número de opções está de acordo com o da fase. caso não,
+				$f['bool_des'] = 0;
+				$f['err_men'] = "Forma enviados ".$count($y).". Na fase 9 é permitido exatos 14 desafios.";
+			}else{ // caso esteja, é verificado se há duas novas
+				$caixa[]; //cria um array para inserir todos os niveis das opções selecionadas
+				for($i = 0; $i <= count($y[$i]), $i++){
+					$d = recuperaDados("iap_desafio",$y[$i],"id");
+					if(!in_array($d['nivel'],$caixa){
+						array_push($caixa, $d['nivel']);
+					}		
+				}		
+				$dif =  array_diff($tudo, $caixa); // compara as duas arrays
+				if(count($dif) == 0){ //se não houver diferença é porque todos os níveis foram escolhidos
+					$f['bool_des'] = 1;
+				}else{ //caso não
+					$f['bool_des'] = 0;
+					$f['err_men'] = "Deve ser escolhido ao menos 1 desafio de cada nível.";
+				}
+			}
+		break;
+
+		case 10: // pelo menos 1n (7)
+					$i = 0;	
+			if(count($y]) != 7){ //verifica se o número de opções está de acordo com o da fase. caso não,
+				$f['bool_des'] = 0;
+				$f['err_men'] = "Forma enviados ".$count($y).". Na fase 9 é permitido exatos 14 desafios.";
+			}else{ // caso esteja, é verificado se há duas novas
+				$caixa[]; //cria um array para inserir todos os niveis das opções selecionadas
+				for($i = 0; $i <= count($y[$i]), $i++){
+					$d = recuperaDados("iap_desafio",$y[$i],"id");
+					if(!in_array($d['nivel'],$caixa){
+						array_push($caixa, $d['nivel']);
+					}		
+				}		
+				$dif =  array_diff($tudo, $caixa); // compara as duas arrays
+				if(count($dif) == 0){ //se não houver diferença é porque todos os níveis foram escolhidos
+					$f['bool_des'] = 1;
+				}else{ //caso não
+					$f['bool_des'] = 0;
+					$f['err_men'] = "Deve ser escolhido ao menos 1 desafio de cada nível.";
+				}
+			}
+		
+		break;
+		
+		
+		return $x;
+		
+	}
+	
+	
+}
+
+
+
 ?>
