@@ -1,5 +1,7 @@
 ﻿<?php 
 //criar sessão de segurança
+@ini_set('display_errors', '1');
+error_reporting(E_ALL); 
 session_start();
 include "inc/functions.php";
 $con = bancoMysqli();
@@ -14,11 +16,38 @@ $con = bancoMysqli();
 
 <body>
 <?php 
-$tudo = array(1,2,3,4,5,6,7);
-$caixa = array(6,3,7,2);
+$teste = array("desafio" => array(15,18,52,57,106));
+$desafios = array(15, 17, 52, 58, 107, 108, 60, 19);
+$objetivo = 4;
+$fase = 5;
 
-	$dif =  array_diff($tudo, $caixa); // compara as duas arrays
-var_dump($dif);
+$res = desFas($objetivo,$desafios,$fase,$teste);
+
+echo "teste";
+echo "<br />";
+var_dump($teste);
+echo "<br />";
+echo "<br />";
+echo "desafios";
+echo "<br />";
+var_dump($desafios);
+echo "<br />";
+echo "<br />";
+echo "res";
+echo "<br />";
+var_dump($res);
+echo "<br />";
+
+$con = bancoMysqli();
+$sql_des = "SELECT id,desafio FROM iap_aceite WHERE objetivo = '$objetivo'"; //Seleciona todos os desafios do nível atual
+$query_des = mysqli_query($con,$sql_des);
+$k = mysqli_fetch_array($query_des);
+
+echo "<pre>";
+var_dump($k);
+echo "<pre>";
+
+
 ?>
 
 </body>

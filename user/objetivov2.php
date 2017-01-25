@@ -23,19 +23,16 @@
         <div class="jumbotron">
         <h1>Objetivo</h1>
         <?php
-		$objetivo = verificaObjetivo($_SESSION['idUsuario']);
-		if($objetivo == NULL){ ?>
+		$objetivo = verificaObjetivo($_SESSION['idUsuario']); 
+		echo $objetivo." - ".$_SESSION['idUsuario'];
+		if($objetivo == 0){ ?>
 		<p class="lead">Você não tem nenhum objetivo inserido no sistema. Insira um!</p>
         <p><a class="btn btn-lg btn-success" href="?p=insere" role="button">Inserir um objetivo</a></p>
 		<?php }else{ ?> 
-		<p class="lead">Você tem um objetivo inserido no sistema.</p>
-        <h2><?php echo $objetivo['objetivo']; ?></h2>
-        <br /><br />
-        <?php if($objetivo['nivel'] != '0'){ ?>
+		<p class="lead">Você tem um objetivo em andamento no sistema. </p>
+		<h4>Acompanhe os desafios!</h4>
+		<p>Acompanhe os desafios!</p>
         <p><a class="btn btn-lg btn-success" href="desafio.php" role="button">Ir para os desafios</a></p>
-		<?php }else{?>
-    		<p class="lead">Em breve, o treinador irá indicar qual o nível está o seu desafio.</p>    
-        <?php } ?>
         <?php } ?>
 
       </div>
@@ -68,7 +65,7 @@
 
 <?php }
 
-}else{
+	}else{
 	  ?>
       
         <div class="jumbotron">
@@ -79,8 +76,8 @@
 
       </div>
       
-<form action="?p=insere" method="post">
-  <div class="form-group">
+	<form action="?p=insere" method="post">
+ 	 <div class="form-group">
     <label>Descreva o seu objetivo</label>
     <input type="text" class="form-control" name="objetivo" placeholder="Ex: quero mudar de emprego!">
    

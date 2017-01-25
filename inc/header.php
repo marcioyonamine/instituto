@@ -1,6 +1,11 @@
 <?php 
 //criar sessão de segurança
 session_start();
+	if(!isset ($_SESSION['usuario']) == true){ //verifica se há uma sessão, se não, volta para área de login
+		unset($_SESSION['usuario']);
+		header('location:../index.php');
+	}
+	
 include "../inc/functions.php";
 
 ?>
