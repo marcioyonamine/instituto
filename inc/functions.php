@@ -464,7 +464,7 @@ function desFas($objetivo,$desafios,$fase){
 					$i = 0;	
 			if(count($y) != 7){ //verifica se o número de opções está de acordo com o da fase. caso não,
 				$f['bool_des'] = 0;
-				$f['err_men'] = "Forma enviados ".$count($y)." desafios. Na fase 9 é permitido exatos 14 desafios.";
+				$f['err_men'] = "Foram enviados ".$count($y)." desafios. Na fase 9 é permitido exatos 14 desafios.";
 			}else{ // caso esteja, é verificado se há duas novas
 				$caixa = array(); //cria um array para inserir todos os niveis das opções selecionadas
 				for($i = 0; $i <= count($y[$i]); $i++){
@@ -536,19 +536,42 @@ function geraDesafios($nivel,$checked = array()){ //checked é uma array
                 <td>'.$list['titulo'].'</td>
                 <td>'. recTermo($list['yy']).'</td>
                 <td>
-           			 <input type="checkbox" name="'.$list['id'].'" '.checked($list['id'],$checked).'> 
+                	
+           			 <input onchange="validaEscolhaDesafio();" type="checkbox" name="'.$list['id'].'" '.checked($list['id'],$checked).'>
+           			 
         			</td>
              	 </tr>';
-			 }
-
+			 }	
+		
+		//VALIDA ESCOLHA DOS DESAFIOS ANTES DO SUBMIT
+		//Fase 1
+		$fase1 = "SELECT * FROM iap_aceite WHERE fase = 1";
+		$pega_fase = mysqli_query($con, $fase1);
+		$usa_fase = mysqli_fetch_assoc($pega_fase);
+		//var_dump($usa_fase);
+		
+		$fase_atual = $usa_fase['fase'];
+		$nivel_obj = $usa_fase['objetivo'];
+		
+		if($fase_atual == '1'){
+			echo "<script>
+		function validaEscolhaDesafio(){
+			var chkList = document.querySelectorAll('input[type=\"checkbox\"]:checked');
+			if(chkList.length > 1){
+				alert('Você está começando o treinamento agora, e deve pegar apenas um objetivo.');
+				return true;			
+			}
+		}		
+		</script>";
+		}
+		
+		
 	echo '    </tbody>
           </table>
-    </div>';
-
-
-
-	
+    </div>
+    ';
 }
+
 function listaDesafios($nivel){ //checked é uma array
 	$con = bancoMysqli();
 	$sql = "SELECT * FROM iap_desafio WHERE nivel = '$nivel'";
@@ -579,9 +602,4 @@ function listaDesafios($nivel){ //checked é uma array
           </table>
     </div>';
 
-
-
-	
 }
-
-?>

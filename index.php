@@ -40,12 +40,12 @@ if(isset($_POST)){
     <div class="container">
 
       <form class="form-signin" action="?" method="post">
-        <h2 class="form-signin-heading">Please sign in</h2>
+        <h2 class="form-signin-heading">Faça seu login</h2>
         <p><?php if(isset($mensagem)){echo $mensagem;}?></p>
 
         <input type="text" name="username" id="inputEmail" class="form-control" placeholder="Username" required autofocus>
         <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
       </form>
 
     </div> <!-- /container -->
