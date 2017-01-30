@@ -558,7 +558,7 @@ function geraDesafios($nivel,$checked = array()){ //checked é uma array
 		function validaEscolhaDesafio(){
 			var chkList = document.querySelectorAll('input[type=\"checkbox\"]:checked');
 			if(chkList.length > 1){
-				alert('Você está começando o treinamento agora, e deve pegar apenas um objetivo.');
+				alert('Você está começando o treinamento agora, e deve pegar apenas um desafio.');
 				return true;			
 			}
 		}		
