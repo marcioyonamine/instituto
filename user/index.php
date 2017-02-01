@@ -3,6 +3,7 @@
 
 
 	<div class="container">
+		<?php include '../inc/fixed-navbar-user.php'; ?>
 		<?php include '../inc/menu-principal.php'; ?>
       <!-- Jumbotron -->
       <div class="jumbotron">
@@ -13,11 +14,12 @@
         <?php
 		$objetivo = verificaObjetivo($_SESSION['idUsuario']); 
 		if($objetivo == 0){ ?>
-		<p class="lead">Você não tem nenhum objetivo inserido no sistema. Insira um!</p>
+		<p class="lead">Você não tem nenhum objetivo inserido no sistema. Para definir seu objetivo e iniciar o treinamento, te recomendo assistir a Introdução do Módulo Online, onde apresento a ferramenta S.M.A.R.T! Ela vai te ajudar a detalhar seu objetivo e te permitirá saber se está se aproximando ou se afastando do seu objetivo.</p>
         <p><a class="btn btn-lg btn-success" href="#" role="button">Inserir um objetivo</a></p>
 		<?php }else{
 		?> 
-		<p class="lead">Você tem um objetivo inserido no sistema. Acompanhe os desafios!</p>
+		<p class="lead">Você já escolheu seu objetivo para este treinamento:<strong> <?php echo $objetivo['objetivo']; ?></strong></p>
+		<p>Lembre-se de focar nos desafios escolhidos para esta fase, e mantenha o seu observador ligado para perceber as situações.</p>
         <p><a class="btn btn-lg btn-success" href="desafio.php" role="button">Ir para os desafios</a></p>
         <?php } ?>
       </div>
@@ -26,25 +28,27 @@
       <div class="row">
         <div class="col-lg-4">
           <h2>Você tem x desafios nesta semana.</h2>
-          <p class="text-danger">As of v9.1.2, Safari exhibits a bug in which resizing your browser horizontally causes rendering errors in the justified nav that are cleared upon refreshing.</p>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-primary" href="#" role="button">+ Detalhes &raquo;</a></p>
+          <p class="text-success">Você não possui advertências =)</p>
+          <p>(se teve nota na semana passada) Sua nota para os desafios na última fase foi X. Continue com seu observador ligado e atente-se para os lembretes e gatilhos para não se sabotar.</p>
+          <p><a class="btn btn-primary" href="#" role="button">Ir para Desafios &raquo;</a></p>
         </div>
         <div class="col-lg-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
+          <h2>Desafios versão Pocket</h2>
+          <p>Muitos preferem colocar os lembretes dos desafios no celular (clique aqui para ver uma lista com algumas sugestões). Mas às vezes não podemos contar com ele, e isso não pode impedir a continuação dos desafios. Por isso disponibilizamos para você imprimir a sua lista de desafios da fase, tanto no formato A4 (sulfite convencional), quanto uma versão pocket, pra você carregar sempre com você.</p>
+          <p><a class="btn btn-primary" href="#" role="button">Imprimir lista &raquo;</a></p>
        </div>
         <div class="col-lg-4">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
-          <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
+          <h2>Próximos eventos</h2>
+          <p>15/02 - Palestra Online: Ego vs Consciência</p>
+		  <p>22/02 - Palestra Online: O que é Alta Performance?</p>
+		  <p>13/03 - Encontro Presencial</p>
+          <p><a class="btn btn-primary" href="#" role="button">Ver agenda completa &raquo;</a></p>
         </div>
       </div>
 
       <!-- Site footer -->
-      <footer class="footer">
-        <p>&copy; 2016 Company, Inc.</p>
+      <footer class="footer text-center">
+        <p>&copy; <?php echo date('Y') ?> Instituto de Alta Performance</p>
 <?php
 if($_SESSION['perfil'] == 1){
 	echo "<strong>SESSION</strong><pre>", var_dump($_SESSION), "</pre>";

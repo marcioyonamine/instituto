@@ -18,11 +18,6 @@ if(isset($_GET['p'])){
 	$p = "inicio";	
 }
 
-
-
-
-
-
 ?>
      <?php 
 	  switch ($p){
@@ -64,7 +59,7 @@ if(isset($_GET['p'])){
 	   	<?php  }else{ //caso já tenho inicio, lista as semanas 
 				$des = retornaSemanas($obj['data_inicio']); ?>
   	 	<p class="lead">O seu treinador avaliou o seu desafio <strong> "<?php echo $obj['objetivo'] ?>"</strong> como de nível <strong><?php echo $obj['nivel']; ?></strong></p>    
-   		<p class="lead">Os desafios vão de <strong> <?php echo exibirDataBr($des[1]['inicio']) ?>  a <?php echo exibirDataBr($des[16]['fim']) ?> </strong></p>     
+   		<p class="lead">O seu treinamento vai de <strong> <?php echo exibirDataBr($des[1]['inicio']) ?>  a <?php echo exibirDataBr($des[16]['fim']) ?> </strong></p>     
    		<p class="lead">Serão 16 semanas com 10 fases.</p>
         <p class="lead">Você está na fase <b><?php $fase_atual = verificaFase($obj['id']); echo $fase_atual; ?> </b>. Veja abaixo os desafios da fase <?php  $fase = $fase_atual + 1; echo $fase; ?> </p>    
 <?php         

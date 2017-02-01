@@ -1,6 +1,6 @@
 ﻿      <!-- Site footer -->
-      <footer class="footer">
-        <p>&copy; 2016 Company, Inc.</p>
+      <footer class="footer text-center">
+        <p>&copy; <?php echo date('Y') ?> Instituto de Alta Performance</p>
 <?php
 if($_SESSION['perfil'] == 1){
 	echo "<strong>SESSION</strong><pre>", var_dump($_SESSION), "</pre>";

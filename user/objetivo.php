@@ -28,7 +28,7 @@
 		<p class="lead">Você não tem nenhum objetivo inserido no sistema. Insira um!</p>
         <p><a class="btn btn-lg btn-success" href="?p=insere" role="button">Inserir um objetivo</a></p>
 		<?php }else{ ?> 
-		<p class="lead">Você tem um objetivo inserido no sistema.</p>
+		<p class="lead">O objetivo que você escolheu para atingir durante o treinamento foi:</p>
         <h2><?php echo $objetivo['objetivo']; ?></h2>
         <br /><br />
         <?php if($objetivo['nivel'] != '0'){ ?>

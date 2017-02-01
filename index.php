@@ -17,7 +17,7 @@ if(isset($_POST)){
     <meta name="author" content="">
     <link rel="icon" href="docs/favicon.ico">
 
-    <title>IAP</title>
+    <title>Instituto de Alta Performance | Login</title>
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="signin.css" rel="stylesheet">
@@ -38,15 +38,18 @@ if(isset($_POST)){
   <body>
 
     <div class="container">
-
+		<img class="center-block" src="http://ialtaperformance.com/wp-content/uploads/2017/01/iap_logo_digital_reduzido_site.png" alt="Instituto de Alta Performance" title="Instituto de Alta Performance" width="300" />
       <form class="form-signin" action="?" method="post">
         <h2 class="form-signin-heading">Faça seu login</h2>
         <p><?php if(isset($mensagem)){echo $mensagem;}?></p>
 
-        <input type="text" name="username" id="inputEmail" class="form-control" placeholder="Username" required autofocus>
-        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <input type="text" name="username" id="inputEmail" class="form-control" placeholder="Usuário ou e-mail" required autofocus>
+        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Senha" required>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
-      </form>
+		</form>
+		<div class="text-center">
+			<a href="#" title="Esqueci minha senha">Esqueci minha senha</a>
+		</div>
 
     </div> <!-- /container -->
 
