@@ -1,0 +1,125 @@
+<html>
+	<head>
+		<script>
+			
+			function validaDados(){
+				
+				if(document.formRelFase.objetivo.value=="")
+				{
+					alert( "Preencha campo OBJETIVO!" );
+					document.formRelFase.objetivo.focus();
+					return false;
+				}
+				
+				
+				if( document.formRelFase.sessao.value=="")
+				{
+					alert( "Preencha campo SESSÃO!" );
+					document.formRelFase.sessao.focus();
+					return false;
+				}
+				
+				if (document.formRelFase.qtdeDesafios.value=="")
+				{
+					alert( "Preencha o campo QUANTIDADE DE DESAFIOS!" );
+					document.formRelFase.qtdeDesafios.focus();
+					return false;
+				}
+				
+				if (document.formRelFase.resumoDesafios.value.length=="" )
+				{
+					alert( "Preencha o campo RESUMO DOS DESAFIOS!" );
+					document.formRelFase.resumoDesafios.focus();
+					return false;
+				}
+				
+				if (document.formRelFase.notaDesafios.value.length=="")
+				{
+					alert( "Preencha o campo NOTA DOS DESAFIOS!" );
+					document.formRelFase.notaDesafios.focus();
+					return false;
+				}
+				
+				if (document.formRelFase.expDesafios.value.length=="")
+				{
+					alert( "Preencha o campo EXPERIÊNCIA COM OS DESAFIOS!" );
+					document.formRelFase.expDesafios.focus();
+					return false;
+				}
+				
+				if (document.formRelFase.oqObservou.value.length=="")
+				{
+					alert( "Preencha o campo O QUE OBSERVOU!" );
+					document.formRelFase.oqObservou.focus();
+					return false;
+				}
+				
+				if (document.formRelFase.periodo.value.length=="")
+				{
+					alert( "Preencha o campo COMO FOI ESSE PERÍODO!" );
+					document.formRelFase.periodo.focus();
+					return false;
+				}
+				
+				return true;
+			}
+		</script>
+	</head>
+	
+	<body>
+		
+		
+		<form action="/relatorio-fase-sucesso" method="post" name="formRelFase" onsubmit="return validaDados()">
+			
+			<p>Objetivo:<br />
+				<input name="objetivo" type="text" class="input-txt-rel-fase" />
+			</p>
+			
+			<p>Sessão:
+				<select name="sessao" class="select-txtarea-rel-fase">
+					<option>01</option>
+					<option>02</option>
+					<option>03</option>
+					<option>04</option>
+					<option>05</option>
+					<option>06</option>
+					<option>07</option>
+					<option>08</option>
+					<option>09</option>
+					<option>10</option>
+				</select>
+			</p>
+			
+			<p>Quantidade de desafios:
+				<input name="qtdeDesafios" type="text" class="input-txt-rel-fase" />
+			</p>
+			
+			<p>Enumere e me conte como foram os desafios nesse período:
+				<textarea name="resumoDesafios" class="input-txtarea-rel-fase"></textarea>
+			</p>
+			
+			<p>Dê uma nota de 0 a 10 que você dá a si mesmo para o seu desempenho nos desafios:
+				<input name="notaDesafios" type="text" class="input-txt-rel-fase" />
+			</p>
+			
+			<p>
+				Qual foi a experiência desse período com os desafios?
+				<textarea name="expDesafios" class="input-txtarea-rel-fase"></textarea>
+			</p>
+			
+			<p>O que você observou?
+				<textarea name="oqObservou" class="input-txtarea-rel-fase"></textarea>		
+			</p>
+			
+			<p>Como foi esse período pra você?
+				<textarea name="periodo" class="input-txtarea-rel-fase"></textarea>
+			</p>
+			
+			<p>
+				<input name="Enviar relatório" type="submit" value="Enviar relatório" />
+			</p>
+			
+		</form>
+		
+	</body>
+</html>
