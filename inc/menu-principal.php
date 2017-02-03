@@ -21,6 +21,10 @@ Multiple lines will require custom code not provided by Bootstrap. -->
             <li <?php if (basename($_SERVER['PHP_SELF']) == 'agenda.php') echo 'class="active"' ?>>
                 <a href="agenda.php">Agenda</a>
             </li>
+            <li>
+                <a href="http://ialtaperformance.com/courses/alta-performance/lessons/definicao/">Módulo Online</a>
+            </li>
+            
         </ul>
     </nav>
 </div>
