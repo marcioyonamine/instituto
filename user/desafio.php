@@ -30,13 +30,13 @@ if(isset($_GET['p'])){
         <h1>Desafios</h1>
 	  	<p><?php if(isset($mensagem)){echo $mensagem;} ?></p>
         <?php
-		$objetivo = verificaObjetivo($_SESSION['idUsuario']); 
+		$objetivo = verificaObjetivo($user->ID); 
 		// Mensagem inicial
 		if($objetivo == 0){ // verifica objetivo?>
 			<p class="lead">Você não tem nenhum objetivo inserido no sistema. Insira um!</p>
 	        <p><a class="btn btn-lg btn-success" href="?p=insere" role="button">Inserir um objetivo</a></p>
   <?php }else{
-			$obj = 	ultObj($_SESSION['idUsuario']);
+			$obj = 	ultObj($user->ID);
 			if($obj['nivel'] == 0){ // o treinador ainda não avaliou o nível
 		?>
 				<p class="lead">O seu treinador ainda não avaliou o seu objetivo...</p>
@@ -151,7 +151,7 @@ switch($fase){
 if(isset($_GET['nivel'])){
 	$objetivo['nivel'] = $_GET['nivel'];
 }else{
-	$objetivo = verificaObjetivo($_SESSION['idUsuario']); 
+	$objetivo = verificaObjetivo($user->ID); 
 	
 }
 

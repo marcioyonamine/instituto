@@ -1,7 +1,7 @@
 ﻿<?php
-
 @ini_set('display_errors', '1');
 error_reporting(E_ALL); 
+
 
 
 $hoje = date('Y-m-d'); //global data
@@ -34,6 +34,23 @@ function autenticaUsuario($usuario, $senha){
 		return "Erro no banco de dados";
 	}	
 }
+
+function converterObjParaArray($data) { //função que transforma objeto vindo do json em array
+
+    if (is_object($data)) {
+        $data = get_object_vars($data);
+    }
+
+    if (is_array($data)) {
+        return array_map(__FUNCTION__, $data);
+    }
+    else {
+        return $data;
+    }
+}
+
+
+
 
 function saudacao(){ 
 	$hora = date('H');
@@ -505,7 +522,7 @@ function verificaFase($idObj){
 }
 
 
-function checked($x,$array){
+function checado($x,$array){
 	if (in_array($x,$array)){
 		return "checked='checked'";		
 	}
@@ -603,3 +620,5 @@ function listaDesafios($nivel){ //checked é uma array
     </div>';
 
 }
+
+?>

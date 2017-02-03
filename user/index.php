@@ -7,12 +7,12 @@
 		<?php include '../inc/menu-principal.php'; ?>
       <!-- Jumbotron -->
       <div class="jumbotron">
-        <h1>Olá, <?php echo $_SESSION['nomeCompleto'] ?>! <?php echo saudacao(); ?>!</h1>
+        <h1>Olá, <?php echo $user->display_name; ?>! <?php echo saudacao(); ?>!</h1>
         <p class="lead">Esta é a semana <?php echo numeroSemana(date('m/d/Y')); ?> do ano!</p>
         <p class="lead">Os novos desafios devem começar em <?php echo exibirDataBr(nextMonday(date('Y-m-d'))); ?>, segunda-feira!  </p>
         
         <?php
-		$objetivo = verificaObjetivo($_SESSION['idUsuario']); 
+		$objetivo = verificaObjetivo($user->ID); 
 		if($objetivo == 0){ ?>
 		<p class="lead">Você não tem nenhum objetivo inserido no sistema. Para definir seu objetivo e iniciar o treinamento, te recomendo assistir a Introdução do Módulo Online, onde apresento a ferramenta S.M.A.R.T! Ela vai te ajudar a detalhar seu objetivo e te permitirá saber se está se aproximando ou se afastando do seu objetivo.</p>
         <p><a class="btn btn-lg btn-success" href="#" role="button">Inserir um objetivo</a></p>
@@ -50,8 +50,8 @@
       <footer class="footer text-center">
         <p>&copy; <?php echo date('Y') ?> Instituto de Alta Performance</p>
 <?php
-if($_SESSION['perfil'] == 1){
-	echo "<strong>SESSION</strong><pre>", var_dump($_SESSION), "</pre>";
+if($user->ID['caps']['administrator'] == TRUE){
+	echo "<strong>SESSION</strong><pre>", var_dump($usuario), "</pre>";
 	echo "<strong>POST</strong><pre>", var_dump($_POST), "</pre>";
 	echo "<strong>GET</strong><pre>", var_dump($_GET), "</pre>";
 	echo "<strong>SERVER</strong><pre>", var_dump($_SERVER), "</pre>";

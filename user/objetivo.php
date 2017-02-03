@@ -23,7 +23,7 @@
         <div class="jumbotron">
         <h1>Objetivo</h1>
         <?php
-		$objetivo = verificaObjetivo($_SESSION['idUsuario']);
+		$objetivo = verificaObjetivo($user->ID);
 		if($objetivo == NULL){ ?>
 		<p class="lead">Você não tem nenhum objetivo inserido no sistema. Insira um!</p>
         <p><a class="btn btn-lg btn-success" href="?p=insere" role="button">Inserir um objetivo</a></p>
@@ -47,7 +47,7 @@
 
 	if(isset($_POST['objetivo'])){
 	$objetivo = addslashes($_POST['objetivo']);
-	$user = $_SESSION['idUsuario'];
+	$user = $user->ID;
 	$sql = "INSERT INTO `iap_objetivo` (`id`, `objetivo`, `usuario`, `treinador`, `nivel`, `data_inicio`)
 	VALUES (NULL, '$objetivo', '$user', '', '', '')";
 	$query = mysqli_query($con,$sql);
@@ -101,8 +101,8 @@
       <footer class="footer">
         <p>&copy; 2016 Company, Inc.</p>
 <?php
-if ($_SESSION['perfil'] == 1) {
-	echo "<strong>SESSION</strong><pre>",  var_dump($_SESSION), "</pre>";
+if ($user->ID['caps']['administrator'] == TRUE) {
+	echo "<strong>SESSION</strong><pre>",  var_dump($usuario), "</pre>";
 	echo "<strong>POST</strong><pre>",  var_dump($_POST), "</pre>";
 	echo "<strong>GET</strong><pre>",  var_dump($_GET), "</pre>";
 	echo "<strong>SERVER</strong><pre>",  var_dump($_SERVER), "</pre>";
