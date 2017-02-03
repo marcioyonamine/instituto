@@ -249,7 +249,7 @@ function desFas($objetivo,$desafios,$fase){
 				$t = 0;
 				for($i = 0; $i <= count($y); $i++){ 
 					while($k){
-						if($k['desafio'] == $y[$i]){
+						if($k['id'] == $y[$i]){
 							$t++;
 						}
 					}
@@ -517,10 +517,22 @@ function verificaFase($idObj){
 	$x = mysqli_fetch_array($query);
 	if($x['fase'] == NULL){
 		return $x['fase'] = 0;
+	}else{
+		return $x['fase'];
 	}
-	return $x['fase'];
 }
 
+function matrizDesafios($obj,$fase){
+	$con = bancoMysqli();
+	$sql = "SELECT desafio FROM iap_aceite WHERE objetivo = '$obj' AND fase = '$fase'";
+	$query = mysqli_query($con,$sql);
+	$caixa = array();
+	while($x = mysqli_fetch_array($query)){
+		array_push($caixa, $x['desafio']);
+		
+	}
+	return $caixa;		
+}
 
 function checado($x,$array){
 	if (in_array($x,$array)){
@@ -528,7 +540,15 @@ function checado($x,$array){
 	}
 }
 
-function geraDesafios($nivel,$checked = array()){ //checked é uma array
+function marcaX($x){
+	if($x == 1){
+		return "X";		
+	}
+}
+
+
+
+function geraDesafios($nivel,$checado = array()){ //checked é uma array
 	$con = bancoMysqli();
 	$sql = "SELECT * FROM iap_desafio WHERE nivel = '$nivel'";
 	$query = mysqli_query($con,$sql);
@@ -554,7 +574,7 @@ function geraDesafios($nivel,$checked = array()){ //checked é uma array
                 <td>'. recTermo($list['yy']).'</td>
                 <td>
                 	
-           			 <input onchange="validaEscolhaDesafio();" type="checkbox" name="'.$list['id'].'" '.checked($list['id'],$checked).'>
+           			 <input onchange="validaEscolhaDesafio();" type="checkbox" name="'.$list['id'].'" '.checado($list['id'],$checado).'>
            			 
         			</td>
              	 </tr>';

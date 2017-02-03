@@ -6,50 +6,26 @@ if(isset($_GET['p'])){
 }else{
 	$p = "inicial";	
 }
+
 $mensagem = "";
 if(isset($_POST['insere'])){ //insere
 	$i = 0;
 	$caixa = array();
 	foreach($_POST as $x => $valor){
-		if(!preg_match('/[^0-9]/',$x)){ //verifica se é um número
-			array_push($caixa, $x);
-		}
-	}
-	$objetivo = verificaObjetivo($_SESSION['idUsuario']); 
-	$fase = verificaFase($objetivo['id']);
-	$prox = $fase + 1;
-	echo $prox;
-	//$verifica = desFas($objetivo['id'],$caixa,$prox);
-	$verifica = desFas($objetivo['id'],$caixa,$prox);
-	if($verifica['bool_des'] == 1){ //se passar pela verificação, gravar a tabela aceite
-		for($i = 0; $i < count($caixa); $i++){
-			$data_inicio = nextMonday($hoje);
-			$sql_insere = "INSERT INTO `iap_aceite` (`id`, `objetivo`, `desafio`, `foco`, `data_aceite`, `data_inicio`, `data_final`, `duracao`, `semana`, `fase`, `relatorio`, `resposta`, `intesidade`, `frequencia`, `corpos`) VALUES (NULL, '".$objetivo['id']."', '".$caixa[$i]."', '', '$hoje', '$data_inicio', '', '', '', '".$prox."', '', '', '', '', '')";			
-			$query_insere = mysqli_query($con,$sql_insere);
-			if($query_insere){
-				$des = recuperaDados("iap_desafio",$caixa[$i],"id");
-				$mensagem .= "Desafio <b>".$des['titulo']."</b> inserido com sucesso.<br />";
-				if($prox == 1){ // atualiza a tabela objetivo
-					$sql_obj = "UPDATE iap_objetivo SET data_inicio = '$hoje' WHERE id = '".$objetivo['id']."'";
-					$query_obj = mysqli_query($con,$sql_obj);
-					if($query_obj){
-						$mensagem .= "Objetivo atualizado.<br />";	
-					}else{
-						$mensagem .= "Erro ao atualizar objetivo.<br />";	
-					}
-				}	
-			}else{
-				$mensagem .= "Erro ao inserir.<br />";	
-				
+		if($x != "insere"){
+			$array = explode('_', $x);
+			$campo = $array[0];
+			$id = $array[1];
+			$sql_update = "UPDATE iap_aceite SET $campo = '1' WHERE id = '$id'";
+			$query_update = mysqli_query($con,$sql_update);
+			if($query_update){
+				//$mensagem .= "$campo = 1 Em Id: $id <br />";	
 			}
+			
 		}
 
-	}else{
-		$mensagem = $verifica['err_men']."<br /> <a href = 'desafio.php?p=insere'>Tente novamente. </a>";	
 	}
 }
-
-
 
 
 ?>
@@ -62,7 +38,7 @@ if(isset($_POST['insere'])){ //insere
 
 <?php switch($p){ 
 case "inicial";
-$objetivo = verificaObjetivo($_SESSION['idUsuario']); 
+$objetivo = verificaObjetivo($user->ID); 
 $datas = retornaSemanas($objetivo['data_inicio']);
 ?>
 	<div class="jumbotron">
@@ -84,16 +60,16 @@ $datas = retornaSemanas($objetivo['data_inicio']);
           <table class="table table-striped">
             <thead>
               <tr>
-                <th><center>Nível</center></th>
-                <th><center>Desafio</center></th>
-                <th><center>Ying/Yang</center></th>
-                <th><center>Ter</center></th>
-                <th><center>Fazer</center></th>
-                <th><center>Ser</center></th>
-                <th><center>Fis</center></th>
-                <th><center>Emo</center></th>
-                <th><center>Men</center></th>
-                <th><center>Esp</center></th>
+                <th>Nível</th>
+                <th>Desafio</th>
+                <th>Ying/Yang</th>
+                <th>Ter</th>
+                <th>Fazer</th>
+                <th>Ser</th>
+                <th>Fis</th>
+                <th>Emo</th>
+                <th>Men</th>
+                <th>Esp</th>
               </tr>
             </thead>
             <tbody>
@@ -106,13 +82,13 @@ $datas = retornaSemanas($objetivo['data_inicio']);
                 <td><?php echo $desafio['nivel']; ?></td>
                 <td><?php echo $desafio['titulo']; ?></td>
                 <td><?php echo recTermo($desafio['yy']); ?></td>
-                <td> <input type="checkbox"> </td>
-                <td><input type="checkbox"></td>
-                <td><input type="checkbox"></td>
-                <td><input type="checkbox"></td>
-                <td><input type="checkbox"></td>
-                <td><input type="checkbox"></td>
-                <td><input type="checkbox"></td>
+                <td><?php echo marcaX($x['ter']); ?>  </td>
+                <td><?php echo marcaX($x['ser']); ?></td>
+                <td><?php echo marcaX($x['fazer']); ?></td>
+                <td><?php echo marcaX($x['fisico']); ?></td>
+                <td><?php echo marcaX($x['emocional']); ?></td>
+                <td><?php echo marcaX($x['mental']); ?></td>
+                <td><?php echo marcaX($x['espiritual']); ?></td>
 
            </tr>
 			 <?php } ?>
