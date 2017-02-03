@@ -155,23 +155,27 @@ if(isset($_GET['nivel'])){
 	
 }
 
+
 if(isset($_GET['fase'])){
 	$fase = $_GET['fase'];
 }else{
 	$fase = verificaFase($objetivo['id']);
 }
-echo $fase;
+echo $objetivo['nivel']." - ".$fase;
+$checados = matrizDesafios($objetivo['id'],$fase);
+		$obj = 	ultObj($user->ID);
+
  ?>
     <div class="container">
       	<?php include '../inc/menu-principal.php'; ?>
         <div class="jumbotron">
         <h1>Desafios</h1>
 	  	<p><?php if(isset($mensagem)){echo $mensagem;} ?></p>
-      	<p>
-        
-        
-        
-        </p>  
+			<?php	$des = retornaSemanas($obj['data_inicio']); ?>
+  	 	<p class="lead">O seu treinador avaliou o seu desafio <strong> "<?php echo $obj['objetivo'] ?>"</strong> como de nível <strong><?php echo $obj['nivel']; ?></strong></p>    
+   		<p class="lead">O seu treinamento vai de <strong> <?php echo exibirDataBr($des[1]['inicio']) ?>  a <?php echo exibirDataBr($des[16]['fim']) ?> </strong></p>     
+   		<p class="lead">Serão 16 semanas com 10 fases.</p>
+        <p class="lead">Você está na fase <b><?php $fase_atual = verificaFase($obj['id']); echo $fase_atual; ?> </b>.  </p>   
  <form action="desafio.php?p=insere_options" method="post">
 
 <?php 
@@ -181,66 +185,66 @@ switch($fase){
 	break;
 
 	case 1: //vai para fase 2
-		geraDesafios(1);
-		geraDesafios($objetivo['nivel']);
+		geraDesafios(1,$checados);
+		geraDesafios($objetivo['nivel'],$checados);
 	break;
 
 	case 2: //vai para fase 3
-		geraDesafios($objetivo['nivel']);
-		geraDesafios($objetivo['nivel'] - 1);
+		geraDesafios($objetivo['nivel'],$checados);
+		geraDesafios($objetivo['nivel'] - 1,$checados);
 
 	break;
 	case 3: //vai para fase 4
 
-		geraDesafios($objetivo['nivel']);
+		geraDesafios($objetivo['nivel'],$checados);
 		if($objetivo['nivel'] == 1){
-			geraDesafios(7);
+			geraDesafios(7,$checados);
 		}else{
-			geraDesafios($objetivo['nivel'] - 1);
+			geraDesafios($objetivo['nivel'] - 1,$checados);
 		}
 		if($objetivo['nivel'] == 7){
-			geraDesafios(1);
+			geraDesafios(1,$checados);
 		}else{
-			geraDesafios($objetivo['nivel'] + 1);
+			geraDesafios($objetivo['nivel'] + 1,$checados);
 		}
 	break;
 
 	case 4: //vai para fase 5
-		geraDesafios($objetivo['nivel']);
+		geraDesafios($objetivo['nivel'],$checados);
 		if($objetivo['nivel'] == 1){
-			geraDesafios(7);
+			geraDesafios(7,$checados);
 		}else{
-			geraDesafios($objetivo['nivel'] - 1);
+			geraDesafios($objetivo['nivel'] - 1,$checados);
 		}
 		if($objetivo['nivel'] == 7){
-			geraDesafios(1);
+			geraDesafios(1,$checados);
 		}else{
-			geraDesafios($objetivo['nivel'] + 1);
+			geraDesafios($objetivo['nivel'] + 1,$checados);
 		}
 	break;
 	case 5: //vai para fase 6
 		for($i = 1; $i <= 7; $i++){
-			geraDesafios($i);
+			geraDesafios($i,$checados);
 		}
 	break;
 	case 6: //vai para fase 7
 		for($i = 1; $i <= 7; $i++){
-			geraDesafios($i);
+			geraDesafios($i,$checados);
 		}
 	break;
 	case 7: //vai para fase 8
 		for($i = 1; $i <= 7; $i++){
-			geraDesafios($i);
+			geraDesafios($i,$checados);
 		}
 	break;
 	case 8: //vai para fase 9
 		for($i = 1; $i <= 7; $i++){
-			geraDesafios($i);
+			geraDesafios($i,$checados);
 		}
 	break;
 	case 9: //vai para fase 10
 		for($i = 1; $i <= 7; $i++){
-			geraDesafios($i);
+			geraDesafios($i,$checados);
 		}
 	break;
 

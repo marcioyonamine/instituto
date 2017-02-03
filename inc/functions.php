@@ -522,6 +522,17 @@ function verificaFase($idObj){
 	}
 }
 
+function matrizDesafios($obj,$fase){
+	$con = bancoMysqli();
+	$sql = "SELECT desafio FROM iap_aceite WHERE objetivo = '$obj' AND fase = '$fase'";
+	$query = mysqli_query($con,$sql);
+	$caixa = array();
+	while($x = mysqli_fetch_array($query)){
+		array_push($caixa, $x['desafio']);
+		
+	}
+	return $caixa;		
+}
 
 function checado($x,$array){
 	if (in_array($x,$array)){

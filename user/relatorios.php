@@ -16,10 +16,10 @@ if(isset($_POST['insere'])){ //insere
 			$array = explode('_', $x);
 			$campo = $array[0];
 			$id = $array[1];
-			$sql_update = "UPDATE iap_aceite SET $campo = '1' WHERE $id = '$id'";
+			$sql_update = "UPDATE iap_aceite SET $campo = '1' WHERE id = '$id'";
 			$query_update = mysqli_query($con,$sql_update);
 			if($query_update){
-				//
+				//$mensagem .= "$campo = 1 Em Id: $id <br />";	
 			}
 			
 		}
