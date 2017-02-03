@@ -39,7 +39,7 @@
 	  -->
       <ul class="nav navbar-nav navbar-right">
         <li><a href="http://ialtaperformance.com" target="_blank" title="Instituto de Alta Performance">Visitar o site</a></li>
-        <li><a href="<?php session_destroy(); header('location:http://ialtaperformance.com'); ?>" title="Sair">Sair</a></li>
+        <li><a href="#" title="Sair">Sair</a></li>
       </ul>
         <!--</li>
       </ul>-->
