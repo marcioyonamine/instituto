@@ -52,6 +52,14 @@
 	VALUES (NULL, '$objetivo', '$user', '', '', '')";
 	$query = mysqli_query($con,$sql);
 	if($query){
+		//envia email para o treinador
+	}
+?>
+       <div class="container">
+      	 <?php include '../inc/menu-principal.php'; ?>
+
+<?php
+	if($query){
  ?>
 	    <div class="jumbotron">
         <h1>Objetivo</h1>
@@ -70,7 +78,8 @@
 
 }else{
 	  ?>
-      
+       <div class="container">
+      	 <?php include '../inc/menu-principal.php'; ?>      
         <div class="jumbotron">
         <h1>Objetivo</h1>
         <p class="lead"></p>
@@ -91,6 +100,7 @@
   </div>-->
   <button type="submit" class="btn btn-primary">Enviar</button>
 </form>      </div>
+
 <?php } ?>
 <?php
 	break;

@@ -50,7 +50,7 @@ if(isset($_GET['p'])){
 		?>
 					<p class="lead">O seu treinador avaliou o seu desafio <strong> "<?php echo $obj['objetivo'] ?>"</strong> como de nível <strong><?php echo $obj['nivel']; ?></strong></p>
 					<p class="lead">Na tabela abaixo, escolha 1 desafio para começar o programa.</p>
-                     <form action="relatorios.php" method="post">
+                     <form action="desafio.php?p=insere_options" method="post">
                     <?php geraDesafios(1); ?>
    
 	    	<input type="hidden" value="1" name="insere">
