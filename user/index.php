@@ -29,7 +29,7 @@
         
         <p class="lead">A sua data prevista para início do treinamento é: <?php echo exibirDataBr(nextMonday(date('Y-m-d'))); ?>, segunda-feira!  </p>
         
-        <p class="lead">Pronto para definir seu objetivo?</p>
+        <p class="lead">Pronto para definir o seu objetivo?</p>
         
         <p><a class="btn btn-lg btn-success" href="objetivo.php" role="button">Inserir um objetivo</a></p>
 		<?php }else{

@@ -9,7 +9,7 @@
 		
 		<p class="lead">Nessa página você consegue ver as suas pontuações e como está a evolução do seu treinamento. Seja 100% sincero com você mesmo e com seu desempenho quando estiver se avaliando. Não existe certo ou errado nesse treinamento, tudo é informação relevante para termos consciência de como o ego atua na nossa vida.</p>
 		
-		<p class="lead">Acompanhe sempre suas notas e vá ajustando a rota no seu tempo. Qualquer dúvida, fale com seu treinador. [form contato]</p>
+		<p class="lead">Acompanhe sempre suas notas e vá ajustando a rota no seu tempo. Qualquer dúvida, fale com seu treinador.[form contato]</p>
 		
 		<p class="lead">Se ainda não enviou relatório, echo "você ainda não enviou nenhum relatório com nota de avaliação".</p>
 		
