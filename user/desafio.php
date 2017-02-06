@@ -25,6 +25,7 @@ if(isset($_GET['p'])){
 	  
 	  ?>
       <div class="container">
+		  <?php include '../inc/fixed-navbar-user.php'; ?>
       	<?php include '../inc/menu-principal.php'; ?>
         <div class="jumbotron">
         <h1>Desafios</h1>
@@ -34,7 +35,7 @@ if(isset($_GET['p'])){
 		// Mensagem inicial
 		if($objetivo == 0){ // verifica objetivo?>
 			<p class="lead">Você não tem nenhum objetivo inserido no sistema. Insira um!</p>
-	        <p><a class="btn btn-lg btn-success" href="?p=insere" role="button">Inserir um objetivo</a></p>
+	        <p><a class="btn btn-lg btn-success" href="objetivo.php?p=insere" role="button">Inserir um objetivo</a></p>
   <?php }else{
 			$obj = 	ultObj($user->ID);
 			if($obj['nivel'] == 0){ // o treinador ainda não avaliou o nível

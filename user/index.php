@@ -15,7 +15,7 @@
 		$objetivo = verificaObjetivo($user->ID); 
 		if($objetivo == 0){ ?>
 		<p class="lead">Você não tem nenhum objetivo inserido no sistema. Para definir seu objetivo e iniciar o treinamento, te recomendo assistir a Introdução do Módulo Online, onde apresento a ferramenta S.M.A.R.T! Ela vai te ajudar a detalhar seu objetivo e te permitirá saber se está se aproximando ou se afastando do seu objetivo.</p>
-        <p><a class="btn btn-lg btn-success" href="#" role="button">Inserir um objetivo</a></p>
+        <p><a class="btn btn-lg btn-success" href="objetivo.php" role="button">Inserir um objetivo</a></p>
 		<?php }else{
 		?> 
 		<p class="lead">Você já escolheu seu objetivo para este treinamento:<strong> <?php echo $objetivo['objetivo']; ?></strong></p>

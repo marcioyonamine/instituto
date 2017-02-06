@@ -37,6 +37,7 @@ if(isset($_POST['inicio'])){
 	  
 	  ?>
       <div class="container">
+		  <?php include '../inc/fixed-navbar-user.php'; ?>
       	<?php include '../inc/menu-principal.php'; ?>
         <div class="jumbotron">
         <h1>Desafios</h1>
