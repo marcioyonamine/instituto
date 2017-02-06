@@ -39,7 +39,7 @@
 	  -->
       <ul class="nav navbar-nav navbar-right">
         <li><a href="http://ialtaperformance.com" target="_blank" title="Instituto de Alta Performance">Visitar o site</a></li>
-        <li><a title="Sair" href="../inc/logout.php">Sair</a></li>
+        <li><a title="Sair" href="<?php echo wp_logout_url(); ?>">Sair</a></li>
       </ul>
         <!--</li>
       </ul>-->
