@@ -43,6 +43,11 @@ $datas = retornaSemanas($objetivo['data_inicio']);
 ?>
 	<div class="jumbotron">
 		<?php echo "<h1>Relatórios</h1>"; ?>
+		
+		<p class="lead">Nesta página é onde você deverá preencher seu relatório de fase, sempre que a fase atual acabar.</p>
+		<p class="lead">Não deixe de preenchê-lo. É este relatório que permitirá o seu treinador fazer uma análise detalhada da sua evolução e te instruir para a próxima fase.</p>
+		
+		
        <p> <?php if(isset($mensagem)){ echo $mensagem; }?></p>
 		
         <?php //var_dump($datas);?>

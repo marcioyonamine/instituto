@@ -26,7 +26,17 @@
         <?php
 		$objetivo = verificaObjetivo($user->ID);
 		if($objetivo == NULL){ ?>
-		<p class="lead">Você não tem nenhum objetivo inserido no sistema. Insira um!</p>
+		<p class="lead">Vamos definir agora qual será o foco principal do seu treinamento.</p>
+		<p class="lead">É importante que você escolha algo que tenha força para fazer você mudar de hábitos e que faça muito sentido nesse seu momento de vida.</p>
+		<p class="lead">O valor do seu objetivo pra você mesmo é que vai te dar força e energia para fazer os desafios e para conseguir expandir sua consciência.</p>
+		<p class="lead">[INCLUIR O VIDEO AQUI]</p>
+		<p class="lead">Assita abaixo uma ferramenta simples que vai te ajudar na definição do seu objetivo:</p>
+        
+        <iframe src="https://player.vimeo.com/video/198873042" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        <p class="lead"><a href="http://ialtaperformance.com/downloads/baixar.php?arquivo=meta-smart.pdf">Baixar ferramenta SMART</a></p>
+        
+        <p class="lead">Agora que você já consegue ver o seu objetivo de forma mais clara, escreva ele em uma frase curta. Essa frase será o seu objetivo durante o treinamento:</p>
+        
         <p><a class="btn btn-lg btn-success" href="?p=insere" role="button">Inserir um objetivo</a></p>
 		<?php }else{ ?> 
 		<p class="lead">O objetivo que você escolheu para atingir durante o treinamento foi:</p>

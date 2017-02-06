@@ -582,6 +582,7 @@ function geraDesafios($nivel,$checado = array()){ //checked é uma array
 		
 		//VALIDA ESCOLHA DOS DESAFIOS ANTES DO SUBMIT
 		//Fase 1
+		/*
 		$fase1 = "SELECT * FROM iap_aceite WHERE fase = 1";
 		$pega_fase = mysqli_query($con, $fase1);
 		$usa_fase = mysqli_fetch_assoc($pega_fase);
@@ -600,7 +601,7 @@ function geraDesafios($nivel,$checado = array()){ //checked é uma array
 			}
 		}		
 		</script>";
-		}
+		}*/
 		
 		
 	echo '    </tbody>
