@@ -656,4 +656,67 @@ function verificaRelatorio($objetivo,$semana){
 }
 
 
+
+function verificaSegunda($objetivo,$semana){
+	//verifica em que semana a pessoa deve estar
+	//verifica se já foram inseridos desafios da semana
+	//se sim, não permite inserção
+	//se não, permite
+	// liberar na semana 01,02, 03, 04, 05, 07, 09, 11, 13, 15
+	echo $semana;
+	$con = bancoMysqli();
+	$hoje = date('Y-m-d');
+	$diasemana_numero = date('w', strtotime($hoje));
+	$sql_semana = "SELECT id,data_aceite FROM iap_aceite WHERE objetivo = '$objetivo' ORDER BY id ASC LIMIT 0,1";
+	$query_semana = mysqli_query($con,$sql_semana);
+	$semana_inicio = mysqli_fetch_array($query_semana);
+	
+	$sem = retornaSemanas($semana_inicio['data_aceite']);
+	
+	if($semana == 01 OR	//verifica se a semana permite abertura de desafios
+	$semana == 02 OR 
+	$semana == 03 OR
+	$semana == 04 OR
+	$semana == 05 OR
+	$semana == 07 OR
+	$semana == 09 OR
+	$semana == 11 OR
+	$semana == 13 OR
+	$semana == 15){
+		if($diasemana_numero == 1){ //verifica se é segunda-feira
+			$sql_desafios = "SELECT id,data_inicio,fase FROM iap_aceite WHERE objetivo = '$objetivo' ORDER BY data_inicio DESC LIMIT 0,1";
+			$query_desafios = mysqli_query($con,$sql_desafios);
+			$data_ultima = mysqli_fetch_array($query_desafios);
+			if(($data_ultima['fase'] == 1) AND (somarDatas($data_ultima['data_inicio'],-7) == $hoje)){
+				return FALSE;
+			}
+			elseif($data_ultima['data_inicio'] != $hoje){ //verifica se já foram inseridos desafios
+				return TRUE;
+			}
+			
+			else{
+				return FALSE;
+			}
+		}
+	}else{
+		return FALSE;
+			
+	}
+}
+
+function retornaSemana($id){
+	$hoje = date('Y-m-d');
+	$ult = ultObj($id);
+	$semana = retornaSemanas($ult['data_inicio']);
+	$x = 0;
+	for($i = 1; $i <= 16; $i++){
+		//echo strtotime($semana[$i]['inicio'])." - ".strtotime($hoje)." - ".strtotime($semana[$i]['fim']);
+		if(strtotime($semana[$i]['inicio']) <= strtotime($hoje) AND
+		 strtotime($semana[$i]['inicio']) >= strtotime($hoje)){
+		$x = $i;
+		}			
+	}
+	return $x;
+}
+
 ?>

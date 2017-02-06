@@ -11,12 +11,20 @@ if(isset($_GET['data'])){
 }
 
 $con = bancoMysqli();
+$objetivo = verificaObjetivo($user->ID); 
+
 
 if(isset($_GET['p'])){
 	$p = $_GET['p'];	
+	
 }else{
-	$p = "inicio";	
+	$p = "inicio";
+	if(verificaSegunda($objetivo['id'],retornaSemana($user->ID))== TRUE){
+		$p= "insere";
+	}	
 }
+
+var_dump(verificaSegunda($objetivo['id'],retornaSemana($user->ID)));
 
 ?>
      <?php 
