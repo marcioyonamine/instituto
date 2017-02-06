@@ -6755,3 +6755,48 @@ button.close {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+
+/*LAYOUT TABELA DE ACORDO COM O NIVEL DO DESAFIO*/
+.tbl-des-nvl1 tr:nth-child(2n+0){
+	background-color:#e3b6b6;
+}
+.tbl-des-nvl1 tr:nth-child(2n+1){
+	background-color:#dc8c8c;
+}
+.tbl-des-nvl2 tr:nth-child(2n+0){
+	background-color:#f9d590;
+}
+.tbl-des-nvl2 tr:nth-child(2n+1){
+	background-color:#e3b969;
+}
+.tbl-des-nvl3 tr:nth-child(2n+0){
+	background-color:#f7f893;
+}
+.tbl-des-nvl3 tr:nth-child(2n+1){
+	background-color:#e8ea5d;
+}
+.tbl-des-nvl4 tr:nth-child(2n+0){
+	background-color:#d9ffb3;
+}
+.tbl-des-nvl4 tr:nth-child(2n+1){
+	background-color:#b5ed7d;
+}
+.tbl-des-nvl5 tr:nth-child(2n+0){
+	background-color:#bcfffb;
+}
+.tbl-des-nvl5 tr:nth-child(2n+1){
+	background-color:#66e3dc;
+}
+.tbl-des-nvl6 tr:nth-child(2n+0){
+	background-color:#68a1ff;
+}
+.tbl-des-nvl6 tr:nth-child(2n+1){
+	background-color:#4881e0;
+}
+.tbl-des-nvl7 tr:nth-child(2n+0){
+	background-color:#d7a4ff;
+}
+.tbl-des-nvl7 tr:nth-child(2n+1){
+	background-color:#c47cfb;
+}
+

@@ -557,8 +557,25 @@ function geraDesafios($nivel,$checado = array()){ //checked é uma array
 	echo '
 	       
 	<h2>Desafios Nível: '.$nivel.'</h2>
-        <div class="table-responsive">
-          <table class="table table-striped">
+        <div class="table-responsive">';
+          
+        if($nivel == 1){
+        	echo '<table class="table table-striped tbl-des-nvl1">';
+        }elseif($nivel == 2){
+          	echo '<table class="table table-striped tbl-des-nvl2">';
+		}elseif($nivel == 3){
+          	echo '<table class="table table-striped tbl-des-nvl3">';
+		}elseif($nivel == 4){
+          	echo '<table class="table table-striped tbl-des-nvl4">';
+		}elseif($nivel == 5){
+          	echo '<table class="table table-striped tbl-des-nvl5">';
+		}elseif($nivel == 6){
+          	echo '<table class="table table-striped tbl-des-nvl6">';
+		}elseif($nivel == 7){
+          	echo '<table class="table table-striped tbl-des-nvl7">';
+		  
+		   ?>
+
             <thead>
               <tr>
                 <th><center>Desafio</center></th>
@@ -582,6 +599,7 @@ function geraDesafios($nivel,$checado = array()){ //checked é uma array
 		
 		//VALIDA ESCOLHA DOS DESAFIOS ANTES DO SUBMIT
 		//Fase 1
+		/*
 		$fase1 = "SELECT * FROM iap_aceite WHERE fase = 1";
 		$pega_fase = mysqli_query($con, $fase1);
 		$usa_fase = mysqli_fetch_assoc($pega_fase);
@@ -600,7 +618,7 @@ function geraDesafios($nivel,$checado = array()){ //checked é uma array
 			}
 		}		
 		</script>";
-		}
+		}*/
 		
 		
 	echo '    </tbody>

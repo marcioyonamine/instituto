@@ -42,14 +42,17 @@ var_dump(verificaSegunda($objetivo['id'],retornaSemana($user->ID)));
 		$objetivo = verificaObjetivo($user->ID); 
 		// Mensagem inicial
 		if($objetivo == 0){ // verifica objetivo?>
-			<p class="lead">Você não tem nenhum objetivo inserido no sistema. Insira um!</p>
+			<p class="lead">Para liberar a escolha dos desafios, precisamos que você nos diga qual objetivo você quer alcançar com este treinamento.</p>
+			<p class="lead">Fizemos um vídeo explicativo para te ajudar a definir este objetivo. <a href="index.php">Quero assistir!</a></p>
 	        <p><a class="btn btn-lg btn-success" href="objetivo.php?p=insere" role="button">Inserir um objetivo</a></p>
   <?php }else{
 			$obj = 	ultObj($user->ID);
 			if($obj['nivel'] == 0){ // o treinador ainda não avaliou o nível
 		?>
-				<p class="lead">O seu treinador ainda não avaliou o seu objetivo...</p>
+				<p class="lead">O seu treinador ainda não avaliou o seu objetivo.</p>
+				<p class="lead">É importante que o seu treinador avalie seu objetivo antes de iniciar, para que a escolha dos níveis dos desafios seja apropriada.</p>
 				<p class="lead">Assim que ele classificar o seu objetivo, você poderá escolher os desafios.</p>
+				<p class="lead">Não se preocupe, ele não vai demorar para fazer esta avaliação! =)</p>
         
         <?php
 			}else{ // o treinador avaliou o nível
@@ -57,8 +60,16 @@ var_dump(verificaSegunda($objetivo['id'],retornaSemana($user->ID)));
 		<?php 
 				if($obj['data_inicio'] == '0000-00-00'){		
 		?>
-					<p class="lead">O seu treinador avaliou o seu desafio <strong> "<?php echo $obj['objetivo'] ?>"</strong> como de nível <strong><?php echo $obj['nivel']; ?></strong></p>
-					<p class="lead">Na tabela abaixo, escolha 1 desafio para começar o programa.</p>
+					<p class="lead">O seu treinador avaliou o seu objetivo <strong> "<?php echo $obj['objetivo'] ?>"</strong> como de nível <strong><?php echo $obj['nivel']; ?></strong><a href="http://ialtaperformance.com/downloads/baixar.php?arquivo=7-niveis-profissionais-pessoais.png"></a></p>
+					
+					<p class="lead">O seu treinamento irá iniciar na segunda-feira seguinte que você escolheu o seu primeiro desafio.</p>
+					
+					<p class="lead">Uma vez que o treinamento é iniciado, as datas não poderão ser alteradas.</p>
+					
+					<p class="lead">Será um total de 10 fases, com duração aproximada de 4 meses.</p>
+					<p class="lead">[INSERIR VIDEO DA IMPORTANCIA DOS DESAFIOS]</p>
+					
+					<p class="lead">Nessa fase inicial, você deve pegar um desafio de nível 1:</p>
                      <form action="desafio.php?p=insere_options" method="post">
                     <?php geraDesafios(1); ?>
    
