@@ -573,9 +573,10 @@ function geraDesafios($nivel,$checado = array()){ //checked é uma array
           	echo '<table class="table table-striped tbl-des-nvl6">';
 		}elseif($nivel == 7){
           	echo '<table class="table table-striped tbl-des-nvl7">';
+		}
+		}  
 		  
-		   ?>
-
+		echo '
             <thead>
               <tr>
                 <th><center>Desafio</center></th>
@@ -625,7 +626,7 @@ function geraDesafios($nivel,$checado = array()){ //checked é uma array
           </table>
     </div>
     ';
-}
+
 
 function listaDesafios($nivel){ //checked é uma array
 	$con = bancoMysqli();
