@@ -24,7 +24,6 @@ if(isset($_GET['p'])){
 	}	
 }
 
-var_dump(verificaSegunda($objetivo['id'],retornaSemana($user->ID)));
 
 ?>
      <?php 
@@ -186,7 +185,9 @@ $checados = matrizDesafios($objetivo['id'],$fase);
 		$obj = 	ultObj($user->ID);
 
  ?>
+
     <div class="container">
+ 		  <?php include '../inc/fixed-navbar-user.php'; ?>
       	<?php include '../inc/menu-principal.php'; ?>
         <div class="jumbotron">
         <h1>Desafios</h1>

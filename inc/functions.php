@@ -551,7 +551,7 @@ function marcaX($x){
 function geraDesafios($nivel,$checado = array()){ //checked é uma array
 	$con = bancoMysqli();
 	$sql = "SELECT * FROM iap_desafio WHERE nivel = '$nivel'";
-	$query = mysqli_query($con,$sql);
+	$query_01 = mysqli_query($con,$sql);
 	
 
 	echo '
@@ -574,7 +574,7 @@ function geraDesafios($nivel,$checado = array()){ //checked é uma array
 		}elseif($nivel == 7){
           	echo '<table class="table table-striped tbl-des-nvl7">';
 		}
-		}  
+
 		  
 		echo '
             <thead>
@@ -585,7 +585,7 @@ function geraDesafios($nivel,$checado = array()){ //checked é uma array
               </tr>
             </thead>
             <tbody>';
-			while($list = mysqli_fetch_array($query)){
+			while($list = mysqli_fetch_array($query_01)){
 				
    				 echo '         <tr>
                 <td>'.$list['titulo'].'</td>
@@ -627,7 +627,7 @@ function geraDesafios($nivel,$checado = array()){ //checked é uma array
     </div>
     ';
 
-
+}
 function listaDesafios($nivel){ //checked é uma array
 	$con = bancoMysqli();
 	$sql = "SELECT * FROM iap_desafio WHERE nivel = '$nivel'";
@@ -682,7 +682,6 @@ function verificaSegunda($objetivo,$semana){
 	//se sim, não permite inserção
 	//se não, permite
 	// liberar na semana 01,02, 03, 04, 05, 07, 09, 11, 13, 15
-	echo $semana;
 	$con = bancoMysqli();
 	$hoje = date('Y-m-d');
 	$diasemana_numero = date('w', strtotime($hoje));
