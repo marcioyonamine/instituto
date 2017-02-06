@@ -67,6 +67,7 @@
 	}
 ?>
        <div class="container">
+       	<?php include '../inc/fixed-navbar-user.php'; ?>
       	 <?php include '../inc/menu-principal.php'; ?>
 
 <?php
