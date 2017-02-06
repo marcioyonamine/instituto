@@ -29,7 +29,7 @@
 		<p class="lead">Vamos definir agora qual será o foco principal do seu treinamento.</p>
 		<p class="lead">É importante que você escolha algo que tenha força para fazer você mudar de hábitos e que faça muito sentido nesse seu momento de vida.</p>
 		<p class="lead">O valor do seu objetivo pra você mesmo é que vai te dar força e energia para fazer os desafios e para conseguir expandir sua consciência.</p>
-		<p class="lead">[INCLUIR O VIDEO AQUI]</p>
+		<p class="lead">[INCLUIR O VIDEO AQUI...]</p>
 		<p class="lead">Assita abaixo uma ferramenta simples que vai te ajudar na definição do seu objetivo:</p>
         
         <iframe src="https://player.vimeo.com/video/198873042" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>

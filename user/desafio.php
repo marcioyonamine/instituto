@@ -59,7 +59,7 @@ if(isset($_GET['p'])){
 					<p class="lead">Uma vez que o treinamento é iniciado, as datas não poderão ser alteradas.</p>
 					
 					<p class="lead">Será um total de 10 fases, com duração aproximada de 4 meses.</p>
-					<p class="lead">[INSERIR VIDEO DA IMPORTANCIA DOS DESAFIOS]</p>
+					<p class="lead">[INSERIR VIDEO DA IMPORTANCIA DOS DESAFIOS...]</p>
 					
 					<p class="lead">Nessa fase inicial, você deve pegar um desafio de nível 1:</p>
                      <form action="desafio.php?p=insere_options" method="post">
