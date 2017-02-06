@@ -61,9 +61,9 @@ if(isset($_GET['p'])){
   	 	<p class="lead">O seu treinador avaliou o seu desafio <strong> "<?php echo $obj['objetivo'] ?>"</strong> como de nível <strong><?php echo $obj['nivel']; ?></strong></p>    
    		<p class="lead">O seu treinamento vai de <strong> <?php echo exibirDataBr($des[1]['inicio']) ?>  a <?php echo exibirDataBr($des[16]['fim']) ?> </strong></p>     
    		<p class="lead">Serão 16 semanas com 10 fases.</p>
-        <p class="lead">Você está na fase <b><?php $fase_atual = verificaFase($obj['id']); echo $fase_atual; ?> </b>. Veja abaixo os desafios da fase <?php  $fase = $fase_atual + 1; echo $fase; ?> </p>    
+        <p class="lead">Você está na fase <b><?php $fase_atual = verificaFase($obj['id']); echo $fase_atual; ?> </b>. Veja abaixo os desafios da fase <?php  $fase_mostra = $fase_atual + 1; echo $fase_mostra; ?> </p>    
 <?php         
-switch($fase){
+switch($fase_atual){
 	case 0: //vai para fase 1
 		listaDesafios(1);
 	break;
@@ -316,7 +316,7 @@ if(isset($_POST['insere'])){ //insere
         </p>  
  <form action="relatorios.php" method="post">
 <?php 
-			$sql_lista = "SELECT * FROM iap_aceite WHERE fase = '".$datas[$i]['fase']."'";
+			$sql_lista = "SELECT * FROM iap_aceite WHERE fase = '".$datas[$i]['fase']."' AND objetivo = '".$objetivo['id']."'";
 			$query_lista = mysqli_query($con,$sql_lista);
 			$num = mysqli_num_rows($query_lista);
 			if($num > 0){

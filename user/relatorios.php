@@ -51,7 +51,7 @@ $datas = retornaSemanas($objetivo['data_inicio']);
 	for($i = 1; $i <= 16; $i++){ ?>
   <h3>Semana <?php echo $i; ?> Fase:  <?php echo $datas[$i]['fase']; ?> (<?php echo exibirDataBr($datas[$i]['inicio']) ?>  a <?php echo exibirDataBr($datas[$i]['fim']) ?>)   <h3>
 <?php 
-			$sql_lista = "SELECT * FROM iap_aceite WHERE fase = '".$datas[$i]['fase']."'";
+			$sql_lista = "SELECT * FROM iap_aceite WHERE fase = '".$datas[$i]['fase']."' AND objetivo = '".$objetivo['id']."'";
 			$query_lista = mysqli_query($con,$sql_lista);
 			$num = mysqli_num_rows($query_lista);
 			if($num > 0){
@@ -96,12 +96,25 @@ $datas = retornaSemanas($objetivo['data_inicio']);
 	    </tbody>
           </table>
     </div>
+                <?php 
+				$rel = verificaRelatorio($objetivo['id'],$i);
+
+				if($rel == FALSE){
+				
+				 ?>
      <form action="relatorios.php?p=insere" method="post">
                 <input type="hidden" name="fase" value="<?php echo $datas[$i]['fase']; ?>">
                 <input type="hidden" name="objetivo" value="<?php echo $objetivo['id']; ?>">
                 <input type="hidden" name="semana" value="<?php echo $i; ?>">
                 <input type="submit" class="btn btn-sm btn-success" value="Escrever relatório">
                 <form>  
+                <?php }else{ ?>
+
+				<p>Você já enviou seu relatório. <a href="relatorios.php?p=ler&obj=<?php echo $objetivo['id']; ?>&sem=<?php echo $i; ?>"> Clique aqui para ler.</a></p>
+                <?php } ?>
+                
+                
+                
     <?php } //finaliza o if
 	
 	}//finaliza o for
@@ -132,10 +145,10 @@ if(isset($_POST['insere_relatorio'])){
 	$email = utf8_decode($current_user->user_email);
 	
 	$userId = $current_user->ID;
-	$notaDesafios = utf8_decode($_POST['notaDesafios']);
-	$expDesafios = utf8_decode($_POST['expDesafios']);
-	$oqObservou = utf8_decode($_POST['oqObservou']);
-	$periodo = utf8_decode($_POST['periodo']);
+	$notaDesafios = ($_POST['notaDesafios']);
+	$expDesafios = ($_POST['expDesafios']);
+	$oqObservou = ($_POST['oqObservou']);
+	$periodo = ($_POST['periodo']);
 	$semana = $_POST['semana'];
 	$objetivo = $_POST['objetivo'];
 	$fase = $_POST['fase'];	
@@ -208,7 +221,7 @@ $obj = 	ultObj($user->ID);
 $objetivo = verificaObjetivo($user->ID); 
 $datas = retornaSemanas($objetivo['data_inicio']);
 $i = $_POST['semana'];
-$sql_lista = "SELECT * FROM iap_aceite WHERE fase = '".$datas[$i]['fase']."'";
+$sql_lista = "SELECT * FROM iap_aceite WHERE fase = '".$datas[$i]['fase']."' AND objetivo = '".$objetivo['id']."'";
 $query_lista = mysqli_query($con,$sql_lista);
 $num = mysqli_num_rows($query_lista);
 
@@ -220,7 +233,7 @@ $num = mysqli_num_rows($query_lista);
         <h1>Relatório</h1>
         <p>Objetivo: <?php echo $obj['objetivo']; ?> (Nível <?php echo $obj['nivel']; ?>)</p>
         <p>Semana <?php echo $i; ?> Fase:  <?php echo $datas[$i]['fase']; ?> (<?php echo exibirDataBr($datas[$i]['inicio']) ?>  a <?php echo exibirDataBr($datas[$i]['fim']) ?>)</p>
-		<p>Desafios: <?php echo $num; ?> - (listar)</p>
+		<p>Desafios: <?php echo $num; ?></p>
 <?php 
 while($x = mysqli_fetch_array($query_lista)){ 
 	$desafio = recuperaDados("iap_desafio",$x['desafio'],"id");
@@ -267,6 +280,9 @@ while($x = mysqli_fetch_array($query_lista)){
 				<textarea name="periodo" class="form-control"></textarea>
 			</p>
 			
+
+            
+            
 			<p>
             <input type="hidden" name="semana" value="<?php echo $_POST['semana']; ?>">
             <input type="hidden" name="fase" value="<?php echo $_POST['fase']; ?>">
@@ -276,12 +292,69 @@ while($x = mysqli_fetch_array($query_lista)){
 			</p>
 			
 		</form>
+        <?php ?>	
+        
         </div>
         </div>
 </div>
 </div>
 </section>
 <?php } ?>
+
+<?php 
+break;
+case "ler":
+$con = bancoMysqli();
+$obj = 	ultObj($user->ID);
+$objetivo = verificaObjetivo($user->ID); 
+$datas = retornaSemanas($objetivo['data_inicio']);
+$i = $_GET['sem'];
+$sql_lista = "SELECT * FROM iap_aceite WHERE fase = '".$datas[$i]['fase']."' AND objetivo = '".$objetivo['id']."'";
+$query_lista = mysqli_query($con,$sql_lista);
+$num = mysqli_num_rows($query_lista);
+?>
+<section id="contact" class="home-section bg-white">
+    <div class="container">
+        <div class="row">
+        <div class="jumbotron">
+        <h1>Relatório</h1>
+        <p>Objetivo: <?php echo $obj['objetivo']; ?> (Nível <?php echo $obj['nivel']; ?>)</p>
+        <p>Semana <?php echo $i; ?> Fase:  <?php echo $datas[$i]['fase']; ?> (<?php echo exibirDataBr($datas[$i]['inicio']) ?>  a <?php echo exibirDataBr($datas[$i]['fim']) ?>)</p>
+		<p>Desafios: <?php echo $num; ?></p>
+<?php 
+while($x = mysqli_fetch_array($query_lista)){ 
+	$desafio = recuperaDados("iap_desafio",$x['desafio'],"id");
+	echo "+ ".$desafio['titulo']."<br />";
+}
+
+$sql_lei = "SELECT * FROM relatorio_semanal WHERE objetivo = '".$_GET['obj']."' AND semana = '".$_GET['sem']."'";
+$query_lei = mysqli_query($con,$sql_lei);
+$lei = mysqli_fetch_array($query_lei);
+?>
+
+        </div>
+        </div>
+<div class="row">     
+  <div class="form-group">
+            <div class="col-md-offset-2 col-md-8">
+   			<p>Dê uma nota de 0 a 10 que você dá a si mesmo para o seu desempenho nos desafios: <strong><?php echo $lei['iap_rel_nota_desafios']; ?></strong>	</p>
+	
+			<p>
+				Qual foi a experiência desse período com os desafios?
+			</p>
+			
+            <p><strong><?php echo ($lei['iap_rel_exp_desafios']); ?></strong></p>
+			<p>O que você observou?
+			</p>
+			            <p><strong><?php echo $lei['iap_rel_oq_observou']; ?></strong></p>
+			<p>Como foi esse período pra você?
+			</p>
+	                    <p><strong><?php echo $lei['iap_rel_periodo']; ?></strong></p> 
+                        <br />
+                        <p>Enviado em <?php echo exibirDataBr($lei['data']); ?> </p>
+  </div>
+</div>
+</section>
 
 <?php
 break; //finaliza o switch

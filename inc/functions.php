@@ -641,4 +641,19 @@ function listaDesafios($nivel){ //checked é uma array
 
 }
 
+function verificaRelatorio($objetivo,$semana){
+	$con = bancoMysqli();
+	$sql = "SELECT iap_rel_id FROM relatorio_semanal WHERE objetivo = '$objetivo' AND semana = '$semana'";
+	$query = mysqli_query($con,$sql);
+	$num = mysqli_num_rows($query);
+	if($num > 0){
+		return TRUE;
+	
+	}else{
+		return FALSE;	
+	}
+		
+}
+
+
 ?>
