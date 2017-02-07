@@ -180,7 +180,7 @@ if(isset($_GET['fase'])){
 }else{
 	$fase = verificaFase($objetivo['id']);
 }
-echo $objetivo['nivel']." - ".$fase;
+//echo $objetivo['nivel']." - ".$fase;
 $checados = matrizDesafios($objetivo['id'],$fase);
 		$obj = 	ultObj($user->ID);
 
@@ -294,7 +294,7 @@ if(isset($_POST['insere'])){ //insere
 	$objetivo = verificaObjetivo($user->ID); 
 	$fase = verificaFase($objetivo['id']);
 	$prox = $fase + 1;
-	echo $prox;
+
 	//$verifica = desFas($objetivo['id'],$caixa,$prox);
 	$verifica = desFas($objetivo['id'],$caixa,$prox);
 	if($verifica['bool_des'] == 1){ //se passar pela verificação, gravar a tabela aceite
@@ -337,6 +337,7 @@ if(isset($_POST['insere'])){ //insere
         </p>  
  <form action="relatorios.php" method="post">
 <?php 
+		if($verifica['bool_des'] == 1){		
 			$sql_lista = "SELECT * FROM iap_aceite WHERE fase = '".$datas[$i]['fase']."' AND objetivo = '".$objetivo['id']."'";
 			$query_lista = mysqli_query($con,$sql_lista);
 			$num = mysqli_num_rows($query_lista);
@@ -367,6 +368,17 @@ if(isset($_POST['insere'])){ //insere
     <td><input type="checkbox" name="mental_<?php echo $x['id']; ?>"> Mental</td>
     <td><input type="checkbox" name="espiritual_<?php echo $x['id']; ?>"> Espiritual</td>
   </tr>
+  <tr>
+      <td colspan="4">Frequencia</td>
+      <td colspan="7">Intensidade</td>
+  
+  </tr>
+  <tr>
+     <td colspan="4"><input type="text" name="frequencia_<?php echo $x['id']; ?>" /></td>
+      <td colspan="7"><input type="text" name="intesidade_<?php echo $x['id']; ?>" /></td>
+  
+  </tr>
+  
 
 			 <?php } ?>
 	    </tbody>
@@ -374,6 +386,7 @@ if(isset($_POST['insere'])){ //insere
     </div>
     	<input type="hidden" value="1" name="insere">
     	<input type="submit" class="btn btn-lg btn-success" value="Salvar">
+        <?php } ?>
     <?php } //finaliza o if($num)?>
     
 

@@ -580,7 +580,7 @@ function geraDesafios($nivel,$checado = array()){ //checked é uma array
             <thead>
               <tr>
                 <th><center>Desafio</center></th>
-                <th><center>Ying/Yang</center></th>
+                <th><center>yin/Yang</center></th>
                 <th></th>
               </tr>
             </thead>
@@ -642,7 +642,7 @@ function listaDesafios($nivel){ //checked é uma array
             <thead>
               <tr>
                 <th><center>Desafio</center></th>
-                <th><center>Ying/Yang</center></th>
+                <th><center>yin/Yang</center></th>
               </tr>
             </thead>
             <tbody>';

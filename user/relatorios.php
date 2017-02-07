@@ -16,15 +16,32 @@ if(isset($_POST['insere'])){ //insere
 			$array = explode('_', $x);
 			$campo = $array[0];
 			$id = $array[1];
-			$sql_update = "UPDATE iap_aceite SET $campo = '1' WHERE id = '$id'";
-			$query_update = mysqli_query($con,$sql_update);
-			if($query_update){
-				//$mensagem .= "$campo = 1 Em Id: $id <br />";	
+			if($campo == "ter" OR
+				$campo == "fazer" OR
+				$campo == "ser" OR
+				$campo == "fisico" OR
+				$campo == "emocional" OR
+				$campo == "mental" OR
+				$campo == "espiritual"){			
+				$sql_update = "UPDATE iap_aceite SET $campo = '1' WHERE id = '$id'";
+				$query_update = mysqli_query($con,$sql_update);
+				if($query_update){
+					//$mensagem .= "$campo = 1 Em Id: $id <br />";	
+				}
 			}
-			
+			elseif($campo == "frequencia" OR $campo == "intesidade"){
+				$sql_update = "UPDATE iap_aceite SET $campo = '$valor' WHERE id = '$id'";
+				$query_update = mysqli_query($con,$sql_update);
+				if($query_update){
+					//$mensagem .= "$campo = 1 Em Id: $id <br />";	
+				}
+				
+			}
 		}
-
+		
 	}
+	
+
 }
 
 
@@ -95,6 +112,8 @@ $datas = retornaSemanas($objetivo['data_inicio']);
                 <td><?php echo marcaX($x['mental']); ?></td>
                 <td><?php echo marcaX($x['espiritual']); ?></td>
            </tr>
+       <td colspan="4"><strong>Frequência:</strong> <?php echo $x['frequencia']; ?> </td>
+      <td colspan="7"><strong>Intensidade:</strong> <?php echo $x['intesidade']; ?> </td>
 			 <?php } //while ?>
                              
 
