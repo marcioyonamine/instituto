@@ -60,18 +60,138 @@ $datas = retornaSemanas($objetivo['data_inicio']);
 ?>
 	<div class="jumbotron">
 		<?php echo "<h1>Relatórios</h1>"; ?>
+		<p class="lead">Este é o resumo dos seus desafios desta fase.</p>
+		<p class="lead">Esta fase é 
+			<?php 
+				$obj = 	ultObj($user->ID);
+				$fase_atual = verificaFase($obj['id']);
+				if($fase_atual == '1' || $fase_atual == '2' || $fase_atual == '3' || $fase_atual == '4'){
+					echo "semanal";
+				}else{
+					echo "quinzenal";
+				}
+			?>
+			 e acaba dia 
+			 <?php
+				switch ($fase_atual) {
+					case '1' :
+						echo exibirDataBr($datas[1]['fim']);
+						break;
+
+					case '2' :
+						echo exibirDataBr($datas[2]['fim']);
+						break;
+
+					case '3' :
+						echo exibirDataBr($datas[3]['fim']);
+						break;
+
+					case '4' :
+						echo exibirDataBr($datas[4]['fim']);
+						break;
+
+					case '5' :
+						echo exibirDataBr($datas[5]['fim']);
+						break;
+
+					case '2' :
+						echo exibirDataBr($datas[2]['fim']);
+						break;
+
+					case '6' :
+						echo exibirDataBr($datas[6]['fim']);
+						break;
+
+					case '7' :
+						echo exibirDataBr($datas[7]['fim']);
+						break;
+
+					case '8' :
+						echo exibirDataBr($datas[8]['fim']);
+						break;
+
+					case '9' :
+						echo exibirDataBr($datas[9]['fim']);
+						break;
+
+					case '10' :
+						echo exibirDataBr($datas[10]['fim']);
+						break;
+
+					default :
+						echo "";
+						break;
+				}
+			 ?>.</p>
+			 
+			 <p class="lead">Lembre-se de até no dia 
+		<?php
+		switch ($fase_atual) {
+					case '1' :
+						echo exibirDataBr($datas[1]['fim']);
+						break;
+
+					case '2' :
+						echo exibirDataBr($datas[2]['fim']);
+						break;
+
+					case '3' :
+						echo exibirDataBr($datas[3]['fim']);
+						break;
+
+					case '4' :
+						echo exibirDataBr($datas[4]['fim']);
+						break;
+
+					case '5' :
+						echo exibirDataBr($datas[5]['fim']);
+						break;
+
+					case '2' :
+						echo exibirDataBr($datas[2]['fim']);
+						break;
+
+					case '6' :
+						echo exibirDataBr($datas[6]['fim']);
+						break;
+
+					case '7' :
+						echo exibirDataBr($datas[7]['fim']);
+						break;
+
+					case '8' :
+						echo exibirDataBr($datas[8]['fim']);
+						break;
+
+					case '9' :
+						echo exibirDataBr($datas[9]['fim']);
+						break;
+
+					case '10' :
+						echo exibirDataBr($datas[10]['fim']);
+						break;
+
+					default :
+						echo "";
+						break;
+				}
+			 ?>
+	
 		
-		<p class="lead">Nesta página é onde você deverá preencher seu relatório de fase, sempre que a fase atual acabar.</p>
-		<p class="lead">Não deixe de preenchê-lo. É este relatório que permitirá o seu treinador fazer uma análise detalhada da sua evolução e te instruir para a próxima fase. </p>
+		de preencher e enviar o relatório para o seu treinador. É isso que permitirá o avanço do seu treinamento.</p>
 		
 		
-       <p> <?php if(isset($mensagem)){ echo $mensagem; }?></p>
+		
+		<p> <?php if(isset($mensagem)){ echo $mensagem; }?></p>
 		
         <?php //var_dump($datas);?>
     
 	<?php 
 	for($i = 1; $i <= 16; $i++){ ?>
-  <h3>Semana <?php echo $i; ?> Fase:  <?php echo $datas[$i]['fase']; ?> (<?php echo exibirDataBr($datas[$i]['inicio']) ?>  a <?php echo exibirDataBr($datas[$i]['fim']) ?>)   <h3>
+  <h3><!--Semana <?php echo $i; ?>--> 
+  	<hr>
+  	Fase:  <?php echo $datas[$i]['fase']; ?> (<?php echo exibirDataBr($datas[$i]['inicio']) ?>  a <?php echo exibirDataBr($datas[$i]['fim']) ?>)   
+  	</h3>
 <?php 
 			$sql_lista = "SELECT * FROM iap_aceite WHERE fase = '".$datas[$i]['fase']."' AND objetivo = '".$objetivo['id']."'";
 			$query_lista = mysqli_query($con,$sql_lista);
@@ -120,6 +240,7 @@ $datas = retornaSemanas($objetivo['data_inicio']);
 	    </tbody>
           </table>
     </div>
+    <hr>
                 <?php 
 				$rel = verificaRelatorio($objetivo['id'],$i);
 
@@ -143,6 +264,9 @@ $datas = retornaSemanas($objetivo['data_inicio']);
 	
 	}//finaliza o for
 	?>
+	
+	
+	
 	</div>
 
 </div>
@@ -202,7 +326,7 @@ if(isset($_POST['insere_relatorio'])){
 )
 	";
 	$query = mysqli_query($con,$sql);
-	if($query = 1){
+	if($query){
 		?>
         <section id="contact" class="home-section bg-white">
    		 <div class="container">
@@ -229,6 +353,7 @@ if(isset($_POST['insere_relatorio'])){
 <?php 
 		echo "<p class=\"form-erro\">Ops. Algo errado aconteceu. Tente novamente.</p>";
 		echo "<a href=\"relatorios.php/\" class=\"saiba-mais\" title=\"Tentar novamente\">Tentar novamente.</p>";
+		//echo $sql;
 	}	
 ?>
 </div>

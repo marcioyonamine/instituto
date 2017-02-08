@@ -1,6 +1,7 @@
 ﻿<?php
 @ini_set('display_errors', '1');
-error_reporting(E_ALL); 
+//error_reporting(E_ALL);
+error_reporting(E_ALL ^ E_WARNING);  
 
 
 
@@ -122,7 +123,7 @@ function verificaObjetivo($id){
 	$query = mysqli_query($con,$sql);
 	$num = mysqli_num_rows($query);
 	$obj = mysqli_fetch_array($query);
-	return $obj;	
+	return $obj;
 }
 
 function recuperaDados($tabela,$idEvento,$campo){ //retorna uma array com os dados de qualquer tabela. serve apenas para 1 registro.
@@ -224,7 +225,7 @@ function desFas($objetivo,$desafios,$fase){
 				$f['bool_des'] = 1;
 			}else{
 				$f['bool_des'] = 0;
-				$f['err_men'] = "Forma enviados ".count($y)." desafios. Na fase 1 é permitido exato 1 desafio.";
+				$f['err_men'] = "Foram enviados ".count($y)." desafios. Na fase 1 é permitido exato 1 desafio.";
 			}
 		break; 
 
@@ -580,7 +581,7 @@ function geraDesafios($nivel,$checado = array()){ //checked é uma array
             <thead>
               <tr>
                 <th><center>Desafio</center></th>
-                <th><center>yin/Yang</center></th>
+                <th><center>Yin/Yang</center></th>
                 <th></th>
               </tr>
             </thead>
@@ -669,12 +670,30 @@ function verificaRelatorio($objetivo,$semana){
 		return TRUE;
 	
 	}else{
-		return FALSE;	
+		return FALSE;
 	}
 		
 }
 
-
+//FAZER COM CALMA
+/*
+function verificaRelatorioObj($objetivo){
+	$con = bancoMysqli();
+	$sql = "SELECT iap_rel_id FROM relatorio_semanal WHERE objetivo = '$objetivo'";
+	$query = mysqli_query($con,$sql);
+	$num = mysqli_num_rows($query);
+	if($num > 0){
+		$x["bool"] = TRUE;
+		$x
+		return TRUE;
+	
+	}else{
+		return FALSE;
+	}
+		
+}
+ * 
+ */
 
 function verificaSegunda($objetivo,$semana){
 	//verifica em que semana a pessoa deve estar
@@ -692,15 +711,15 @@ function verificaSegunda($objetivo,$semana){
 	$sem = retornaSemanas($semana_inicio['data_aceite']);
 	
 	if($semana == 01 OR	//verifica se a semana permite abertura de desafios
-	$semana == 02 OR 
-	$semana == 03 OR
-	$semana == 04 OR
-	$semana == 05 OR
-	$semana == 07 OR
-	$semana == 09 OR
-	$semana == 11 OR
-	$semana == 13 OR
-	$semana == 15){
+	$semana == '02' OR 
+	$semana == '03' OR
+	$semana == '04' OR
+	$semana == '05' OR
+	$semana == '07' OR
+	$semana == '09' OR
+	$semana == '11' OR
+	$semana == '13' OR
+	$semana == '15'){
 		if($diasemana_numero == 1){ //verifica se é segunda-feira
 			$sql_desafios = "SELECT id,data_inicio,fase FROM iap_aceite WHERE objetivo = '$objetivo' ORDER BY data_inicio DESC LIMIT 0,1";
 			$query_desafios = mysqli_query($con,$sql_desafios);
