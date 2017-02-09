@@ -1,3 +1,4 @@
+<?php $page_title = "iAP | Objetivos"; ?>
 <?php include '../inc/header.php'; ?>
 
 <?php 
@@ -40,8 +41,8 @@
         <p><a class="btn btn-lg btn-success" href="?p=insere" role="button">Inserir um objetivo</a></p>
 		<?php }else{ ?> 
 		<p class="lead">O seu objetivo já foi definido e validado pelo treinador.</p>
-		<p class="lead">Lembre-se sempre que do começo até o final do treinamento este será o seu foco: <strong><?php echo $objetivo['objetivo']; ?>.</strong></p>
-        <p class="lead">Para visualizar os desafios em andamento dessa fase, clique no botão abaixo.</p>
+		<p class="lead">Lembre-se sempre que do começo até o final do treinamento este será o seu foco:<br /> <strong><?php echo $objetivo['objetivo']; ?>.</strong></p>
+        <p class="lead">Clique no botão abaixo para visualizar seus desafios.</p>
         <br /><br />
         <?php if($objetivo['nivel'] != '0'){ ?>
         <p><a class="btn btn-lg btn-success" href="relatorios.php" role="button">Visualizar meus desafios</a></p>

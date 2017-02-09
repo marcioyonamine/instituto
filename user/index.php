@@ -1,3 +1,4 @@
+<?php $page_title = "iAP | Treinamento de Alta Performance"; ?>
 <?php include '../inc/header.php'; ?>
 
 	<div class="container">

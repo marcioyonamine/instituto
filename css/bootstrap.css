@@ -6757,12 +6757,42 @@ button.close {
 /*# sourceMappingURL=bootstrap.css.map */
 
 /*LAYOUT TABELA DE ACORDO COM O NIVEL DO DESAFIO*/
+
+table.tbl-des-nvl1 tr:hover td{
+	background-color:#56C4F1;
+}
+
+table.tbl-des-nvl2 tr:hover td{
+	background-color:#56C4F1;
+}
+
+table.tbl-des-nvl3 tr:hover td{
+	background-color:#56C4F1;
+}
+
+table.tbl-des-nvl4 tr:hover td{
+	background-color:#56C4F1;
+}
+
+table.tbl-des-nvl5 tr:hover td{
+	background-color:#56C4F1;
+}
+
+table.tbl-des-nvl6 tr:hover td{
+	background-color:#56C4F1;
+}
+
+table.tbl-des-nvl7 tr:hover td{
+	background-color:#56C4F1;
+}
+
 .tbl-des-nvl1 tr:nth-child(2n+0){
 	background-color:#e3b6b6;
 }
 .tbl-des-nvl1 tr:nth-child(2n+1){
 	background-color:#dc8c8c;
 }
+
 .tbl-des-nvl2 tr:nth-child(2n+0){
 	background-color:#f9d590;
 }

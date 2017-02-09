@@ -1,9 +1,6 @@
+<?php $page_title = "iAP | Próximos eventos"; ?>
 <?php include '../inc/header.php';?>
-<?php 
 
-
-
-?>
 
 
 <div class="container">

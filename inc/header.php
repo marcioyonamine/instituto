@@ -2,6 +2,15 @@
 
 require_once("../../wp-load.php");
 $user = wp_get_current_user();
+if(!is_user_logged_in()):
+
+      /*** REMEMBER THE PAGE TO RETURN TO ONCE LOGGED IN ***/      $_SESSION["return_to"] = $_SERVER['REQUEST_URI'];
+
+      /*** REDIRECT TO LOGIN PAGE ***/      header("location: /wordpress/login/login.php");
+
+   endif;
+   
+  
 include "../inc/functions.php";
 
 ?>
@@ -17,7 +26,7 @@ include "../inc/functions.php";
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>IAP - Busca de objetivos</title>
+    <title><?php echo $page_title; ?></title>
 
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -81,6 +90,45 @@ var eventorganiser = {"ajaxurl":"http:\/\/amarelinha.cc\/wordpress\/wp-admin\/ad
 				b[c] += ( window.postMessage && request ? ' ' : ' no-' ) + cs;
 			}());
 		</script>
+		
+		<style type="text/css" media="all">
+#box-toggle {
+	width:auto;
+	margin:0 auto;
+	text-align:center;
+	font:12px/1.4 Arial, Helvetica, sans-serif;
+	}
+#box-toggle .tgl {margin-bottom:30px;}
+#box-toggle span {
+	display:block;
+	cursor:pointer;
+	font-weight:bold;
+	font-size:14px;
+	color:#23527c; 
+	margin-top:15px;
+	}
+
+</style>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script> 
+<script type="text/javascript"> 
+jQuery.fn.toggleText = function(a,b) {
+return   this.html(this.html().replace(new RegExp("("+a+"|"+b+")"),function(x){return(x==a)?b:a;}));
+}
+
+$(document).ready(function(){
+	$('.tgl').before('<span>Visualizar</span>');
+	$('.tgl').css('display', 'none')
+	$('span', '#box-toggle').click(function() {
+		$(this).next().slideToggle('slow')
+		.siblings('.tgl:visible').slideToggle('fast');
+	
+		$(this).toggleText('Visualizar','Esconder')
+		.siblings('span').next('.tgl:visible').prev()
+		.toggleText('Visualizar','Esconder')
+	});
+})
+</script>
     
   </head>
 

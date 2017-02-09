@@ -208,7 +208,7 @@ function desFas($objetivo,$desafios,$fase){
 	$sql_des = "SELECT id,desafio FROM iap_aceite WHERE objetivo = '$objetivo'"; //Seleciona todos os desafios do nível atual
 	$query_des = mysqli_query($con,$sql_des);
 	$i = 0;
-	$k = mysqli_fetch_array($query_des); // uma array com todos os ids da fase anterior
+	 // uma array com todos os ids da fase anterior
 		
 
 	$n = mysqli_num_rows($query_des);
@@ -230,15 +230,44 @@ function desFas($objetivo,$desafios,$fase){
 		break; 
 
 		case 2: // - 0, = 1,  + 1 (2)
-			if(count($y) == 2){ // verifica se a array tem valor 02 (dois desafios)
-				$f['bool_des'] = 1;
-			}else{
+			$i = 0;
+			if(count($y) == 2){ //verifica se o número de opções está de acordo com o da fase. caso não,
+				$t = 0;
+				for($i = 0; $i <= count($y); $i++){
+					while($k = mysqli_fetch_array($query_des)){
+						if($y[$i] == $k['desafio']){
+							$t++;
+						}
+					}
+				}
+				if($t == 1){
+					$f['bool_des'] = 1;	
+				}else{
+					$f['bool_des'] = 0;
+					$f['err_men'] = "Pelo menos 1 dos desafios deve ser mantido.";
+				}
+			
+			}else{ // caso esteja, é verificado se há duas novas
 				$f['bool_des'] = 0;
 				$f['err_men'] = "Forma enviados ".count($y)." desafios. Na fase 2 é permitido exatos 2 desafios.";
-
-				
-			} 
-
+						/*
+				$t = 0;
+				for($i = 0; $i <= count($y); $i++){ 
+					while($k){
+						if($k['id'] == $y[$i]){
+							$t++;
+						}
+					}
+				}		
+				if($t == 0){ //se dois forem iguais, passa na condição
+					$f['bool_des'] = 1;
+				}else{
+					$f['bool_des'] = 0;
+					$f['err_men'] = "Pelo menos 1 dos desafios deve ser mantido.";
+				}
+			}
+*/		
+			}
 		break;
 
 		case 3: // - 1, = 1, + 2 (3) / n e n - 1 (se n = 1, n - 1 = 7)
@@ -250,7 +279,7 @@ function desFas($objetivo,$desafios,$fase){
 				$t = 0;
 				for($i = 0; $i <= count($y); $i++){ 
 					while($k){
-						if($k['id'] == $y[$i]){
+						if($k['desafio'] == $y[$i]){
 							$t++;
 						}
 					}
@@ -580,16 +609,16 @@ function geraDesafios($nivel,$checado = array()){ //checked é uma array
 		echo '
             <thead>
               <tr>
-                <th><center>Desafio</center></th>
+                <th>Desafio</th>
                 <th><center>Yin/Yang</center></th>
-                <th></th>
+                <th><center>Escolher</center></th>                
               </tr>
             </thead>
             <tbody>';
 			while($list = mysqli_fetch_array($query_01)){
 				
    				 echo '         <tr>
-                <td>'.$list['titulo'].'</td>
+                <td style="text-align:left;">'.$list['titulo'].'</td>
                 <td>'. recTermo($list['yy']).'</td>
                 <td>
                 	
@@ -638,19 +667,37 @@ function listaDesafios($nivel){ //checked é uma array
 	echo '
 	       
 	<h2>Desafios Nível: '.$nivel.'</h2>
-        <div class="table-responsive">
-          <table class="table table-striped">
+        <div class="table-responsive">';
+        
+        if($nivel == 1){
+        	echo '<table class="table table-striped tbl-des-nvl1">';
+        }elseif($nivel == 2){
+          	echo '<table class="table table-striped tbl-des-nvl2">';
+		}elseif($nivel == 3){
+          	echo '<table class="table table-striped tbl-des-nvl3">';
+		}elseif($nivel == 4){
+          	echo '<table class="table table-striped tbl-des-nvl4">';
+		}elseif($nivel == 5){
+          	echo '<table class="table table-striped tbl-des-nvl5">';
+		}elseif($nivel == 6){
+          	echo '<table class="table table-striped tbl-des-nvl6">';
+		}elseif($nivel == 7){
+          	echo '<table class="table table-striped tbl-des-nvl7">';
+		}
+		
+		echo'
             <thead>
               <tr>
-                <th><center>Desafio</center></th>
-                <th><center>yin/Yang</center></th>
+                <th>Desafio</th>
+                <th><center>Yin/Yang</center></th>
+                
               </tr>
             </thead>
             <tbody>';
 			while($list = mysqli_fetch_array($query)){
 				
    				 echo '         <tr>
-                <td>'.$list['titulo'].'</td>
+                <td style="text-align:left;">'.$list['titulo'].'</td>
                 <td>'. recTermo($list['yy']).'</td>
              	 </tr>';
 			 }
@@ -743,13 +790,15 @@ function verificaSegunda($objetivo,$semana){
 
 function retornaSemana($id){
 	$hoje = date('Y-m-d');
-	$ult = ultObj($id);
+	$ult = recuperaDados("iap_objetivo",$id,"id");
+	//echo "<h1>$id ".$ult['data_inicio']."</h1>";
 	$semana = retornaSemanas($ult['data_inicio']);
 	$x = 0;
 	for($i = 1; $i <= 16; $i++){
-		//echo strtotime($semana[$i]['inicio'])." - ".strtotime($hoje)." - ".strtotime($semana[$i]['fim']);
+		//echo strtotime($semana[$i]['inicio'])." - ".strtotime($hoje)." - ".strtotime($semana[$i]['fim']) . "<br>";
+		//echo ($semana[$i]['inicio'])." - ".($hoje)." - ".($semana[$i]['fim']) . "<br>";
 		if(strtotime($semana[$i]['inicio']) <= strtotime($hoje) AND
-		 strtotime($semana[$i]['inicio']) >= strtotime($hoje)){
+		 strtotime($semana[$i]['fim']) >= strtotime($hoje)){
 		$x = $i;
 		}			
 	}
