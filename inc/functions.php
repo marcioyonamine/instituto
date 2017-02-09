@@ -208,7 +208,7 @@ function desFas($objetivo,$desafios,$fase){
 	$sql_des = "SELECT id,desafio FROM iap_aceite WHERE objetivo = '$objetivo'"; //Seleciona todos os desafios do nível atual
 	$query_des = mysqli_query($con,$sql_des);
 	$i = 0;
-	 // uma array com todos os ids da fase anterior
+	 $k = mysqli_fetch_array($query_des);// uma array com todos os ids da fase anterior
 		
 
 	$n = mysqli_num_rows($query_des);
