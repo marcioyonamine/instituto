@@ -205,7 +205,7 @@ function retornaSemanas($data){
 //Verifica se os desafios enviados em uma array obedecem a uma regra
 function desFas($objetivo,$desafios,$fase){ 
 	$con = bancoMysqli();
-	$sql_des = "SELECT id,desafio FROM iap_aceite WHERE objetivo = '$objetivo'"; //Seleciona todos os desafios do nível atual
+	$sql_des = "SELECT * FROM iap_aceite WHERE objetivo = '$objetivo'"; //Seleciona todos os desafios do nível atual
 	$query_des = mysqli_query($con,$sql_des);
 	$i = 0;
 	 $k = mysqli_fetch_array($query_des);// uma array com todos os ids da fase anterior
@@ -250,23 +250,6 @@ function desFas($objetivo,$desafios,$fase){
 			}else{ // caso esteja, é verificado se há duas novas
 				$f['bool_des'] = 0;
 				$f['err_men'] = "Forma enviados ".count($y)." desafios. Na fase 2 é permitido exatos 2 desafios.";
-						/*
-				$t = 0;
-				for($i = 0; $i <= count($y); $i++){ 
-					while($k){
-						if($k['id'] == $y[$i]){
-							$t++;
-						}
-					}
-				}		
-				if($t == 0){ //se dois forem iguais, passa na condição
-					$f['bool_des'] = 1;
-				}else{
-					$f['bool_des'] = 0;
-					$f['err_men'] = "Pelo menos 1 dos desafios deve ser mantido.";
-				}
-			}
-*/		
 			}
 		break;
 
@@ -278,9 +261,14 @@ function desFas($objetivo,$desafios,$fase){
 			}else{ // caso esteja, é verificado se há duas novas
 				$t = 0;
 				for($i = 0; $i <= count($y); $i++){ 
-					while($k){
+					while($k = mysqli_fetch_array($query_des)){
+						
 						if($k['desafio'] == $y[$i]){
+						//echo $k['desafio']." == ".$y[$i];
 							$t++;
+						}else{
+						//	echo $k['desafio']." != ".$y[$i];
+	
 						}
 					}
 				}		
@@ -303,7 +291,7 @@ function desFas($objetivo,$desafios,$fase){
 			}else{ // caso esteja, é verificado se há duas novas
 				$t = 0;
 				for($i = 0; $i <= count($y); $i++){ 
-					while($k){
+					while($k = mysqli_fetch_array($query_des)){
 						if($k['desafio'] == $y[$i]){
 							$t++;
 						}
@@ -328,7 +316,7 @@ function desFas($objetivo,$desafios,$fase){
 			}else{ // caso esteja, é verificado se há duas novas
 				$t = 0;
 				for($i = 0; $i <= count($y); $i++){ 
-					while($k){
+					while($k = mysqli_fetch_array($query_des)){
 						if($k['desafio'] == $y[$i]){
 							$t++;
 						}
@@ -353,7 +341,7 @@ function desFas($objetivo,$desafios,$fase){
 			}else{ // caso esteja, é verificado se há duas novas
 				$t = 0;
 				for($i = 0; $i <= count($y); $i++){ 
-					while($k){
+					while($k = mysqli_fetch_array($query_des)){
 						if($k['desafio'] == $y[$i]){
 							$t++;
 						}
@@ -398,7 +386,7 @@ function desFas($objetivo,$desafios,$fase){
 			}else{ // caso esteja, é verificado se há duas novas
 				$t = 0;
 				for($i = 0; $i <= count($y); $i++){ 
-					while($k){
+					while($k = mysqli_fetch_array($query_des)){
 						if($k['desafio'] == $y[$i]){
 							$t++;
 						}
@@ -445,7 +433,7 @@ function desFas($objetivo,$desafios,$fase){
 			}else{ // caso esteja, é verificado se há duas novas
 				$t = 0;
 				for($i = 0; $i <= count($y); $i++){ 
-					while($k){
+					while($k = mysqli_fetch_array($query_des)){
 						if($k['desafio'] == $y[$i]){
 							$t++;
 						}
