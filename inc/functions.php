@@ -805,4 +805,10 @@ function retornaSemana($id){
 	return $x;
 }
 
+function select($id,$sel){
+	if($id == $sel){
+		return "selected";			
+	}	
+}
+
 ?>
