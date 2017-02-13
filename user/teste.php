@@ -1,30 +1,21 @@
-<?php include '../inc/header.php'; ?>
 <?php 
-//if($user['caps']['administrator'] == TRUE){
-$admin = get_currentuserinfo();
-if($admin->user_level == 10){
-?>
-<?php 
+@ini_set('display_errors', '1');
+error_reporting(E_ALL); 
 
-		$objetivo = verificaObjetivo($user->ID); 
-		$ver = verificaSegunda($objetivo['id'],retornaSemana($objetivo['id']));
-		$obj = 	ultObj($user->ID);
-		echo $obj['id'];
-		$semana = retornaSemana($objetivo['id']);
-		?>
-		 <p class="lead">Você está na fase <b><?php $fase_atual = verificaFase($obj['id']); echo $fase_atual; ?> </b>. Veja abaixo os desafios da fase <?php  $fase = $fase_atual + 1; echo $fase; ?> </p>    
+require_once("../../wp-load.php"); //carrega WP
+require_once("../inc/functions.php"); //carrega as funcoes
+require_once("../inc/lib/fpdf/fpdf.php"); //carrega a biblioteca PDF
 
-         <?php echo var_dump(verificaSegunda($objetivo['id'],retornaSemana($user->ID)));; ?>
-<p><?php echo somarDatas(date('Y-m-d'),-7); ?></p>
-<pre>
-	<?php var_dump($user); ?>
-</pre>
-["ID"]=>
-  int(5)
-  ["caps"]=>
-  array(1) {
-    ["subscriber"]=>
-    bool(true)
-    <?php }else{ ?>
-    	<p>Você não é administrador.</p>
-<?php } ?>
+//$con = bancoMysqli();
+$user = wp_get_current_user();   
+$semana = $_GET['semana'];
+$obj = 	ultObj($user->ID);
+$sem = retornaSemanas($obj['data_inicio']);
+$data_inicio = $sem[$_GET['semana']]['inicio'];
+$data_fim = $sem[$_GET['semana']]['fim'];
+$fase = $sem[$_GET['semana']]['fase'];
+$obj_titulo = $obj['objetivo'];
+$lista = criaLista($fase,$obj['id']);
+echo "<pre>";
+print_r($lista);
+echo "</pre>";

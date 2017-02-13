@@ -743,6 +743,7 @@
 	$sql_insere = "INSERT INTO `iap_aceite` (`id`, `objetivo`, `desafio`, `data_aceite`, `data_inicio`,  `fase`, `relatorio`, `resposta`, `intensidade`, `frequencia` ) VALUES (NULL, '".$objetivo['id']."', '".$caixa[$i]."','$hoje', '$data_inicio',  '".$prox."', '', '', '', '')";
 	$query_insere = mysqli_query($con,$sql_insere);
 	if($query_insere){
+		gravarLog($sql_insere);
 	$des = recuperaDados("iap_desafio",$caixa[$i],"id");
 	$mensagem .= "<b>".$des['titulo']."</b><br />";
 	if($prox == 1){ // atualiza a tabela objetivo
@@ -750,6 +751,7 @@
 	$query_obj = mysqli_query($con,$sql_obj);
 	if($query_obj){
 	$mensagem .= " ";
+		gravarLog($sql_insere);
 	}else{
 	$mensagem .= "Erro ao atualizar objetivo.<br />";
 	}

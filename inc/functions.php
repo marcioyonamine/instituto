@@ -162,7 +162,6 @@ function retornaSemanas($data){
 		$x[$i]['inicio'] = date('Y-m-d', strtotime($x[$i-1]['inicio']. ' + 7 days'));
 		$x[$i]['fim'] = date('Y-m-d', strtotime($x[$i]['inicio']. ' + 6 days'));
 		switch($i){
-			case 1:
 			case 2:
 			case 3:
 			case 4:
@@ -812,6 +811,16 @@ function select($id,$sel){
 	}	
 }
 
+
+function criaLista($fase,$obj){
+	$con = bancoMysqli();
+	$sql_lista = "SELECT * FROM iap_aceite WHERE fase = '$fase' AND objetivo = '$obj'";
+	$query_lista = mysqli_query($con,$sql_lista);
+	return mysqli_fetch_array($query_lista);	
+}
+
+
+
 function retornaNota($id, $obj){
 	$con = bancoMysqli();
 	//echo $id;
@@ -845,4 +854,15 @@ function retornaNota($id, $obj){
 	}
 }
 
+function gravarLog($log){ //grava na tabela ig_log os inserts e updates
+		$logTratado = addslashes($log);
+		$idUsuario = $user->ID;
+		$ip = $_SERVER["REMOTE_ADDR"];
+		$data = date('Y-m-d H:i:s');
+		$sql = "INSERT INTO `iap_log` (`idLog`, `ig_usuario_idUsuario`, `enderecoIP`, `dataLog`, `descricao`) VALUES (NULL, '$idUsuario', '$ip', '$data', '$logTratado')";
+		$mysqli = bancoMysqli();
+		$mysqli->query($sql);
+}
+
 ?>
+
