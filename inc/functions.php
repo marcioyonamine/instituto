@@ -156,7 +156,6 @@ function retornaSemanas($data){
 		$x[$i]['inicio'] = date('Y-m-d', strtotime($x[$i-1]['inicio']. ' + 7 days'));
 		$x[$i]['fim'] = date('Y-m-d', strtotime($x[$i]['inicio']. ' + 6 days'));
 		switch($i){
-			case 1:
 			case 2:
 			case 3:
 			case 4:
@@ -797,6 +796,13 @@ function select($id,$sel){
 	if($id == $sel){
 		return "selected";			
 	}	
+}
+
+function criaLista($fase,$obj){
+	$con = bancoMysqli();
+	$sql_lista = "SELECT * FROM iap_aceite WHERE fase = '$fase' AND objetivo = '$obj'";
+	$query_lista = mysqli_query($con,$sql_lista);
+	return mysqli_fetch_array($query_lista);	
 }
 
 ?>
