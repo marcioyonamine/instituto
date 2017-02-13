@@ -26,39 +26,13 @@
 			Qualquer dúvida, <a href="contato.php" title="Fale com seu treinador">fale com seu treinador</a>.
 		</p>
 
-		<?php $con = bancoMysqli();
-		$obj = ultObj($user -> ID);
-
-		$user = $user -> ID;
-		$semana = "SELECT semana FROM relatorio_semanal WHERE user_id = '$user'";
-		$pega_semana = mysqli_query($con, $semana);
-		$usa_semana = mysqli_num_rows($pega_semana);
-
-		print_r($usa_semana);
-		echo "<br>";
-		print_r($obj[0]);
-		echo "<br>";
-		echo "$usa_semana";
-
-		$rel = verificaRelatorio($obj[0], $usa_semana);
+		<?php 
+			$user = $user -> ID;
+			//echo $user;
+			$obj = 	ultObj($user);
+			retornaNota($user);
+			
 		?>
-		<!--
-		<p class="lead">Se ainda não enviou relatório, echo "você ainda não enviou nenhum relatório com nota de avaliação".</p>
-
-		<p class="lead">
-		Se já enviou:
-		<table class="table">
-		<tr>
-		<td>Fase 1</td>
-		<td>Nota</td>
-		</tr>
-		</table>
-		</p>
-
-		<p class="lead">Nessa mesma página vamos inserir as notas por CADA desafio, assim que tiver implementado no sistema.</p>
-
-		<p class="lead">Vamos passar tbm em um campo hidden a média do sistema. A ideia é poder comparar a média das notas de cada desafio individualmente com a nota geral que o usuário se dá.</p>
-		-->
 
 	</div>
 

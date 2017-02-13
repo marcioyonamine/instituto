@@ -30,11 +30,12 @@
 		<p class="lead">Vamos definir agora qual será o foco principal do seu treinamento.</p>
 		<p class="lead">É importante que você escolha algo que tenha força para fazer você mudar de hábitos e que faça muito sentido nesse seu momento de vida.</p>
 		<p class="lead">O valor do seu objetivo pra você mesmo é que vai te dar força e energia para fazer os desafios e para conseguir expandir sua consciência.</p>
+		<p class="lead">Assista o vídeo abaixo para entender melhor a importância do objetivo no seu treinamento.</p>
 		<p class="lead"><iframe width="560" height="315" src="https://www.youtube.com/embed/-fcFDx3zf0A?controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe></p>
 		<p class="lead">Assista abaixo uma ferramenta simples que vai te ajudar na definição do seu objetivo:</p>
         
         <iframe src="https://player.vimeo.com/video/198873042" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-        <p class="lead"><a href="http://ialtaperformance.com/downloads/baixar.php?arquivo=meta-smart.pdf">Baixar ferramenta SMART</a></p>
+        <p class="lead"><a href="http://ialtaperformance.com/downloads/baixar.php?arquivo=meta-smart.pdf"><br />Baixar ferramenta SMART</a></p>
         
         <p class="lead">Agora que você já consegue ver o seu objetivo de forma mais clara, escreva ele em uma frase curta. Essa frase será o seu objetivo durante o treinamento:</p>
         
@@ -45,7 +46,7 @@
         <p class="lead">Clique no botão abaixo para visualizar seus desafios.</p>
         <br /><br />
         <?php if($objetivo['nivel'] != '0'){ ?>
-        <p><a class="btn btn-lg btn-success" href="relatorios.php" role="button">Visualizar meus desafios</a></p>
+        <p><a class="btn btn-lg btn-success" href="desafio.php" role="button">Visualizar meus desafios</a></p>
 		<?php }else{?>
     		<p class="lead">Em breve, o treinador irá indicar qual o nível está o seu desafio.</p>    
         <?php } ?>
@@ -61,8 +62,10 @@
 	if(isset($_POST['objetivo'])){
 	$objetivo = addslashes($_POST['objetivo']);
 	$user = $user->ID;
-	$sql = "INSERT INTO `iap_objetivo` (`id`, `objetivo`, `usuario`, `treinador`, `nivel`, `data_inicio`)
-	VALUES (NULL, '$objetivo', '$user', '', '', '')";
+	$sql = "INSERT INTO `iap_objetivo` (`id`, `objetivo`, `usuario`, `treinador`, `nivel`, `data_inicio`, `finalizado`)
+	VALUES (NULL, '$objetivo', '$user', '', '', '','')";
+	
+	
 	$query = mysqli_query($con,$sql);
 	if($query){
 		//envia email para o treinador
@@ -98,7 +101,7 @@
         <div class="jumbotron" style="padding-bottom: 0px !important;">
         <h1>Objetivo</h1>
         <p class="lead"></p>
-        <p class="lead">Ao enviar um objetivo, um dos nossos treinadores irá avaliar a área específica desse objetivo e montará um plano de desafios para trabalhar com você.</p>
+        <p class="lead">Ao enviar um objetivo, um dos nossos treinadores irá avaliar o nível específico desse objetivo e montará um plano de desafios para trabalhar com você.</p>
         <p class="lead">Em breve seu treinador irá validar seu objetivo e te passar os próximos passos.</p>
 
       </div>

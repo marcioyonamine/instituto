@@ -35,11 +35,13 @@
 		<?php }else{
 			$obj = 	ultObj($user->ID);
 			?> 
-		<p class="lead">Você está na <strong>Fase <?php $fase_atual = verificaFase($obj['id']); echo $fase_atual; ?></strong> do processo. Esta fase termina em <?php echo exibirDataBr(nextMonday(date('Y-m-d'))); ?></p>
+		<p class="lead">Você está na <strong>Fase <?php $fase_atual = verificaFase($obj['id']); echo $fase_atual; ?></strong> do treinamento. Esta fase termina em <?php echo exibirDataBr(nextMonday(date('Y-m-d'))); ?></p>
 		<p class="lead">O seu objetivo para este treinamento é:<strong> <?php echo $objetivo['objetivo']; ?></strong></p>
 		<p class="lead">O seu próximo evento ao vivo será em: a definir.</p>
 		<p class="lead">O seu próximo evento online será em: a definir.</p>
-		<p class="lead">O seu treinamento terminará em <strong> <!--<?php echo exibirDataBr($des[1]['inicio']) ?>  a--> <?php $des = retornaSemanas($obj['data_inicio']); echo exibirDataBr($des[16]['fim']) ?> </strong>.</p>
+		<!--
+		<p class="lead">O seu treinamento terminará em <strong> <!--<?php echo exibirDataBr($des[1]['inicio']) ?>  a <?php $des = retornaSemanas($obj['data_inicio']); echo exibirDataBr($des[16]['fim']) ?> </strong>.</p>-->
+		
 		<p><a class="btn btn-lg btn-success" href="desafio.php" role="button">Ir para os desafios</a></p>
         <?php } ?>
       </div>
@@ -48,14 +50,14 @@
       <div class="row">
         <div class="col-lg-4">
           <h2>Sua pontuação</h2>
-          <p class="text-success">Você não possui advertências =)</p>
+          <p class="text-success">Parabéns! Você não possui advertências =) Continue assim!</p>
           <p>(se teve nota na semana passada) Sua nota para os desafios na última fase foi X. Continue com seu observador ligado e atente-se para os lembretes e gatilhos para não se sabotar.</p>
           <p><a class="btn btn-primary" href="#" role="button">Ir para Desafios &raquo;</a></p>
         </div>
         <div class="col-lg-4">
           <h2>Seus desafios</h2>
           <p>Muitos preferem colocar os lembretes dos desafios no celular (clique aqui para ver uma lista com algumas sugestões). Mas às vezes não podemos contar com ele, e isso não pode impedir a continuação dos desafios. Por isso disponibilizamos para você imprimir a sua lista de desafios da fase, tanto no formato A4 (sulfite convencional), quanto uma versão pocket, pra você carregar sempre com você.</p>
-          <p><a class="btn btn-primary" href="#" role="button" style="float: left; margin-right: 10px;">Imprimir lista &raquo;</a></p>
+          <p><a class="btn btn-primary" href="#" role="button" style="float: left; margin-right: 10px;">Imprimir lembrete &raquo;</a></p>
           <p><a class="btn btn-primary" href="desafio.php" role="button">Ver meus desafios &raquo;</a></p>
        </div>
         <div class="col-lg-4">

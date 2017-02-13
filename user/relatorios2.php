@@ -22,7 +22,7 @@
 					if ($query_update) {
 						//$mensagem .= "$campo = 1 Em Id: $id <br />";
 					}
-				} elseif ($campo == "frequencia" OR $campo == "intensidade" OR $campo == "lembrete") {
+				} elseif ($campo == "frequencia" OR $campo == "intesidade") {
 					$sql_update = "UPDATE iap_aceite SET $campo = '$valor' WHERE id = '$id'";
 					$query_update = mysqli_query($con, $sql_update);
 					if ($query_update) {
@@ -53,16 +53,9 @@ $objetivo = verificaObjetivo($user->ID);
 $datas = retornaSemanas($objetivo['data_inicio']);
 ?>
 	<div class="jumbotron">
-		
-		<h1>Parabéns!</h1>
-		<?php
-		$obj = ultObj($user -> ID);
-		$fase_atual = verificaFase($obj['id']);
-		
-		if ($fase_atual == '1'){?>
-			<p class="lead">O seu treinamento começa oficialmente dia <?php echo exibirDataBr($datas[1]['inicio']) ?>. Esta fase é 
-		<?php } ?>
-		
+		<?php echo "<h1>Relatórios</h1>"; ?>
+		<p class="lead">Este é o resumo dos seus desafios desta fase.</p>
+		<p class="lead">Esta fase é 
 			<?php $obj = ultObj($user -> ID);
 			$fase_atual = verificaFase($obj['id']);
 			if ($fase_atual == '1' || $fase_atual == '2' || $fase_atual == '3' || $fase_atual == '4') {
@@ -128,7 +121,7 @@ $datas = retornaSemanas($objetivo['data_inicio']);
 		<?php
 		switch ($fase_atual) {
 			case '1' :
-				echo exibirDataBr($datas[1]['fim']) + 1;
+				echo exibirDataBr($datas[1]['fim']);
 				break;
 
 			case '2' :
@@ -178,9 +171,9 @@ $datas = retornaSemanas($objetivo['data_inicio']);
 			 ?>
 	
 		
-		preencher e enviar o relatório para o seu treinador. É isso que permitirá o avanço do seu treinamento.</p>
+		de preencher e enviar o relatório para o seu treinador. É isso que permitirá o avanço do seu treinamento.</p>
 		
-		<?php echo "<h1>Relatórios</h1>"; ?>
+		
 		
 		<p> <?php
 			if (isset($mensagem)) { echo $mensagem;
@@ -196,7 +189,7 @@ $datas = retornaSemanas($objetivo['data_inicio']);
 	<?php 
 	$sem = retornaSemana($obj['id']);
 	//echo "$sem";
-	for($i = $sem + 1; $i <= $sem + 1 AND $i > 0; $i--){ ?>
+	for($i = 1; $i <= $sem; $i++){ ?>
   
   
 
@@ -210,7 +203,7 @@ $datas = retornaSemanas($objetivo['data_inicio']);
  	<h3>
  		
   	Fase:  <?php echo $datas[$i]['fase']; ?> (<?php echo exibirDataBr($datas[$i]['inicio']) ?>  a <?php echo exibirDataBr($datas[$i]['fim']) ?>)   
-  </h3><p class="lead">Conta pra gente como foi essa fase pra você =)</p>
+  	</h3>
   	<div class="tgl">
 <?php 
 			$sql_lista = "SELECT * FROM iap_aceite WHERE fase = '".$datas[$i]['fase']."' AND objetivo = '".$objetivo['id']."'";
@@ -257,8 +250,8 @@ $datas = retornaSemanas($objetivo['data_inicio']);
             <tr>               
                 <td><strong>Dúvidas?</strong><br /></td>
                 <td><strong>Frequência:</strong><br /> <?php echo $x['frequencia']; ?> </td>
-      			<td><strong>Intensidade:</strong><br /> <?php echo $x['intensidade']; ?> </td>
-      			<td><strong>Âncora/Lembrete:</strong><br /></td>
+      			<td><strong>Intensidade:</strong><br /> <?php echo $x['intesidade']; ?> </td>
+      			<td><strong>Âncora/Lembrete</strong><br /></td>
                 
            </tr>
            <tr><td colspan="4" style="background-color: #d7e2ef;">&nbsp;</td></tr>
@@ -270,31 +263,21 @@ $datas = retornaSemanas($objetivo['data_inicio']);
           </table>
     </div>
     
-                <?php
-                
+                <?php 
 				$rel = verificaRelatorio($objetivo['id'],$i);
-				$current_date = date('Y/m/d');
-				$proxima_segunda = nextMonday($current_date);
-				echo "$proxima_segunda";
-				if($rel == FALSE && $current_date = $proxima_segunda){
+
+				if($rel == FALSE){
 				
 				 ?>
-				 
-				 
      <form action="relatorios.php?p=insere" method="post">
                 <input type="hidden" name="fase" value="<?php echo $datas[$i]['fase']; ?>">
                 <input type="hidden" name="objetivo" value="<?php echo $objetivo['id']; ?>">
                 <input type="hidden" name="semana" value="<?php echo $i; ?>">
-                <p class="alert alert-warning">Você só pode enviar o relatório no final da fase.</p>
-                <input type="submit" class="btn btn-sm btn-success" value="Escrever relatório" disabled="">
-                
+                <input type="submit" class="btn btn-sm btn-success" value="Escrever relatório">
                 <form>  
                 <?php }else{ ?>
 
-				<p>Você já enviou seu relatório dessa fase. <a href="relatorios.php?p=ler&obj=<?php echo $objetivo['id']; ?>&sem=<?php echo $i; ?>"> <br />Clique aqui para ler.</a></p>
-                <?php } ?>
-                
-                
+				<p>Você já enviou seu relatório dessa fase. <a href="relatorios.php?p=ler&obj=<?php echo $objetivo['id']; ?>&sem=<?php echo $i; ?>"> <br />
                 
     <?php } //finaliza o if
 					echo "</div><hr>";
