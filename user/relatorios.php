@@ -54,14 +54,24 @@ $datas = retornaSemanas($objetivo['data_inicio']);
 ?>
 	<div class="jumbotron">
 		
-		<h1>Parabéns!</h1>
+		
 		<?php
 		$obj = ultObj($user -> ID);
 		$fase_atual = verificaFase($obj['id']);
 		
 		if ($fase_atual == '1'){?>
-			<p class="lead">O seu treinamento começa oficialmente dia <?php echo exibirDataBr($datas[1]['inicio']) ?>. Esta fase é 
-		<?php } ?>
+			<h1>Parabéns!</h1>
+			<p class="lead">O seu treinamento começa oficialmente dia <?php echo exibirDataBrOrdem($datas[1]['inicio']) ?>. </p>
+		<?php }else{ ?>
+			<h1>Vamos em frente!</h1>			
+			<?php } ?>
+			
+			<p class="lead">
+				Você está na <strong>Fase <?php echo $fase_atual; ?></strong>.
+			</p>
+			
+			<p class="lead">
+			Esta fase é 
 		
 			<?php $obj = ultObj($user -> ID);
 			$fase_atual = verificaFase($obj['id']);
@@ -75,47 +85,47 @@ $datas = retornaSemanas($objetivo['data_inicio']);
 			 <?php
 			switch ($fase_atual) {
 				case '1' :
-					echo exibirDataBr($datas[1]['fim']);
+					echo exibirDataBrOrdem($datas[1]['fim']);
 					break;
 
 				case '2' :
-					echo exibirDataBr($datas[2]['fim']);
+					echo exibirDataBrOrdem($datas[2]['fim']);
 					break;
 
 				case '3' :
-					echo exibirDataBr($datas[3]['fim']);
+					echo exibirDataBrOrdem($datas[3]['fim']);
 					break;
 
 				case '4' :
-					echo exibirDataBr($datas[4]['fim']);
+					echo exibirDataBrOrdem($datas[4]['fim']);
 					break;
 
 				case '5' :
-					echo exibirDataBr($datas[5]['fim']);
+					echo exibirDataBrOrdem($datas[5]['fim']);
 					break;
 
 				case '2' :
-					echo exibirDataBr($datas[2]['fim']);
+					echo exibirDataBrOrdem($datas[2]['fim']);
 					break;
 
 				case '6' :
-					echo exibirDataBr($datas[6]['fim']);
+					echo exibirDataBrOrdem($datas[6]['fim']);
 					break;
 
 				case '7' :
-					echo exibirDataBr($datas[7]['fim']);
+					echo exibirDataBrOrdem($datas[7]['fim']);
 					break;
 
 				case '8' :
-					echo exibirDataBr($datas[8]['fim']);
+					echo exibirDataBrOrdem($datas[8]['fim']);
 					break;
 
 				case '9' :
-					echo exibirDataBr($datas[9]['fim']);
+					echo exibirDataBrOrdem($datas[9]['fim']);
 					break;
 
 				case '10' :
-					echo exibirDataBr($datas[10]['fim']);
+					echo exibirDataBrOrdem($datas[10]['fim']);
 					break;
 
 				default :
@@ -125,50 +135,120 @@ $datas = retornaSemanas($objetivo['data_inicio']);
 			 ?>.</p>
 			 
 			 <p class="lead">Lembre-se de até no dia 
-		<?php
-		switch ($fase_atual) {
+		<?php		
+				
+		switch ($fase_atual) {		
+			
 			case '1' :
-				echo exibirDataBr($datas[1]['fim']) + 1;
+				
+				$rel = verificaRelatorio($objetivo['id'],1);				
+				$current_date = date('Y-m-d');
+				$dias = '+1';				
+				$data_final_fase = $datas[1]['fim'];
+				$data_envio_relatorio = somarDatas($data_final_fase,$dias);
+				echo "<strong>" . exibirDataBrOrdem($data_envio_relatorio) . "</strong>";
+				//echo exibirDataBrOrdem($data_envio_relatorio);
 				break;
 
 			case '2' :
-				echo exibirDataBr($datas[2]['fim']);
+				$rel = verificaRelatorio($objetivo['id'],2);				
+				$current_date = date('Y-m-d');
+				$dias = '+1';				
+				$data_final_fase = $datas[2]['fim'];
+				$data_envio_relatorio = somarDatas($data_final_fase,$dias);
+				echo "<strong>" . exibirDataBrOrdem($data_envio_relatorio) . "</strong>";
+				//echo exibirDataBrOrdem($datas[2]['fim']);
 				break;
 
 			case '3' :
-				echo exibirDataBr($datas[3]['fim']);
+				$rel = verificaRelatorio($objetivo['id'],3);				
+				$current_date = date('Y-m-d');
+				$dias = '+1';				
+				$data_final_fase = $datas[3]['fim'];
+				$data_envio_relatorio = somarDatas($data_final_fase,$dias);
+				echo "<strong>" . exibirDataBrOrdem($data_envio_relatorio) . "</strong>";
+				//echo exibirDataBrOrdem($datas[3]['fim']);
 				break;
 
 			case '4' :
-				echo exibirDataBr($datas[4]['fim']);
+				$rel = verificaRelatorio($objetivo['id'],4);				
+				$current_date = date('Y-m-d');
+				$dias = '+1';				
+				$data_final_fase = $datas[4]['fim'];
+				$data_envio_relatorio = somarDatas($data_final_fase,$dias);
+				echo "<strong>" . exibirDataBrOrdem($data_envio_relatorio) . "</strong>";
+				//echo exibirDataBrOrdem($datas[4]['fim']);
 				break;
 
 			case '5' :
-				echo exibirDataBr($datas[5]['fim']);
+				$rel = verificaRelatorio($objetivo['id'],5);				
+				$current_date = date('Y-m-d');
+				$dias = '+1';				
+				$data_final_fase = $datas[5]['fim'];
+				$data_envio_relatorio = somarDatas($data_final_fase,$dias);
+				echo "<strong>" . exibirDataBrOrdem($data_envio_relatorio) . "</strong>";
+				//echo exibirDataBrOrdem($datas[5]['fim']);
 				break;
-
+			/*
 			case '2' :
-				echo exibirDataBr($datas[2]['fim']);
+				$rel = verificaRelatorio($objetivo['id'],6);				
+				$current_date = date('Y-m-d');
+				$dias = '+1';				
+				$data_final_fase = $datas[6]['fim'];
+				$data_envio_relatorio = somarDatas($data_final_fase,$dias);
+				echo "<strong>" . exibirDataBrOrdem($data_envio_relatorio) . "</strong>";
+				//echo exibirDataBrOrdem($datas[2]['fim']);
 				break;
+			 */
 
 			case '6' :
-				echo exibirDataBr($datas[6]['fim']);
+				$rel = verificaRelatorio($objetivo['id'],6);				
+				$current_date = date('Y-m-d');
+				$dias = '+1';				
+				$data_final_fase = $datas[6]['fim'];
+				$data_envio_relatorio = somarDatas($data_final_fase,$dias);
+				echo "<strong>" . exibirDataBrOrdem($data_envio_relatorio) . "</strong>";
+				//echo exibirDataBrOrdem($datas[6]['fim']);
 				break;
 
 			case '7' :
-				echo exibirDataBr($datas[7]['fim']);
+				$rel = verificaRelatorio($objetivo['id'],7);				
+				$current_date = date('Y-m-d');
+				$dias = '+1';				
+				$data_final_fase = $datas[7]['fim'];
+				$data_envio_relatorio = somarDatas($data_final_fase,$dias);
+				echo "<strong>" . exibirDataBrOrdem($data_envio_relatorio) . "</strong>";
+				//echo exibirDataBrOrdem($datas[7]['fim']);
 				break;
 
 			case '8' :
-				echo exibirDataBr($datas[8]['fim']);
+				$rel = verificaRelatorio($objetivo['id'],8);				
+				$current_date = date('Y-m-d');
+				$dias = '+1';				
+				$data_final_fase = $datas[8]['fim'];
+				$data_envio_relatorio = somarDatas($data_final_fase,$dias);
+				echo "<strong>" . exibirDataBrOrdem($data_envio_relatorio) . "</strong>";
+				//echo exibirDataBrOrdem($datas[8]['fim']);
 				break;
 
 			case '9' :
-				echo exibirDataBr($datas[9]['fim']);
+				$rel = verificaRelatorio($objetivo['id'],9);				
+				$current_date = date('Y-m-d');
+				$dias = '+1';				
+				$data_final_fase = $datas[9]['fim'];
+				$data_envio_relatorio = somarDatas($data_final_fase,$dias);
+				echo "<strong>" . exibirDataBrOrdem($data_envio_relatorio) . "</strong>";
+				//echo exibirDataBrOrdem($datas[9]['fim']);
 				break;
 
 			case '10' :
-				echo exibirDataBr($datas[10]['fim']);
+				$rel = verificaRelatorio($objetivo['id'],10);				
+				$current_date = date('Y-m-d');
+				$dias = '+1';				
+				$data_final_fase = $datas[10]['fim'];
+				$data_envio_relatorio = somarDatas($data_final_fase,$dias);
+				echo "<strong>" . exibirDataBrOrdem($data_envio_relatorio) . "</strong>";
+				//echo exibirDataBrOrdem($datas[10]['fim']);
 				break;
 
 			default :
@@ -255,10 +335,89 @@ $datas = retornaSemanas($objetivo['data_inicio']);
             </tr>
             
             <tr>               
-                <td><strong>Dúvidas?</strong><br /></td>
+                <td><strong>Dúvidas?</strong><br />
+                	<a class="lightbox" href="#goofy"> 
+			Entenda como funciona
+		</a>
+		
+		<div class="lightbox-target" id="goofy">
+		
+<h2>Medição dos Desafios</h2>
+Nessa área vamos deixar o autodesafio palpáveis para conseguirmos mensurar o nosso desempenho com o nosso comprometimento.
+<br /><br />
+<strong>Intensidade</strong> - Nesse bloco você indicará o quão desafiante será o seu autodesafio. O importante é você definir uma intensidade bem específica e que seja desafiadora para você!
+<br /><br /> 
+Não existe certo ou errado, melhor ou pior, o mais importante é você sair da zona de conforto de forma consciente e que não te leve para a zona de saturação. Só que lembre-se que quanto mais você se desafiar, mais padrões você conseguir identificar, maior a tendência de expansão de consciência.
+  <br /><br />
+
+<strong>Frequência</strong> - Aqui você indicará quantas vezes irá realizar o desafio até a próxima fase do treinamento.
+<br /><br /> 
+Alguns desafios podemos fazer diariamente ou até mais de uma vez por dia, outros somente uma vez durante essa fase do treinamento. O importante é você definir uma frequência que seja possível dentro do seu contexto para realizar os desafios conforme você se comprometeu. 
+<br /><br />
+<strong>Atenção:</strong> Lembre que o mais importante é mantermos a disciplina com que nos comprometemos. O ego perde espaço com disciplina.
+<br /><br />
+
+<h2>Foco</h2>
+<br /><br />
+Nessa área você irá selecionar o foco da sua consciência. Qual o foco em realizar esse autodesafio? Pode selecionar mais de uma opção se fizer sentido no seu desafio.
+<br /><br />
+<strong>Ter</strong> - Nessa área o foco é ter, podendo ser algum resultado, conhecimento, experiência ou outros. Também podemos interpretar como deixar de ter. Como exemplo, deixar de ter o conforto do banho quente para observar como vou reagir a esse desconforto. Tanto para ter algo como deixar de ter, nesses casos essa opção é válida.
+<br /><br />
+<strong>Fazer</strong> - Nessa opção o foco da consciência é fazer algo ou deixar de fazer, como um hábito por exemplo. Como exemplo fazer uma coisa com a mão trocada, deixar de fazer um hábito enraizado. Se a sua intenção com esse desafios for essa, selecione essa opção. 
+<br /><br />
+<strong>Ser</strong> - O foco em Ser, está relacionado a mudança do Ser. A intenção da sua consciência está em Ser uma pessoa diferente do que você é hoje. Por exemplo quem pegou o desafio de Meditar todos os dias com a intenção de Ser mais calmo, ou de desafiar limites pré-estabelecidos para Ser mais corajoso. Se essa for a sua intenção selecione essa opção.
+<br /><br />
+<h2>Corpos</h2>
+<br /><br />
+Todos nós possuimos diferentes corpos que usamos em diferentes experiências. Por exemplo o corpo físico para fazer desafios que necessitam de força física como praticar exercícios. 
+<br /><br />
+Mas no processo de Alta Performance como uma das formas de expandirmos a consciência, podemos utilizar também do corpo mental para melhorar o desempenho nesses exercícios, por exemplo. 
+Nesse sentido para te ajudar com os autodesafios nós separamos em 4 corpos, veja abaixo a explicação de cada um e veja qual deles você irá utilizar na realização dos seus desafios nessa fase. Pode selecionar mais de uma opção.
+<br /><br />
+<strong>Físico</strong> - Corpo físico propriamente dito, envolve assuntos que vão mexer com suas condições físicas e terrenas, é o nosso corpo mais denso. Se você acredita que esse desafio mexerá fisicamente com você selecione-o para te trazer mais consciência sobre o desafio.
+<br /><br />
+<strong>Emocional</strong> - Quando você acreditar que um desafio mexerá com as suas emoções, positivamente ou negativamente, selecione essa opção. É importante observar como os autodesafios influenciam as emoções pois muitos dos nossos padrões negativos aparecem nesse corpo. Observe bem como isso acontece com você.
+<br /><br />
+<strong>Mental</strong> - Com o corpo mental que criamos soluções, materializamos a intuição e criatividade e utilizamos da lógica, esse corpo, se usado de forma íntegra, pode ser bem útil no dia a dia dos desafios, uma vez que com ele é que ativamos a razão para solucionar problemas deixando as emoções de lado. Se fizer sentido no seu desafio selecione esse campo.
+<br /><br />
+<strong>Espiritual</strong> - O corpo espiritual é o mais sutil de todos, dizemos que é a nossa conexão com algo maior e onde vive a nossa intuição. Veja se os desafios que você selecionou irão mexer com a energia do seu espírito, caso positivo, selecione esse campo.
+<br /><br />
+<strong>Atenção:</strong> Lembre-se de que não existe certo ou errado, essas opções você seleciona os corpos que acredita que serão influenciados pelo seu desafio.
+<br /><br />
+<h2>Âncora e Lembretes</h2>
+<br /><br />
+O ego utiliza do "esquecimento" como principal ferramenta para manter um hábito, e a melhor forma de quebrarmos esse padrão é colocarmos lembretes no dia a dia.
+<br /><br />
+É muito comum os participantes utilizarem o celular, post it's, anotações, lembretes na agenda para fazerem os desafios. Quanto mais formas de lembrar melhor. Para o celular é importante colocar alarmes ou notificações dos lembretes, dessa forma eles apitam todos os dias para te lembrar.
+<br /><br />
+Para Android nós conhecemos: Do It Later, Trello, e Google Keep.
+<br /><br />
+Para iPhone: Calendário do iPhone, Productive, Trello e Google Keep.
+<br /><br />
+As âncoras são instrumentos poderosos que invoca nossa disposição para realizar o que é necessário e nos faz retornar ao nosso centro quando acabamos nos desviando ou desequilibrando.
+<br /><br />
+Uma âncora que é muito fácil de ser feita. Pegue algum objeto que te faça lembrar do Treinamento de Alta Performance, e programe a sua mente falando para você mesmo: "Todas as vezes que eu olhar/pegar/ver esse objeto vou verificar os meus desafios." Deixe esse objeto sempre por perto para te ajudar a lembrar. 
+<br /><br />
+Exemplos: 
+<br /><br />
+OLFATO: Incenso / Perfume / Cheiro da natureza / 
+<br /><br />
+AUDIÇÃO: Música específica / Alarme com música entusiasmada / Sons da natureza
+<br /><br />
+TATO: Exercícios físicos / Adorno ou acessório / Golpe de Timo
+<br /><br />
+VISÃO: Tela de celular ou computador / Quadro de paisagem  / Frases empoderadoras 
+<br /><br />
+PALADAR: Toda vez que for colocar açúcar / Fazer jejum ao acordar / Toda vez que comer uma frutas 
+<br /><br />
+MENTE: Meditar / Orar / Autoconhecimento
+
+			<a class="lightbox-close" href="#"></a>
+		</div>
+                </td>
                 <td><strong>Frequência:</strong><br /> <?php echo $x['frequencia']; ?> </td>
       			<td><strong>Intensidade:</strong><br /> <?php echo $x['intensidade']; ?> </td>
-      			<td><strong>Âncora/Lembrete:</strong><br /></td>
+      			<td><strong>Âncora/Lembrete:</strong><br /><?php echo $x['lembrete']; ?></td>
                 
            </tr>
            <tr><td colspan="4" style="background-color: #d7e2ef;">&nbsp;</td></tr>
@@ -272,11 +431,20 @@ $datas = retornaSemanas($objetivo['data_inicio']);
     
                 <?php
                 
-				$rel = verificaRelatorio($objetivo['id'],$i);
-				$current_date = date('Y/m/d');
-				$proxima_segunda = nextMonday($current_date);
-				echo "$proxima_segunda";
-				if($rel == FALSE && $current_date = $proxima_segunda){
+				$rel = verificaRelatorio($objetivo['id'],$i);				
+				$current_date = date('Y-m-d');
+				$dias = '+1';				
+				$data_final_fase = $datas[$i]['fim'];
+				
+				$data_envio_relatorio = somarDatas($data_final_fase,$dias);
+				
+				//echo "$current_date <br>";
+				//echo "$data_final_fase <br>";
+				//echo "$data_envio_relatorio";
+				//$proxima_segunda = nextMonday($current_date);
+				//echo "$proxima_segunda";
+				
+				if($rel == FALSE && $current_date != $data_envio_relatorio){
 				
 				 ?>
 				 
@@ -285,13 +453,66 @@ $datas = retornaSemanas($objetivo['data_inicio']);
                 <input type="hidden" name="fase" value="<?php echo $datas[$i]['fase']; ?>">
                 <input type="hidden" name="objetivo" value="<?php echo $objetivo['id']; ?>">
                 <input type="hidden" name="semana" value="<?php echo $i; ?>">
-                <p class="alert alert-warning">Você só pode enviar o relatório no final da fase.</p>
+                <p class="alert alert-warning">Você só pode enviar o relatório no final da fase: <?php echo exibirDataBrOrdem($data_envio_relatorio); ?>.</p>
                 <input type="submit" class="btn btn-sm btn-success" value="Escrever relatório" disabled="">
                 
                 <form>  
                 <?php }else{ ?>
 
-				<p>Você já enviou seu relatório dessa fase. <a href="relatorios.php?p=ler&obj=<?php echo $objetivo['id']; ?>&sem=<?php echo $i; ?>"> <br />Clique aqui para ler.</a></p>
+				<p>Você já enviou seu relatório dessa fase.
+					
+					
+					 <a href="relatorios.php?p=ler&obj=<?php echo $objetivo['id']; ?>&sem=<?php echo $i; ?>"> <br />Clique aqui para ler.</a>
+					 
+					 
+					 <section id="contact" class="home-section bg-white">
+    <div class="container">
+        <div class="row">
+        <div class="jumbotron">
+        <h1>Relatório</h1>
+        <p>Objetivo: <?php echo $obj['objetivo']; ?> (Nível <?php echo $obj['nivel']; ?>)</p>
+        <p>Semana <?php echo $i; ?> Fase:  <?php echo $datas[$i]['fase']; ?> (<?php echo exibirDataBr($datas[$i]['inicio']) ?>  a <?php echo exibirDataBr($datas[$i]['fim']) ?>)</p>
+		<p>Desafios: <?php echo $num; ?></p>
+<?php
+			while ($x = mysqli_fetch_array($query_lista)) {
+				$desafio = recuperaDados("iap_desafio", $x['desafio'], "id");
+				echo "+ " . $desafio['titulo'] . "<br />";
+			}
+
+			$sql_lei = "SELECT * FROM relatorio_semanal WHERE objetivo = '" . $_GET['obj'] . "' AND semana = '" . $_GET['sem'] . "'";
+			$query_lei = mysqli_query($con, $sql_lei);
+			$lei = mysqli_fetch_array($query_lei);
+		?>
+
+        </div>
+        </div>
+<div class="row">     
+<div class="form-group">
+            <div class="col-md-offset-2 col-md-8">
+   			<p>Dê uma nota de 0 a 10 que você dá a si mesmo para o seu desempenho nos desafios: <strong><?php echo $lei['iap_rel_nota_desafios']; ?></strong>	</p>
+	
+			<p>
+				Qual foi a experiência desse período com os desafios?
+			</p>
+			
+            <p><strong><?php echo($lei['iap_rel_exp_desafios']); ?></strong></p>
+			<p>O que você observou?
+			</p>
+			            <p><strong><?php echo $lei['iap_rel_oq_observou']; ?></strong></p>
+			<p>Como foi esse período pra você?
+			</p>
+	                    <p><strong><?php echo $lei['iap_rel_periodo']; ?></strong></p> 
+                        <br />
+                        <p>Enviado em <?php echo exibirDataBrOrdem($lei['data']); ?> </p>
+			</div>
+</div>
+</section>
+					 
+					 
+					 
+					 
+										 
+					 </p>
                 <?php } ?>
                 
                 

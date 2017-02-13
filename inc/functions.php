@@ -113,7 +113,13 @@ function semAcento($string){
 //retorna data d/m/y de mysql/date(a-m-d)
 function exibirDataBr($data){ 
 	$timestamp = strtotime($data); 
-	return date('d/m/Y', $timestamp);	
+	return date('Y/m/d', $timestamp);
+}
+
+//retorna data d/m/y de mysql/date(a-m-d)
+function exibirDataBrOrdem($data){ 
+	$timestamp = strtotime($data); 
+	return date('d/m/Y', $timestamp);
 }
 
 //funcao que verifica se há algum objetivo em andamento
