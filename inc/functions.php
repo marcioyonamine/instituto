@@ -440,6 +440,7 @@ function desFas($objetivo,$desafios,$fase){
 				}		
 				if($t == 13){ //se numero de mantidos forem iguais, passa na condição
 					//verifica se tem um cada nível
+					
 					$caixa = array(); //cria um array para inserir todos os niveis das opções selecionadas
 					for($i = 0; $i <= count($y[$i]); $i++){
 						$d = recuperaDados("iap_desafio",$y[$i],"id");
@@ -447,7 +448,7 @@ function desFas($objetivo,$desafios,$fase){
 						$temp = in_array($d['nivel'],$caixa);
 						if(count($temp) > 0){
 							array_push($caixa, $d['nivel']);
-						}								
+						}							
 					}		
 					
 					$dif =  array_diff($tudo, $caixa); // compara as duas arrays
@@ -471,12 +472,15 @@ function desFas($objetivo,$desafios,$fase){
 		break;
 
 		case 9: // pelo menos 1n (14)
+			/*
 					$i = 0;	
 			if(count($y) != 14){ //verifica se o número de opções está de acordo com o da fase. caso não,
 				$f['bool_des'] = 0;
 				$f['err_men'] = "Forma enviados ".$count($y)." desafios. Na fase 9 é permitido exatos 14 desafios.";
 			}else{ // caso esteja, é verificado se há duas novas
+				
 				$caixa = array(); //cria um array para inserir todos os niveis das opções selecionadas
+				
 				for($i = 0; $i <= count($y[$i]); $i++){
 					$d = recuperaDados("iap_desafio",$y[$i],"id");
 					$temp = in_array($d['nivel'],$caixa);
@@ -492,10 +496,12 @@ function desFas($objetivo,$desafios,$fase){
 					$f['err_men'] = "Deve ser escolhido ao menos 1 desafio de cada nível.";
 				}
 			}
+			 */
+			 $f['bool_des'] = 1;
 		break;
 
 		case 10: // pelo menos 1n (7)
-					$i = 0;	
+					/*$i = 0;	
 			if(count($y) != 7){ //verifica se o número de opções está de acordo com o da fase. caso não,
 				$f['bool_des'] = 0;
 				$f['err_men'] = "Foram enviados ".$count($y)." desafios. Na fase 9 é permitido exatos 14 desafios.";
@@ -515,7 +521,8 @@ function desFas($objetivo,$desafios,$fase){
 					$f['bool_des'] = 0;
 					$f['err_men'] = "Deve ser escolhido ao menos 1 desafio de cada nível.";
 				}
-			}
+			}*/
+			$f['bool_des'] = 1;
 		
 		break;
 		
@@ -605,7 +612,7 @@ function geraDesafios($nivel,$checado = array()){ //checked é uma array
 			while($list = mysqli_fetch_array($query_01)){
 				
    				 echo '         <tr>
-                <td style="text-align:left;">'.$list['titulo'].'</td>
+                <td style="text-align:left;">'.$list['titulo'].' <div class="tooltip-explica"><img src="../assets/img/tooltip_des.png" width="15" /><span class="tooltiptext-explica">' . $list['tooltip_des'] . '</span></div></td>
                 <td>'. recTermo($list['yy']).'</td>
                 <td>
                 	
@@ -684,7 +691,7 @@ function listaDesafios($nivel){ //checked é uma array
 			while($list = mysqli_fetch_array($query)){
 				
    				 echo '         <tr>
-                <td style="text-align:left;">'.$list['titulo'].'</td>
+                <td style="text-align:left;">'.$list['titulo'].' <div class="tooltip-explica"><img src="../assets/img/tooltip_des.png" width="15" /><span class="tooltiptext-explica">' . $list['tooltip_des'] . '</span></div> </td>
                 <td>'. recTermo($list['yy']).'</td>
              	 </tr>';
 			 }
@@ -798,6 +805,7 @@ function select($id,$sel){
 	}	
 }
 
+
 function criaLista($fase,$obj){
 	$con = bancoMysqli();
 	$sql_lista = "SELECT * FROM iap_aceite WHERE fase = '$fase' AND objetivo = '$obj'";
@@ -805,4 +813,40 @@ function criaLista($fase,$obj){
 	return mysqli_fetch_array($query_lista);	
 }
 
+
+
+function retornaNota($id, $obj){
+	$con = bancoMysqli();
+	//echo $id;
+	$sql = "SELECT * FROM relatorio_semanal WHERE user_id = '$id'";
+	$query = mysqli_query($con, $sql);
+	$resultado = mysqli_num_rows($query);
+	//var_dump($resultado);
+	$lista_res = mysqli_fetch_array($query);
+	//var_dump($lista_res);
+	
+	
+	
+	if(!$resultado){
+		echo "Você ainda não enviou relatório com nota de avaliação";
+	}else{
+		echo "
+		<div class=\"table-responsive center-block\" style=\"width:30%;\" >
+		<table class=\"table table-striped\" > 
+			<tr>
+			<th><center>Fase</center></th>
+			<th><center>Nota</center></th>
+			</tr>";
+			$soma = 0;
+		for($i = 0; $i < $resultado; $i++){
+			echo "<tr><td> Fase " . $lista_res['fase'] . "</td><td>" . $lista_res['iap_rel_nota_desafios'] . "</td></tr>";
+			$soma = $soma + $lista_res['iap_rel_nota_desafios'];
+		}
+		//echo $soma;
+		$media = $soma / $resultado;
+		echo "<tr><td><strong>Média</strong></td><td>" . $media . "</td></tr></table></div>";
+	}
+}
+
 ?>
+

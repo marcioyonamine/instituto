@@ -81,7 +81,7 @@
 			$des = retornaSemanas($obj['data_inicio']);
  ?>
   	 	<p class="lead">O seu treinador avaliou o seu objetivo <strong> "<?php echo $obj['objetivo'] ?>"</strong> como de nível <strong><?php echo $obj['nivel']; ?></strong>.</p>
-  	 	<p class="lead"><a href="http://ialtaperformance.com/downloads/baixar.php?arquivo=7-niveis-profissionais-pessoais.png"> Baixar explicação dos níveis.</a></p>
+  	 	<p class="lead"><a href="http://ialtaperformance.com/downloads/baixar.php?arquivo=7-niveis-profissionais-pessoais.png"> Clique aqui</a> para entender mais sobre os níveis que nós trabalhamos.</p>
   	 	<p class="lead">
   	 		
   	 		Agora voce está na <strong>Fase <?php $fase_atual = verificaFase($obj['id']);
@@ -100,7 +100,7 @@
 	<?php 
 	$sem = retornaSemana($obj['id']);
 	//echo "$sem";
-	for($i = 1; $i <= $sem; $i++){ ?>
+	for($i = $sem; $i <= $sem AND $i > 0; $i--){ ?>
   
   
 
@@ -171,7 +171,7 @@
             <tr>               
                 <td><strong>Dúvidas?</strong><br /></td>
                 <td><strong>Frequência:</strong> <br /><?php echo $x['frequencia']; ?> </td>
-      			<td><strong>Intensidade:</strong> <br /><?php echo $x['intesidade']; ?> </td>
+      			<td><strong>Intensidade:</strong> <br /><?php echo $x['intensidade']; ?> </td>
       			<td><strong>Âncora/Lembrete</strong><br /></td>
                 
            </tr>
@@ -209,7 +209,7 @@
  ?> </b>.</p>
 				 <p class="lead">Para a sua próxima fase (<strong>Fase <?php $fase_mostra = $fase_atual + 1;
 					echo $fase_mostra;
- ?></strong>), você deve <strong>manter o seu desafio inicial de Nível 1</strong>, e ainda escolher um novo desafio do nível do seu objetivo <em>(<?php echo $objetivo . $objetivo['nivel'] ?>)</em>.</p> 
+ ?></strong>), você deve <strong>manter o seu desafio inicial de Nível 1</strong>, e ainda escolher um novo desafio do nível do seu objetivo <em>(<?php echo "lembrando que o seu objetivo é " . $objetivo['objetivo'] . " e o treinador classificou ele como Nível " . $objetivo['nivel'] ?>)</em>.</p> 
 				 	<p class="lead">O seu total de desafios para essa próxima fase será 2.</p>
 				 <p class="lead">
 				 Abaixo estão listados os desafios do nível do seu objetivo. Você ainda não pode marcá-los, mas já pode visualizá-los.</p>
@@ -474,7 +474,7 @@
  ?></p>
 			<?php	$des = retornaSemanas($obj['data_inicio']); ?>
   	 	<p class="lead">O seu treinador avaliou o seu desafio <strong> "<?php echo $obj['objetivo'] ?>"</strong> como de nível <strong><?php echo $obj['nivel']; ?></strong>.</p>    
-   		<p class="lead">O seu treinamento vai de <strong> <?php echo exibirDataBr($des[1]['inicio']) ?>  a <?php echo exibirDataBr($des[16]['fim']) ?> </strong></p>     
+   		<!--<p class="lead">O seu treinamento iniciará depois que você escolher o seu primeiro desafio. <strong> <?php echo exibirDataBr($des[1]['inicio']) ?>  a <?php echo exibirDataBr($des[16]['fim']) ?> </strong>--></p>     
    		<!--<p class="lead">Serão 16 semanas com 10 fases.</p>-->
         <?php
         $fase_atual = verificaFase($obj['id']);
@@ -644,6 +644,7 @@
 
 		case 2 :
 			//vai para fase 3
+			geraDesafios(1, $checados);
 			geraDesafios($objetivo['nivel'], $checados);
 			geraDesafios($objetivo['nivel'] - 1, $checados);
 
@@ -739,11 +740,11 @@
 	if($verifica['bool_des'] == 1){ //se passar pela verificação, gravar a tabela aceite
 	for($i = 0; $i < count($caixa); $i++){
 	$data_inicio = nextMonday($hoje);
-	$sql_insere = "INSERT INTO `iap_aceite` (`id`, `objetivo`, `desafio`, `data_aceite`, `data_inicio`,  `fase`, `relatorio`, `resposta`, `intesidade`, `frequencia` ) VALUES (NULL, '".$objetivo['id']."', '".$caixa[$i]."','$hoje', '$data_inicio',  '".$prox."', '', '', '', '')";
+	$sql_insere = "INSERT INTO `iap_aceite` (`id`, `objetivo`, `desafio`, `data_aceite`, `data_inicio`,  `fase`, `relatorio`, `resposta`, `intensidade`, `frequencia` ) VALUES (NULL, '".$objetivo['id']."', '".$caixa[$i]."','$hoje', '$data_inicio',  '".$prox."', '', '', '', '')";
 	$query_insere = mysqli_query($con,$sql_insere);
 	if($query_insere){
 	$des = recuperaDados("iap_desafio",$caixa[$i],"id");
-	$mensagem .= "Desafio <b>".$des['titulo']."</b> inserido com sucesso.<br />";
+	$mensagem .= "<b>".$des['titulo']."</b><br />";
 	if($prox == 1){ // atualiza a tabela objetivo
 	$sql_obj = "UPDATE iap_objetivo SET data_inicio = '$hoje' WHERE id = '".$objetivo['id']."'";
 	$query_obj = mysqli_query($con,$sql_obj);
@@ -773,68 +774,212 @@
  ?>
         <div class="jumbotron">
         <h1>Desafios</h1>
+        <p class="lead">Muito bem! Os desafios que você escolheu estão listados abaixo.</p>
+        	<p class="lead">
+        	Para te ajudar no cumprimento dos desafios é importante você definir qual será o Foco (ser, fazer, ter) da sua Consciência e os Corpos (físico, emocional, mental e espiritual).</p>
+        	<p class="lead">
+        	A ferramenta principal para desarmar o ego é a disciplina. Para isso, defina qual será a frequência e a intensidade para cada desafio.</p>
+        	<p class="lead">
+        		Se tiver dúvidas, <a class="lightbox" href="#goofy">clique aqui</a> para ler a explicação detalhada.
+        	</p>
 	  	<p><?php
 			if (isset($mensagem)) {echo $mensagem;
 			}
  ?></p>
-      	<p>
-        
-        
-        
-        </p>  
- <form action="relatorios.php" method="post">
+      	
+
+
+ <form action="relatorios.php" method="post" onsubmit="return validaCorpos();" name="form_corpos">
 <?php 
 		if($verifica['bool_des'] == 1){		
 			$sql_lista = "SELECT * FROM iap_aceite WHERE fase = '".$datas[$i]['fase']."' AND objetivo = '".$objetivo['id']."'";
 			$query_lista = mysqli_query($con,$sql_lista);
 			$num = mysqli_num_rows($query_lista);
 			if($num > 0){
+	
+
 ?>
 
-		<?php 
+<script>
+	function validaCorpos(){
 		
-			while($x = mysqli_fetch_array($query_lista)){ 
+		<?php while($y = mysqli_fetch_array($query_lista)){ ?>
+			
+			
+			var ter = document.getElementById("ter_<?php echo $y['id']; ?>");
+			var fazer = document.getElementById("fazer_<?php echo $y['id']; ?>");
+			var ser = document.getElementById("ser_<?php echo $y['id']; ?>");
+			
+			var fisico = document.getElementById("fisico_<?php echo $y['id']; ?>");
+			var emocional = document.getElementById("emocional_<?php echo $y['id']; ?>");
+			var mental = document.getElementById("mental_<?php echo $y['id']; ?>");
+			var espiritual = document.getElementById("espiritual_<?php echo $y['id']; ?>");
+			
+			if(!ter.checked && !fazer.checked && !ser.checked){
+				alert('Você precisa definir pelo menos um FOCO para cada desafio');
+				return false;
+			}
+			
+			if(!fisico.checked && !emocional.checked && !mental.checked && !espiritual.checked){
+				alert('Você precisa definir pelo menos um CORPO para cada desafio');
+				return false;
+			}
+			
+			if(form_corpos.frequencia_<?php echo $y['id']; ?>.value == ""){
+				alert('Você precisa definir a FREQUÊNCIA para cada desafio');
+				return false;
+			}
+			
+			if(form_corpos.intensidade_<?php echo $y['id']; ?>.value == ""){
+				alert('Você precisa definir a INTENSIDADE para cada desafio');
+				return false;
+			}
+			
+			if(form_corpos.lembrete_<?php echo $y['id']; ?>.value == ""){
+				alert('Você precisa definir um LEMBRETE para cada desafio');
+				return false;
+			}
+			
+				
+		<?php } ?>
+	}
+	
+</script>
+
+
+		<?php 
+			$sql_lista2 = "SELECT * FROM iap_aceite WHERE fase = '".$datas[$i]['fase']."' AND objetivo = '".$objetivo['id']."'";
+			$query_lista2 = mysqli_query($con,$sql_lista2);
+			while($x = mysqli_fetch_array($query_lista2)){ 
 				$desafio = recuperaDados("iap_desafio",$x['desafio'],"id");
-			?>
-                      <table class="table table-striped">
+			?>		
+			
+                      <table class="table table-striped" style="text-align: left;">
                                   <tbody>
 
   <tr>
-    <td colspan="7"><?php echo $desafio['titulo']; ?> - Nível: <?php echo $desafio['nivel']; ?> - <?php echo recTermo($desafio['yy']); ?></td>
+  	
+  	<td>
+  		<?php echo "<strong>Desafio:</strong><br />" . $desafio['titulo']; ?> (Nível: <?php echo $desafio['nivel']; ?> - <?php echo recTermo($desafio['yy']); ?>)
+  	</td>
+  	
+  	<td>
+  		<strong>Foco: </strong><br /><input id="ter_<?php echo $x['id']; ?>" type="checkbox" name="ter_<?php echo $x['id']; ?>"> Ter&nbsp;&nbsp;&nbsp;<input id="fazer_<?php echo $x['id']; ?>" type="checkbox" name="fazer_<?php echo $x['id']; ?>"> Fazer&nbsp;&nbsp;&nbsp;<input id="ser_<?php echo $x['id']; ?>" type="checkbox" name="ser_<?php echo $x['id']; ?>"> Ser
+  	</td>
+  	
+  	<td colspan="2">
+  		<strong>Corpos: </strong><br /><input id="fisico_<?php echo $x['id']; ?>" type="checkbox" name="fisico_<?php echo $x['id']; ?>"> Físico&nbsp;&nbsp;&nbsp;<input id="emocional_<?php echo $x['id']; ?>" type="checkbox" name="emocional_<?php echo $x['id']; ?>"> Emocional&nbsp;&nbsp;&nbsp;<input id="mental_<?php echo $x['id']; ?>" type="checkbox" name="mental_<?php echo $x['id']; ?>">Mental&nbsp;&nbsp;&nbsp;<input id="espiritual_<?php echo $x['id']; ?>" type="checkbox" name="espiritual_<?php echo $x['id']; ?>"> Espiritual
+  	</td>  	
   </tr>
-  <tr>
-    <td colspan="3">Foco</td>
-    <td colspan="4">Corpo</td>
-  </tr>
-  <tr>
-    <td><input type="checkbox" name="ter_<?php echo $x['id']; ?>"> Ter</td>
-    <td><input type="checkbox" name="fazer_<?php echo $x['id']; ?>"> Fazer</td>
-    <td><input type="checkbox" name="ser_<?php echo $x['id']; ?>"> Ser</td>
-    <td><input type="checkbox" name="fisico_<?php echo $x['id']; ?>"> Físico</td>
-    <td><input type="checkbox" name="emocional_<?php echo $x['id']; ?>"> Emocional</td>
-    <td><input type="checkbox" name="mental_<?php echo $x['id']; ?>"> Mental</td>
-    <td><input type="checkbox" name="espiritual_<?php echo $x['id']; ?>"> Espiritual</td>
-  </tr>
-  <tr>
-      <td colspan="4">Frequencia</td>
-      <td colspan="7">Intensidade</td>
   
+  <tr>  	
+  	<td>
+  		<strong>Frequência: </strong><br /><input id="frequencia_<?php echo $x['id']; ?>" class="form-control" type="text" name="frequencia_<?php echo $x['id']; ?>" />
+  	</td>
+  	<td>
+  		<strong>Intensidade: </strong><br /><input id="intensidade_<?php echo $x['id']; ?>" class="form-control" type="text" name="intensidade_<?php echo $x['id']; ?>" />
+  	</td>
+  	<td>
+  		<strong>Âncora/Lembrete: </strong><br /><input id="lembrete_<?php echo $x['id']; ?>" class="form-control" type="text" name="lembrete_<?php echo $x['id']; ?>" />
+  	</td>  	
+  	<td style="vertical-align: bottom;">
+  		
+
+		<a class="lightbox" href="#goofy"> 
+			<img src="../assets/img/duvida.png" width="15" />
+		</a>
+		
+		<div class="lightbox-target" id="goofy">
+		
+<h2>Medição dos Desafios</h2>
+Nessa área vamos deixar o autodesafio palpáveis para conseguirmos mensurar o nosso desempenho com o nosso comprometimento.
+<br /><br />
+<strong>Intensidade</strong> - Nesse bloco você indicará o quão desafiante será o seu autodesafio. O importante é você definir uma intensidade bem específica e que seja desafiadora para você!
+<br /><br /> 
+Não existe certo ou errado, melhor ou pior, o mais importante é você sair da zona de conforto de forma consciente e que não te leve para a zona de saturação. Só que lembre-se que quanto mais você se desafiar, mais padrões você conseguir identificar, maior a tendência de expansão de consciência.
+  <br /><br />
+
+<strong>Frequência</strong> - Aqui você indicará quantas vezes irá realizar o desafio até a próxima fase do treinamento.
+<br /><br /> 
+Alguns desafios podemos fazer diariamente ou até mais de uma vez por dia, outros somente uma vez durante essa fase do treinamento. O importante é você definir uma frequência que seja possível dentro do seu contexto para realizar os desafios conforme você se comprometeu. 
+<br /><br />
+<strong>Atenção:</strong> Lembre que o mais importante é mantermos a disciplina com que nos comprometemos. O ego perde espaço com disciplina.
+<br /><br />
+
+<h2>Foco</h2>
+<br /><br />
+Nessa área você irá selecionar o foco da sua consciência. Qual o foco em realizar esse autodesafio? Pode selecionar mais de uma opção se fizer sentido no seu desafio.
+<br /><br />
+<strong>Ter</strong> - Nessa área o foco é ter, podendo ser algum resultado, conhecimento, experiência ou outros. Também podemos interpretar como deixar de ter. Como exemplo, deixar de ter o conforto do banho quente para observar como vou reagir a esse desconforto. Tanto para ter algo como deixar de ter, nesses casos essa opção é válida.
+<br /><br />
+<strong>Fazer</strong> - Nessa opção o foco da consciência é fazer algo ou deixar de fazer, como um hábito por exemplo. Como exemplo fazer uma coisa com a mão trocada, deixar de fazer um hábito enraizado. Se a sua intenção com esse desafios for essa, selecione essa opção. 
+<br /><br />
+<strong>Ser</strong> - O foco em Ser, está relacionado a mudança do Ser. A intenção da sua consciência está em Ser uma pessoa diferente do que você é hoje. Por exemplo quem pegou o desafio de Meditar todos os dias com a intenção de Ser mais calmo, ou de desafiar limites pré-estabelecidos para Ser mais corajoso. Se essa for a sua intenção selecione essa opção.
+<br /><br />
+<h2>Corpos</h2>
+<br /><br />
+Todos nós possuimos diferentes corpos que usamos em diferentes experiências. Por exemplo o corpo físico para fazer desafios que necessitam de força física como praticar exercícios. 
+<br /><br />
+Mas no processo de Alta Performance como uma das formas de expandirmos a consciência, podemos utilizar também do corpo mental para melhorar o desempenho nesses exercícios, por exemplo. 
+Nesse sentido para te ajudar com os autodesafios nós separamos em 4 corpos, veja abaixo a explicação de cada um e veja qual deles você irá utilizar na realização dos seus desafios nessa fase. Pode selecionar mais de uma opção.
+<br /><br />
+<strong>Físico</strong> - Corpo físico propriamente dito, envolve assuntos que vão mexer com suas condições físicas e terrenas, é o nosso corpo mais denso. Se você acredita que esse desafio mexerá fisicamente com você selecione-o para te trazer mais consciência sobre o desafio.
+<br /><br />
+<strong>Emocional</strong> - Quando você acreditar que um desafio mexerá com as suas emoções, positivamente ou negativamente, selecione essa opção. É importante observar como os autodesafios influenciam as emoções pois muitos dos nossos padrões negativos aparecem nesse corpo. Observe bem como isso acontece com você.
+<br /><br />
+<strong>Mental</strong> - Com o corpo mental que criamos soluções, materializamos a intuição e criatividade e utilizamos da lógica, esse corpo, se usado de forma íntegra, pode ser bem útil no dia a dia dos desafios, uma vez que com ele é que ativamos a razão para solucionar problemas deixando as emoções de lado. Se fizer sentido no seu desafio selecione esse campo.
+<br /><br />
+<strong>Espiritual</strong> - O corpo espiritual é o mais sutil de todos, dizemos que é a nossa conexão com algo maior e onde vive a nossa intuição. Veja se os desafios que você selecionou irão mexer com a energia do seu espírito, caso positivo, selecione esse campo.
+<br /><br />
+<strong>Atenção:</strong> Lembre-se de que não existe certo ou errado, essas opções você seleciona os corpos que acredita que serão influenciados pelo seu desafio.
+<br /><br />
+<h2>Âncora e Lembretes</h2>
+<br /><br />
+O ego utiliza do "esquecimento" como principal ferramenta para manter um hábito, e a melhor forma de quebrarmos esse padrão é colocarmos lembretes no dia a dia.
+<br /><br />
+É muito comum os participantes utilizarem o celular, post it's, anotações, lembretes na agenda para fazerem os desafios. Quanto mais formas de lembrar melhor. Para o celular é importante colocar alarmes ou notificações dos lembretes, dessa forma eles apitam todos os dias para te lembrar.
+<br /><br />
+Para Android nós conhecemos: Do It Later, Trello, e Google Keep.
+<br /><br />
+Para iPhone: Calendário do iPhone, Productive, Trello e Google Keep.
+<br /><br />
+As âncoras são instrumentos poderosos que invoca nossa disposição para realizar o que é necessário e nos faz retornar ao nosso centro quando acabamos nos desviando ou desequilibrando.
+<br /><br />
+Uma âncora que é muito fácil de ser feita. Pegue algum objeto que te faça lembrar do Treinamento de Alta Performance, e programe a sua mente falando para você mesmo: "Todas as vezes que eu olhar/pegar/ver esse objeto vou verificar os meus desafios." Deixe esse objeto sempre por perto para te ajudar a lembrar. 
+<br /><br />
+Exemplos: 
+<br /><br />
+OLFATO: Incenso / Perfume / Cheiro da natureza / 
+<br /><br />
+AUDIÇÃO: Música específica / Alarme com música entusiasmada / Sons da natureza
+<br /><br />
+TATO: Exercícios físicos / Adorno ou acessório / Golpe de Timo
+<br /><br />
+VISÃO: Tela de celular ou computador / Quadro de paisagem  / Frases empoderadoras 
+<br /><br />
+PALADAR: Toda vez que for colocar açúcar / Fazer jejum ao acordar / Toda vez que comer uma frutas 
+<br /><br />
+MENTE: Meditar / Orar / Autoconhecimento
+
+			<a class="lightbox-close" href="#"></a>
+		</div>
+
+
+  	</td>
+  	
   </tr>
-  <tr>
-     <td colspan="4"><input type="text" name="frequencia_<?php echo $x['id']; ?>" /></td>
-      <td colspan="7"><input type="text" name="intesidade_<?php echo $x['id']; ?>" /></td>
-  
-  </tr>
+  <tr><td colspan="4" style="background-color: #d7e2ef;">&nbsp;</td></tr>
   
 
-			 <?php } ?>
+			 <?php } //while ?>
 	    </tbody>
           </table>
-    </div>
-    	<input type="hidden" value="1" name="insere">
+          <input type="hidden" value="1" name="insere">
     	<input type="submit" class="btn btn-lg btn-success" value="Salvar">
-        <?php } ?>
-    <?php } //finaliza o if($num) ?>
+    </div>
+    	
+        <?php } //finaliza o if($num) ?>
+    <?php }  ?>
     
 
 
