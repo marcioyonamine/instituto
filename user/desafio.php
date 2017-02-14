@@ -84,9 +84,16 @@
   	 	<p class="lead"><a href="http://ialtaperformance.com/downloads/baixar.php?arquivo=7-niveis-profissionais-pessoais.png"> Clique aqui</a> para entender mais sobre os níveis que nós trabalhamos.</p>
   	 	<p class="lead">
   	 		
-  	 		Agora voce está na <strong>Fase <?php $fase_atual = verificaFase($obj['id']);
+  	 		Agora voce está na <strong>fase <?php $fase_atual = verificaFase($obj['id']);
+			
+			if($fase_atual == 0){
+				echo "inicial";
+			}else{
 				echo $fase_atual;
- ?> </strong>do seu treinamento, e abaixo estão os seus desafios dessa fase:</p>
+			}
+			
+				
+ ?> </strong> do seu treinamento, e abaixo estão os seus desafios para essa fase:</p>
   	 		
   	 		<p> <?php
 				if (isset($mensagem)) { echo $mensagem;
@@ -198,7 +205,7 @@
    		<?php
 		switch ($fase_atual) {
 			case '0' :?>
-				<p class="lead">Para iniciar o seu treinamento, você deve escolher um desafio de Nível 1.</p>
+				<p class="lead" style="text-align: center; margin-top:-7%;">O seu treinamento começará na próxima segunda-feira, que é o dia que você deve escolher e salvar seu objetivo. Enquanto isso, já pode ver a lista dos desafios que poderá escolher para essa fase inicial.</p>
 				<?php
 					break;
 
@@ -743,7 +750,7 @@
 	$sql_insere = "INSERT INTO `iap_aceite` (`id`, `objetivo`, `desafio`, `data_aceite`, `data_inicio`,  `fase`, `relatorio`, `resposta`, `intensidade`, `frequencia` ) VALUES (NULL, '".$objetivo['id']."', '".$caixa[$i]."','$hoje', '$data_inicio',  '".$prox."', '', '', '', '')";
 	$query_insere = mysqli_query($con,$sql_insere);
 	if($query_insere){
-		gravarLog($sql_insere);
+		gravarLog($sql_insere, $user->ID);
 	$des = recuperaDados("iap_desafio",$caixa[$i],"id");
 	$mensagem .= "<b>".$des['titulo']."</b><br />";
 	if($prox == 1){ // atualiza a tabela objetivo
@@ -751,7 +758,7 @@
 	$query_obj = mysqli_query($con,$sql_obj);
 	if($query_obj){
 	$mensagem .= " ";
-		gravarLog($sql_insere);
+		gravarLog($sql_insere, $user->ID);
 	}else{
 	$mensagem .= "Erro ao atualizar objetivo.<br />";
 	}

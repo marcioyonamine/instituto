@@ -33,7 +33,12 @@
 			}
 
 		}
-
+	if(emailTreinador("desafio", $user->display_name)){
+			gravarLog("Email enviado",$user->ID);
+			
+		}else{
+			gravarLog("Erro ao enviar email",$user->ID);
+		};
 	}
 ?>
 
@@ -427,6 +432,7 @@ $datas = retornaSemanas($objetivo['data_inicio']);
 				$data_final_fase = $datas[$i]['fim'];
 				
 				$data_envio_relatorio = somarDatas($data_final_fase,$dias);
+				$data_envio_relatorio2 = somarDatas($data_final_fase,"+2");
 				
 				//echo "$current_date <br>";
 				//echo "$data_final_fase <br>";
@@ -434,8 +440,16 @@ $datas = retornaSemanas($objetivo['data_inicio']);
 				//$proxima_segunda = nextMonday($current_date);
 				//echo "$proxima_segunda";
 				
-				if($rel == FALSE && $current_date != $data_envio_relatorio){
 				
+				if(isset($_GET['data_teste'])){
+					$data_envio_relatorio = $_GET['data_teste'];
+					$data_envio_relatorio2 = somarDatas($_GET['data_teste'],"+1");
+					$current_date = $_GET['hoje'];
+				}
+				 
+				
+				if($rel == FALSE){
+
 				 ?>
 				 
 				 
@@ -444,9 +458,11 @@ $datas = retornaSemanas($objetivo['data_inicio']);
             <input type="hidden" name="objetivo" value="<?php echo $objetivo['id']; ?>">
             <input type="hidden" name="semana" value="<?php echo $i; ?>">
             
-            <p class="alert alert-warning">Você só pode enviar o relatório no final da fase: <?php echo exibirDataBrOrdem($data_envio_relatorio); ?>.</p>
+            <?php  if($current_date != $data_envio_relatorio && $current_date !=$data_envio_relatorio2  ){ echo "<p class=\"alert alert-warning\">Você só pode enviar o relatório no final da fase:" . exibirDataBrOrdem($data_envio_relatorio) ."</p>";}
+            ?>
+            
             	
-            <input type="submit" class="btn btn-sm btn-success" value="Escrever relatório" >
+            <input type="submit" class="<?php if($current_date == $data_envio_relatorio){echo "btn btn-sm btn-success";}elseif($current_date == $data_envio_relatorio2){echo "btn btn-sm btn-danger";}else{echo "btn btn-sm btn-default";} ?>" value="Escrever relatório" <?php  if($current_date != $data_envio_relatorio && $current_date !=$data_envio_relatorio2  ){ echo "disabled=\"\"";}?> >
             
 		<form>
 			  
@@ -578,7 +594,12 @@ $datas = retornaSemanas($objetivo['data_inicio']);
 	";
 	$query = mysqli_query($con,$sql);
 	if($query){
-		emailTreinador();		
+		if(emailTreinador("relatorio", $user->display_name)){
+			gravarLog("Email enviado",$user->ID);
+			
+		}else{
+			gravarLog("Erro ao enviar email",$user->ID);
+		};
 		?>
         <section id="contact" class="home-section bg-white">
    			<div class="container">

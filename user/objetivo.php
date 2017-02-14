@@ -63,13 +63,13 @@
 	$objetivo = addslashes($_POST['objetivo']);
 	$user = $user->ID;
 	$sql = "INSERT INTO `iap_objetivo` (`id`, `objetivo`, `usuario`, `treinador`, `nivel`, `data_inicio`, `finalizado`)
-	VALUES (NULL, '$objetivo', '$user', '', '', '','')";
+	VALUES (NULL, '$objetivo', '$user', NULL, NULL, NULL,NULL)";
 	
 	
 	$query = mysqli_query($con,$sql);
-	if($query){
-		//envia email para o treinador
-	}
+	
+	
+	
 ?>
        <div class="container">
        	<?php include '../inc/fixed-navbar-user.php'; ?>
@@ -77,6 +77,12 @@
 
 <?php
 	if($query){
+		if(emailTreinador("objetivo", $user->display_name)){
+			gravarLog("Email enviado",$user->ID);
+			
+		}else{
+			gravarLog("Erro ao enviar email",$user->ID);
+		};
  ?>
 	    <div class="jumbotron">
         <h1>Objetivo</h1>
