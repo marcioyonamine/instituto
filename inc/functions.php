@@ -873,5 +873,67 @@ function emailTreinador(){//ENVIA EMAIL DE NOVO RELATÓRIO - TROCAR PRO DO CAIO
 		mail($to,$subject,$txt,$headers);
 }
 
+function geraPreDesafios($desafios){ //$desafios é uma array
+		$nivel_passado = "";
+		foreach($desafios as $x){
+			$des = recuperaDados("iap_desafio",$x,"id");
+			$nivel = $des['nivel'];
+			if($nivel != $nivel_passado){
+		echo '
+	       
+	<h2>Desafios Nível: '.$nivel.'</h2>
+        <div class="table-responsive">';
+          
+        if($nivel == 1){
+        	echo '<table class="table table-striped tbl-des-nvl1">';
+        }elseif($nivel == 2){
+          	echo '<table class="table table-striped tbl-des-nvl2">';
+		}elseif($nivel == 3){
+          	echo '<table class="table table-striped tbl-des-nvl3">';
+		}elseif($nivel == 4){
+          	echo '<table class="table table-striped tbl-des-nvl4">';
+		}elseif($nivel == 5){
+          	echo '<table class="table table-striped tbl-des-nvl5">';
+		}elseif($nivel == 6){
+          	echo '<table class="table table-striped tbl-des-nvl6">';
+		}elseif($nivel == 7){
+          	echo '<table class="table table-striped tbl-des-nvl7">';
+		}
+
+		  
+		echo '
+            <thead>
+              <tr>
+                <th>Desafio</th>
+                <th><center>Yin/Yang</center></th>
+                <th><center>Escolher</center></th> 
+              </tr>
+            </thead>
+            <tbody>';
+			}
+				
+   				 echo '         <tr>
+                <td style="text-align:left;">'.$des['titulo'].' <div class="tooltip-explica"><img src="../assets/img/tooltip_des.png" width="15" /><span class="tooltiptext-explica">' . $des['tooltip_des'] . '</span></div></td>
+                <td>'. recTermo($des['yy']).'</td>
+                <td>
+                	
+           			 <input onchange="validaEscolhaDesafio();" type="checkbox" name="'.$des['id'].'" '.checado($des['id'],$desafios).'>
+           			 
+        			</td>
+             	 </tr>';
+			if($nivel != $nivel_passado){
+		
+	echo '    </tbody>
+          </table>
+    </div>
+    ';
+			}
+		$nivel_passado = $nivel;
+		}
+
+
+
+}
+
 ?>
 

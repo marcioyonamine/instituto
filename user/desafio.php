@@ -990,9 +990,45 @@ MENTE: Meditar / Orar / Autoconhecimento
 
 <?php
 break;
+case "pre_insere":
+	if(isset($_GET['nivel'])){
+	$objetivo['nivel'] = $_GET['nivel'];
+	}else{
+	$objetivo = verificaObjetivo($user->ID);
+
+	}
+
+	if(isset($_GET['fase'])){
+	$fase = $_GET['fase'];
+	}else{
+	$fase = verificaFase($objetivo['id']);
+	}
+	//echo $objetivo['nivel']." - ".$fase;
+	$checados = matrizDesafios($objetivo['id'],$fase);
+	$obj = 	ultObj($user->ID);
 ?>
 
+        <div class="jumbotron">
+        <h1>Desafios</h1>
+	  	<p><?php
+			if (isset($mensagem)) {echo $mensagem;
+			}
+ ?></p>
+			<?php	$des = retornaSemanas($obj['data_inicio']); ?>
+  	 	<p class="lead">O seu treinador avaliou o seu desafio <strong> "<?php echo $obj['objetivo'] ?>"</strong> como de nível <strong><?php echo $obj['nivel']; ?></strong>.</p>    
+   		<!--<p class="lead">O seu treinamento iniciará depois que você escolher o seu primeiro desafio. <strong> <?php echo exibirDataBr($des[1]['inicio']) ?>  a <?php echo exibirDataBr($des[16]['fim']) ?> </strong>--></p>     
+   <form action="desafio.php?p=insere" method="post">      
+        <?php 
+		geraPreDesafios($checados);
+		?>
+  	<input type="hidden" value="1" name="preinsere">
+    	<input type="submit" class="btn btn-lg btn-success" value="Próximo >>">
+		</form>	      
 
+<?php 
+break;
+
+?>
 
 <?php
 	break;

@@ -24,19 +24,19 @@ class PDF extends FPDF
 {
 // Page header
 function Header()
-{
-	/*
-	$inst = recuperaDados("ig_instituicao",$_SESSION['idInstituicao'],"idInstituicao");
-	$logo = "../visual/img/".$inst['logo']; 
+{	
     // Logo
-    $this->Image($logo,20,20,50);
-    // Move to the right
-    $this->Cell(80);
-    $this->Image('../visual/img/logo_smc.jpg',170,10);
+    $this->Image('../assets/img/logo_impressao.jpg',5,5,50);
+
+    // Logo
+    $this->Image('../assets/img/tesoura_baixo.jpg',20,142,50); 
+	
+	    $this->Image('../assets/img/tesoura_pe.jpg',100,50,6);   
     // Line break
     $this->Ln(20);
-*/
 }
+
+
 
 
 //INSERIR ARQUIVOS
@@ -69,16 +69,17 @@ $pdf->AddPage();
 $x=5;
 $l=7; //DEFINE A ALTURA DA LINHA   
    
-   $pdf->SetXY( $x , 5 );// SetXY - DEFINE O X (largura) E O Y (altura) NA PÁGINA
+   $pdf->SetXY( $x , 20 );// SetXY - DEFINE O X (largura) E O Y (altura) NA PÁGINA
 
+/*	
    $pdf->SetX($x);
    $pdf->SetFont('Arial','B', 12);
    $pdf->Cell(20,2,'IAP - DESAFIOS',0,1,'L');
    $pdf->Ln();
-
+*/
    $pdf->SetX($x);
    $pdf->SetFont('Arial','', 8);
-   $pdf->Cell(20,3,'Fase: '.$fase.' - Semana: '.$semana.' - '.exibirDataBr($data_inicio).' a '.exibirDataBr($data_fim).'',0,1,'L');
+   $pdf->Cell(50,3,'Fase: '.$fase.' - Semana: '.$semana.' - '.exibirDataBr($data_inicio).' a '.exibirDataBr($data_fim).'',0,1,'L');
    $pdf->Ln();
 
    $pdf->SetX($x);
@@ -91,7 +92,7 @@ $l=7; //DEFINE A ALTURA DA LINHA
 		if($x == 'desafio' AND $x != '0'){ 
 			$desafio = recuperaDados("iap_desafio",$valor,"id");
 			$print = "+ ".$desafio['titulo']."(Nível " . $desafio['nivel'].")";
-			$pdf->SetX($x);
+			$pdf->SetX($x + 10);
 			$pdf->SetFont('Arial','', 10);
 			$pdf->Cell(10,2,utf8_decode($print),0,1,'L');
 			$pdf->Ln();
