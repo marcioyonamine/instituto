@@ -1,3 +1,4 @@
+<?php $page_title = "Treinador | iAP"; ?>
 <?php include '../inc/header.php'; ?>
 <?php
 $con = bancoMysqli();
@@ -24,7 +25,7 @@ case "inicial":
 	<div class="jumbotron">
 		<?php echo "<h1>Objetivo</h1>"; ?>
 		<?php 
-		$sql_conta = "SELECT id FROM iap_objetivo WHERE nivel = '0'";
+		$sql_conta = "SELECT id FROM iap_objetivo WHERE nivel = '0' OR nivel is null";
 		$query_conta = mysqli_query($con,$sql_conta);
 		$num = mysqli_num_rows($query_conta);
 		?>
@@ -42,13 +43,23 @@ break;
 case "objetivo":
 $con = bancoMysqli();
 if(isset($_POST['idObj'])){
+	$objetivo = recuperaDados("iap_objetivo", $_POST['idObj'], "id");
+	$user_info = get_userdata($objetivo['usuario']);
 	$hoje = date('Y-m-d');
 	$sql_atualiza = "UPDATE iap_objetivo SET nivel = '".$_POST['nivel']."' ,
-	data_inicio = '$hoje'
+	data_inicio = '$hoje' , finalizado = '0' , treinador = '". $user->ID ."'
 	WHERE id = '".$_POST['idObj']."'";
 	$query_atualiza = mysqli_query($con,$sql_atualiza);
 	if($query_atualiza){
-		$mensagem = "Nível do objetivo atualizado.";	
+		$mensagem = "Nível do objetivo atualizado.";
+		
+		if(emailTreinador("nivelinserido", "Treinador", $user_info->user_email)){
+			gravarLog("Email enviado",$user->ID);
+			
+		}else{
+			gravarLog("Erro ao enviar email",$user->ID);
+		};
+			
 	}else{
 		$mensagem = "Erro ao atualizar nível do objetivo.";	
 		
@@ -99,7 +110,7 @@ $query_lista = mysqli_query($con,$sql_lista);
 		   
            </select>
            </td>
-           <td><?php if($obj['data_inicio'] != '0000-00-00'){echo exibirDataBr($obj['data_inicio']);} ?></td>
+           <td><?php if($obj['data_inicio'] == NULL){echo "";}else{echo exibirDataBrOrdem($obj['data_inicio']);} ?></td>
 			<td>
             <input type="hidden" name="idObj" value="<?php echo $obj['id']?>" />
  			<input type="submit" class="btn btn-sm btn-success" value="Atualiza">

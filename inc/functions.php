@@ -854,9 +854,9 @@ function retornaNota($id, $obj){
 	}
 }
 
-function gravarLog($log){ //grava na tabela ig_log os inserts e updates
+function gravarLog($log, $idUsuario){ //grava na tabela ig_log os inserts e updates
 		$logTratado = addslashes($log);
-		$idUsuario = $user->ID;
+		//$idUsuario = $user->ID;
 		$ip = $_SERVER["REMOTE_ADDR"];
 		$data = date('Y-m-d H:i:s');
 		$sql = "INSERT INTO `iap_log` (`idLog`, `ig_usuario_idUsuario`, `enderecoIP`, `dataLog`, `descricao`) VALUES (NULL, '$idUsuario', '$ip', '$data', '$logTratado')";
@@ -864,13 +864,38 @@ function gravarLog($log){ //grava na tabela ig_log os inserts e updates
 		$mysqli->query($sql);
 }
 
-function emailTreinador(){//ENVIA EMAIL DE NOVO RELATÓRIO - TROCAR PRO DO CAIO
+function emailTreinador($funcao, $nome, $email = null){//ENVIA EMAIL DE NOVO RELATÓRIO - TROCAR PRO DO CAIO
+		if($email == null){
+			$to = "caio@ialtaperformance.com, thiagonegro@gmail.com";
+		}else{
+			$to = $email;
+		}
 		
-		$to = "thiagonegro@gmail.com";
-		$subject = $nome . utf8_decode(" enviou um relatório da fase");
-		$txt = "Acesse o seu painel de treinador para visualizar:http://ialtaperformance.com/login";
-		$headers = "From: relatorios@ialtaperformance.com";
-		mail($to,$subject,$txt,$headers);
+		$headers = "From: sistema@ialtaperformance.com";
+		switch($funcao){
+		case "objetivo":
+			$subject = $nome . utf8_decode(" cadastrou um objetivo que precisa ser avaliado");
+			$txt = "Acesse o seu painel de treinador para avaliar:http://ialtaperformance.com/login";
+		break;
+		case "desafio":
+			$subject = $nome . utf8_decode(" cadastrou novos desafios.");
+			$txt = "Acesse o seu painel de treinador para visualizar:http://ialtaperformance.com/login";
+		break;
+		case "relatorio":
+			$subject = $nome . utf8_decode(" enviou um relatório da fase");
+			$txt = "Acesse o seu painel de treinador para visualizar:http://ialtaperformance.com/login";
+		break;
+		case "nivelinserido":
+			$subject = utf8_decode("O seu treinador avaliou seu objetivo");
+			$txt = "Acesse o sistema para visualizar:http://ialtaperformance.com/login";
+		break;
+		case "segunda":
+			$subject = utf8_decode("Não se esqueça de mandar seu relatório de fase.");
+			$txt = "Acesse o sistema para visualizar:http://ialtaperformance.com/login";
+		break;
+		}
+		$x = mail($to,$subject,$txt,$headers);
+		return $x;
 }
 
 function geraPreDesafios($desafios){ //$desafios é uma array
