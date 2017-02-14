@@ -864,5 +864,14 @@ function gravarLog($log){ //grava na tabela ig_log os inserts e updates
 		$mysqli->query($sql);
 }
 
+function emailTreinador(){//ENVIA EMAIL DE NOVO RELATÓRIO - TROCAR PRO DO CAIO
+		
+		$to = "thiagonegro@gmail.com";
+		$subject = $nome . utf8_decode(" enviou um relatório da fase");
+		$txt = "Acesse o seu painel de treinador para visualizar:http://ialtaperformance.com/login";
+		$headers = "From: relatorios@ialtaperformance.com";
+		mail($to,$subject,$txt,$headers);
+}
+
 ?>
 
