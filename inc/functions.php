@@ -210,10 +210,16 @@ function retornaSemanas($data){
 //Verifica se os desafios enviados em uma array obedecem a uma regra
 function desFas($objetivo,$desafios,$fase){ 
 	$con = bancoMysqli();
-	$sql_des = "SELECT * FROM iap_aceite WHERE objetivo = '$objetivo'"; //Seleciona todos os desafios do nível atual
+	$fase_anterior = $fase - 1;
+	$sql_des = "SELECT * FROM iap_aceite WHERE objetivo = '$objetivo' AND fase = '$fase_anterior'"; //Seleciona todos os desafios do nível atual
 	$query_des = mysqli_query($con,$sql_des);
+	if($query_des){
+		$e = "Consulta feita";	
+	}else{
+		$e = "Erro na consulta";	
+	}
 	$i = 0;
-	 $k = mysqli_fetch_array($query_des);// uma array com todos os ids da fase anterior
+	//$k = mysqli_fetch_array($query_des);// uma array com todos os ids da fase anterior
 		
 
 	$n = mysqli_num_rows($query_des);
@@ -236,25 +242,30 @@ function desFas($objetivo,$desafios,$fase){
 
 		case 2: // - 0, = 1,  + 1 (2)
 			$i = 0;
-			if(count($y) == 2){ //verifica se o número de opções está de acordo com o da fase. caso não,
+			if(count($y) != 2){ //verifica se o número de opções está de acordo com o da fase. caso não,
+				$f['bool_des'] = 0;
+				$f['err_men'] = "Forma enviados ".count($y)." desafios. Na fase 2 é permitido exatos 2 desafios.";
+			
+			}else{ // caso esteja, é verificado se há duas novas
 				$t = 0;
-				for($i = 0; $i <= count($y); $i++){
+				for($i = 0; $i < count($y); $i++){
+					$kg = "";
 					while($k = mysqli_fetch_array($query_des)){
 						if($y[$i] == $k['desafio']){
+							
 							$t++;
 						}
+						$kg .= $y[$i]." - ".$k['desafio']."<br />";
 					}
 				}
 				if($t == 1){
 					$f['bool_des'] = 1;	
 				}else{
 					$f['bool_des'] = 0;
-					$f['err_men'] = "Pelo menos 1 dos desafios deve ser mantido.";
+					$f['err_men'] = "Pelo menos 1 dos desafios deve ser mantido.($t)";
+					$f['dump'] = $e;
 				}
-			
-			}else{ // caso esteja, é verificado se há duas novas
-				$f['bool_des'] = 0;
-				$f['err_men'] = "Forma enviados ".count($y)." desafios. Na fase 2 é permitido exatos 2 desafios.";
+		
 			}
 		break;
 

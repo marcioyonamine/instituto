@@ -485,6 +485,7 @@
    		<!--<p class="lead">Serão 16 semanas com 10 fases.</p>-->
         <?php
         $fase_atual = verificaFase($obj['id']);
+		echo $fase_atual;
 		switch ($fase_atual) {
 			case '0' :?>
 				<p class="lead">Para iniciar o seu treinamento, você deve escolher um desafio de Nível 1.</p>
@@ -727,6 +728,7 @@
 <?php
 	break;
 	case "insere_options":
+
 	$objetivo = verificaObjetivo($user->ID);
 	$datas = retornaSemanas($objetivo['data_inicio']);
 	$mensagem = "";
@@ -738,6 +740,7 @@
 	array_push($caixa, $x);
 	}
 	}
+
 	$objetivo = verificaObjetivo($user->ID);
 	$fase = verificaFase($objetivo['id']);
 	$prox = $fase + 1;
@@ -791,7 +794,7 @@
         	<p class="lead">
         		Se tiver dúvidas, <a class="lightbox" href="#goofy">clique aqui</a> para ler a explicação detalhada.
         	</p>
-	  	<p><?php
+	  	<p><?php 
 			if (isset($mensagem)) {echo $mensagem;
 			}
  ?></p>

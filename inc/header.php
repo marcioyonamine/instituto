@@ -117,13 +117,13 @@ var eventorganiser = {"ajaxurl":"http:\/\/amarelinha.cc\/wordpress\/wp-admin\/ad
 
 .tooltip-explica .tooltiptext-explica {
     visibility: hidden;
-    width: 300px;
-    height:100px;
+    width: 250px;
+    height:auto;
     background-color: #183F76;
     color: #ffffff;
     text-align: center;
     border-radius: 6px;
-    padding: 5px 0;
+    padding: 8px;
     top: -5px;
     left: 105%; 
 
