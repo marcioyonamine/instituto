@@ -51,26 +51,84 @@
         <div class="col-lg-4">
           <h2>Sua pontuação</h2>
           <p class="text-success">Parabéns! Você não possui advertências =) Continue assim!</p>
-          <p>(se teve nota na semana passada) Sua nota para os desafios na última fase foi X. Continue com seu observador ligado e atente-se para os lembretes e gatilhos para não se sabotar.</p>
-          <p><a class="btn btn-primary" href="#" role="button">Ir para Desafios &raquo;</a></p>
+          
+          <?php 
+          	
+          	$fase_atual = verificaFase($obj['id']); 
+			//echo $fase_atual;
+			$fase_anterior = $fase_atual - 1;
+			//echo $fase_anterior . "<br>";
+          	$usuario = $user->ID;
+          	
+          	$con = bancoMysqli();
+          	
+          	$sql_nota_anterior = "SELECT * FROM relatorio_semanal WHERE user_id = '$usuario' AND fase = '$fase_anterior'";
+			$executa = mysqli_query($con, $sql_nota_anterior);
+			$mostra_nota = mysqli_num_rows($executa);
+			
+			$recupera_nota = mysqli_fetch_array($executa);
+			
+			echo $recupera_nota['iap_rel_nota_desafios'] . "<br>";
+			
+			/*
+			echo $mostra_nota['iap_rel_nota_desafios'];
+          	$sql = "SELECT * FROM relatorio_semanal WHERE user_id = '$user->ID'";
+			$query = mysqli_query($con, $sql);
+			 
+			 * 
+			 */			
+
+			if(!$mostra_nota){
+				echo "<p>Você não enviou relatório com nota na fase anterior. Esses relatórios devem ser preenchidos no final de cada fase. Não deixe de preenchê-lo, pois é ele que mostrará a sua evolução para o treinador.</p>
+				<p><a class=\"btn btn-primary\" href=\"desafio.php\" role=\"button\">Ir para Desafios &raquo;</a></p>
+				";
+			}else{			
+          ?>          
+          <p>Sua nota para os desafios na fase anterior foi <?php echo $recupera_nota; ?>. 
+          	<?php
+          		if($recupera_nota > 0 && $recupera_nota<=5){
+          			echo "Algo não está legal né, $user->user_firstname ? Essa é a oportunidade para você observar o ego agindo e vencê-lo! Pegue os autodesafios que fazem mais sentido, não há certo ou errado, apenas observação e coragem, lembre-se disso. Siga em frente é normal termos algumas recaídas!</p>
+          <p><a class=\"btn btn-primary\" href=\"desafio.php\" role=\"button\">Ir para Desafios &raquo;</a></p>";
+		  
+          		}elseif($recupera_nota >=6 && $recupera_nota <= 8){
+          			echo "Legal $user->user_firstname, você está na direção, veja em que pontos que você pode melhorar e coloque mais foco nos seus desafios e na observação, assim você terá mais resultados. Lembre-se, seu objetivo só depende de você vencer o seu ego. Imprima o lembrete dos desafios para facilitar no seu dia a dia.</p>
+          <p><a class=\"btn btn-primary\" href=\"desafio.php\" role=\"button\">Ir para Desafios &raquo;</a></p>";
+          
+		  		}else{
+          			echo "Parabéns $user->user_firstname, esse é o caminho para a Alta Performance, continue pegando os autodesafios que fazem mais sentido para você e continue observando o seu ego agir.</p>
+          <p><a class=\"btn btn-primary\" href=\"desafio.php\" role=\"button\">Ir para Desafios &raquo;</a></p>";
+          
+		  		}
+          	?>
+          	
+          <?php } //fim do else ?> 
         </div>
         <div class="col-lg-4">
           <h2>Seus desafios</h2>
-          <p>Muitos preferem colocar os lembretes dos desafios no celular (clique aqui para ver uma lista com algumas sugestões). Mas às vezes não podemos contar com ele, e isso não pode impedir a continuação dos desafios. Por isso disponibilizamos para você imprimir a sua lista de desafios da fase, tanto no formato A4 (sulfite convencional), quanto uma versão pocket, pra você carregar sempre com você.</p>
+          
+          
           
           <?php 
+			
           	$obj =	ultObj($user->ID);
           	$sem = retornaSemana($obj['id']);
           ?>
           
           <p><?php 
-          	if($sem == 0){
-          		echo "";
-          	}else{
-          		echo "<a class=\"btn btn-primary\" href=\"imprimir.php?semana=\" role=\"button\" style=\"float: left; margin-right: 10px;\">Imprimir lembrete &raquo;</a></p>";
-          	}
+          	if($sem == 0){ ?>
+          		<p>
+          			Você vai iniciar o seu treinamento na próxima segunda-feira. Enquanto isso, navegue pelo sistema ou <a href="#" title="Módulo Online">assista o módulo online</a> com os vídeos já disponíveis. 
+          		</p>
+          		
+          		<?php }else{ ?>          	
+          
+          <p>Muitos preferem colocar os lembretes dos desafios no celular. Mas às vezes não podemos contar com ele, e isso não pode impedir a continuação dos desafios. Por isso disponibilizamos para você imprimir a sua lista de desafios da fase. Carregue esssa lista com você, e sempre dê uma olhada nela.</p>          
+          
+          		<a class="btn btn-primary" href="imprimir.php?semana=<?php echo $sem; ?>" target="_blank" role="button" style="float: left; margin-right: 10px;">Imprimir lembrete &raquo;</a></p>
+          		<?php //echo $sem; ?>
+          	<?php } ?>
           	
-          	?> 
+          	
           <p><a class="btn btn-primary" href="desafio.php" role="button">Ver meus desafios &raquo;</a></p>
        </div>
         <div class="col-lg-4">

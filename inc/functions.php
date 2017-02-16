@@ -966,9 +966,6 @@ function geraPreDesafios($desafios){ //$desafios é uma array
 			}
 		$nivel_passado = $nivel;
 		}
-
-
-
 }
 
 ?>
