@@ -58,12 +58,14 @@
 <?php
 	break;
 	case "insere":
-
+	include "../inc/repost.php"; //previne o respost
 	if(isset($_POST['objetivo'])){
+
+
 	$objetivo = addslashes($_POST['objetivo']);
 	$user = $user->ID;
 	$sql = "INSERT INTO `iap_objetivo` (`id`, `objetivo`, `usuario`, `treinador`, `nivel`, `data_inicio`, `finalizado`)
-	VALUES (NULL, '$objetivo', '$user', NULL, NULL, NULL,NULL)";
+	VALUES (NULL, '$objetivo', '$user', '0', '0', '0','0')";
 	
 	
 	$query = mysqli_query($con,$sql);
@@ -77,12 +79,14 @@
 
 <?php
 	if($query){
+		/* //tá dando erro
 		if(emailTreinador("objetivo", $user->display_name)){
 			gravarLog("Email enviado",$user->ID);
 			
 		}else{
 			gravarLog("Erro ao enviar email",$user->ID);
 		};
+		*/
  ?>
 	    <div class="jumbotron">
         <h1>Objetivo</h1>
@@ -94,6 +98,7 @@
 	    <div class="jumbotron">
         <h1>Objetivo</h1>
         <p class="lead"></p>
+        <?php echo $sql; ?>
         <p class="lead">Erro ao enviar(1).</p>
         </div>
 

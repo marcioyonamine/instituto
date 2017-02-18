@@ -1036,5 +1036,12 @@ function geraPreDesafios($desafios){ //$desafios é uma array
 		}
 }
 
+function retornaAdvertencia($obj){
+	$con = bancoMysqli();
+	$sql = "SELECT id FROM iap_advertencia WHERE objetivo = '$obj'";
+	$query = mysqli_query($con,$sql);
+	$num = mysqli_num_rows($query);
+	return $num;
+}
 ?>
 
