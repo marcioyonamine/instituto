@@ -621,7 +621,41 @@ function geraDesafios($nivel,$checado = array()){ //checked é uma array
             <thead>
               <tr>
                 <th>Desafio</th>
-                <th><center>Yin/Yang</center></th>
+                <th><center>Yin/Yang
+                <a class="lightbox" href="#goofy"> [?]</a></center>
+					<div class="lightbox-target" id="goofy">
+						<h2>O que é Yin e Yang?</h2>
+<br />
+Yin Yang são conceitos que expõem a dualidade de tudo que existe no universo. Descrevem as duas forças fundamentais opostas e complementares que se encontram em todas as coisas
+<br /><br />
+Segundo essa ideia, cada ser, objeto ou pensamento possui um complemento do qual depende para a sua existência. Esse complemento existe dentro de si. Assim, se deduz que nada existe no estado puro: nem na atividade absoluta, nem na passividade absoluta, mas sim em transformação contínua. Voltaremos a falar desse assunto no futuro.
+<br /><br />
+A expansão da consciência está relacionada ao quão equilibrado uma pessoa está em cada um dos 7 níveis. Quanto mais clareza se tem das atividades Yin e Yang em cada nível maior a tendência de subida de consciência naquela área e maiores as chances de se alcançar resultados de forma equilibrada.
+<br /><br />
+
+<div class="tbl-yy">
+	<div class="tbl-yy-left"><strong>Yang:<hr></strong></div><div><strong>Yin:<hr></strong></div>
+	
+	
+		<div class="tbl-yy-left">o princípio ativo</div><div>o princípio passivo</div>
+		<div class="tbl-yy-left">ação</div><div>reação</div>
+		<div class="tbl-yy-left">diurno</div><div>noturno</div>
+		<div class="tbl-yy-left">luminoso</div><div>escuro</div>
+		<div class="tbl-yy-left">sol</div><div>lua</div>
+		<div class="tbl-yy-left">som</div><div>o silêncio</div>
+		<div class="tbl-yy-left">início</div><div>o fim</div>
+		<div class="tbl-yy-left">ideal</div><div>real</div>
+		<div class="tbl-yy-left">difícil</div><div>fácil</div>
+		<div class="tbl-yy-left">coragem</div><div>medo</div>
+		
+</div>
+
+
+<br /><br />
+Da mesma forma cada desafios tem um objetivo de levar o participante a ser mais Yin ou Yang em uma área específica. Todos temos uma forma de ser a agir no dia a dia, é isso que formams os hábitos, os desafios foram feitos para quebrar esses hábitos para que a observação seja possível.
+<a class="lightbox-close" href="#"></a>
+					</div>
+                </th>
                 <th><center>Escolher</center></th>                
               </tr>
             </thead>
@@ -700,7 +734,41 @@ function listaDesafios($nivel){ //checked é uma array
             <thead>
               <tr>
                 <th>Desafio</th>
-                <th><center>Yin/Yang</center></th>
+                <th><center>Yin/Yang
+                <a class="lightbox" href="#goofy"> [?]</a></center>
+					<div class="lightbox-target" id="goofy">
+						<h2>O que é Yin e Yang?</h2>
+<br />
+Yin Yang são conceitos que expõem a dualidade de tudo que existe no universo. Descrevem as duas forças fundamentais opostas e complementares que se encontram em todas as coisas
+<br /><br />
+Segundo essa ideia, cada ser, objeto ou pensamento possui um complemento do qual depende para a sua existência. Esse complemento existe dentro de si. Assim, se deduz que nada existe no estado puro: nem na atividade absoluta, nem na passividade absoluta, mas sim em transformação contínua. Voltaremos a falar desse assunto no futuro.
+<br /><br />
+A expansão da consciência está relacionada ao quão equilibrado uma pessoa está em cada um dos 7 níveis. Quanto mais clareza se tem das atividades Yin e Yang em cada nível maior a tendência de subida de consciência naquela área e maiores as chances de se alcançar resultados de forma equilibrada.
+<br /><br />
+
+<div class="tbl-yy">
+	<div class="tbl-yy-left"><strong>Yang:<hr></strong></div><div><strong>Yin:<hr></strong></div>
+	
+	
+		<div class="tbl-yy-left">o princípio ativo</div><div>o princípio passivo</div>
+		<div class="tbl-yy-left">ação</div><div>reação</div>
+		<div class="tbl-yy-left">diurno</div><div>noturno</div>
+		<div class="tbl-yy-left">luminoso</div><div>escuro</div>
+		<div class="tbl-yy-left">sol</div><div>lua</div>
+		<div class="tbl-yy-left">som</div><div>o silêncio</div>
+		<div class="tbl-yy-left">início</div><div>o fim</div>
+		<div class="tbl-yy-left">ideal</div><div>real</div>
+		<div class="tbl-yy-left">difícil</div><div>fácil</div>
+		<div class="tbl-yy-left">coragem</div><div>medo</div>
+		
+</div>
+
+
+<br /><br />
+Da mesma forma cada desafios tem um objetivo de levar o participante a ser mais Yin ou Yang em uma área específica. Todos temos uma forma de ser a agir no dia a dia, é isso que formams os hábitos, os desafios foram feitos para quebrar esses hábitos para que a observação seja possível.
+<a class="lightbox-close" href="#"></a>
+					</div>
+                </th>
                 
               </tr>
             </thead>

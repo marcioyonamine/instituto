@@ -234,6 +234,18 @@ bottom: 0;
 top: 0px;
 }
 
+.tbl-yy{
+	width:300px;
+	
+}
+
+.tbl-yy-left{
+	float: left !important;
+	width:150px;
+	
+}
+
+
 </style>
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>

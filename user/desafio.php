@@ -127,9 +127,11 @@
 
   	
 <?php 
+			$con = bancoMysqli();
 			$sql_lista = "SELECT * FROM iap_aceite WHERE fase = '".$datas[$i]['fase']."' AND objetivo = '".$objetivo['id']."'";
 			$query_lista = mysqli_query($con,$sql_lista);
 			$num = mysqli_num_rows($query_lista);
+			//echo $sql_lista;
 			if($num > 0){
 ?>
 		
@@ -192,9 +194,10 @@
 	    </tbody>
           </table>
           </div>
-          </div><hr>
-          <?php } //for ?>
           
+          
+          <?php } //for ?>
+          </div>
           </div>
             	 		
    		<!--<p class="lead">O seu treinamento terminará em <strong> <?php echo exibirDataBr($des[1]['inicio']) ?>  a <?php echo exibirDataBr($des[16]['fim']) ?> </strong>.</p>-->     

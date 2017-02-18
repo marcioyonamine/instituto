@@ -104,9 +104,7 @@
           <?php } //fim do else ?> 
         </div>
         <div class="col-lg-4">
-          <h2>Seus desafios</h2>
-          
-          
+          <h2>Seus desafios</h2>          
           
           <?php 
 			
