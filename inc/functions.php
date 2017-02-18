@@ -1043,5 +1043,19 @@ function retornaAdvertencia($obj){
 	$num = mysqli_num_rows($query);
 	return $num;
 }
+
+function insereAdvertencia($usuario,$objetivo,$fase = 0,$semana = 0,$advertencia = 0){
+	$con = bancoMysqli();
+	$sql = "INSERT INTO `iap_advertencia` (`id`, `usuario`, `fase`, `objetivo`, `semana`, `advertencia`, `publicado`) 
+	VALUES (NULL, '$usuario', '$fase', '$objetivo', '$semana', '$advertencia', '1')";
+	$query = mysqli_query($con,$sql);
+	if($query){
+		return mysqli_insert_id($con);	
+	}else{
+		return 0;	
+	}
+			
+}
+
 ?>
 

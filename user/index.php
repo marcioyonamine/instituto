@@ -52,13 +52,14 @@
           <h2>Sua pontuação</h2>
           <?php 
 		  $adv = retornaAdvertencia($obj['id']);
+		  $n = insereAdvertencia($user->ID,$obj['id']);
 		  if($adv == 0){
 		  ?>
           <p class="text-success">Parabéns! Você não possui advertências =) Continue assim!</p>
           <?php 
 		  }elseif($adv == 1){
 		  ?>
-          <p class="text-success">Texto 1 adv!</p>
+          <p class="text-success">Texto 1 adv! </p>
           <?php 
 		  }elseif($adv == 2){
 		  ?>
