@@ -68,7 +68,7 @@
 			
 			$recupera_nota = mysqli_fetch_array($executa);
 			
-			echo $recupera_nota['iap_rel_nota_desafios'] . "<br>";
+			//echo $recupera_nota['iap_rel_nota_desafios'] . "<br>";
 			
 			/*
 			echo $mostra_nota['iap_rel_nota_desafios'];
@@ -78,24 +78,24 @@
 			 * 
 			 */			
 
-			if(!$mostra_nota){
+			if($mostra_nota == 0){
 				echo "<p>Você não enviou relatório com nota na fase anterior. Esses relatórios devem ser preenchidos no final de cada fase. Não deixe de preenchê-lo, pois é ele que mostrará a sua evolução para o treinador.</p>
 				<p><a class=\"btn btn-primary\" href=\"desafio.php\" role=\"button\">Ir para Desafios &raquo;</a></p>
 				";
 			}else{			
           ?>          
-          <p>Sua nota para os desafios na fase anterior foi <?php echo $recupera_nota; ?>. 
+          <p>Sua nota para os desafios na fase anterior foi <?php echo $recupera_nota['iap_rel_nota_desafios']; ?>. 
           	<?php
           		if($recupera_nota > 0 && $recupera_nota<=5){
-          			echo "Algo não está legal né, $user->user_firstname ? Essa é a oportunidade para você observar o ego agindo e vencê-lo! Pegue os autodesafios que fazem mais sentido, não há certo ou errado, apenas observação e coragem, lembre-se disso. Siga em frente é normal termos algumas recaídas!</p>
+          			echo "Algo não está legal né, " . $user->user_firstname . "? Essa é a oportunidade para você observar o ego agindo e vencê-lo! Pegue os autodesafios que fazem mais sentido, não há certo ou errado, apenas observação e coragem, lembre-se disso. Siga em frente é normal termos algumas recaídas!</p>
           <p><a class=\"btn btn-primary\" href=\"desafio.php\" role=\"button\">Ir para Desafios &raquo;</a></p>";
 		  
           		}elseif($recupera_nota >=6 && $recupera_nota <= 8){
-          			echo "Legal $user->user_firstname, você está na direção, veja em que pontos que você pode melhorar e coloque mais foco nos seus desafios e na observação, assim você terá mais resultados. Lembre-se, seu objetivo só depende de você vencer o seu ego. Imprima o lembrete dos desafios para facilitar no seu dia a dia.</p>
+          			echo "Legal " . $user->user_firstname . ", você está na direção, veja em que pontos que você pode melhorar e coloque mais foco nos seus desafios e na observação, assim você terá mais resultados. Lembre-se, seu objetivo só depende de você vencer o seu ego. Imprima o lembrete dos desafios para facilitar no seu dia a dia.</p>
           <p><a class=\"btn btn-primary\" href=\"desafio.php\" role=\"button\">Ir para Desafios &raquo;</a></p>";
           
 		  		}else{
-          			echo "Parabéns $user->user_firstname, esse é o caminho para a Alta Performance, continue pegando os autodesafios que fazem mais sentido para você e continue observando o seu ego agir.</p>
+          			echo "Parabéns " . $user->user_firstname . ", esse é o caminho para a Alta Performance, continue pegando os autodesafios que fazem mais sentido para você e continue observando o seu ego agir.</p>
           <p><a class=\"btn btn-primary\" href=\"desafio.php\" role=\"button\">Ir para Desafios &raquo;</a></p>";
           
 		  		}
