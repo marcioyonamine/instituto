@@ -52,7 +52,7 @@
           <h2>Sua pontuação</h2>
           <?php 
 		  $adv = retornaAdvertencia($obj['id']);
-		  $n = insereAdvertencia($user->ID,$obj['id']);
+
 		  if($adv == 0){
 		  ?>
           <p class="text-success">Parabéns! Você não possui advertências =) Continue assim!</p>
@@ -80,6 +80,12 @@
 			//echo $fase_anterior . "<br>";
           	$usuario = $user->ID;
           	
+			if($fase_anterior == 0){
+			echo "<p>Ao final de cada fase, Não se esqueça de enviar um relatório para o treinador de como foram os desafios para você.</p>
+				<p><a class=\"btn btn-primary\" href=\"desafio.php\" role=\"button\">Ir para Desafios &raquo;</a></p>
+				";			
+			}else{
+			
           	$con = bancoMysqli();
           	
           	$sql_nota_anterior = "SELECT * FROM relatorio_semanal WHERE user_id = '$usuario' AND fase = '$fase_anterior'";
@@ -97,7 +103,7 @@
 			 
 			 * 
 			 */			
-
+			
 			if($mostra_nota == 0){
 				echo "<p>Você não enviou relatório com nota na fase anterior. Esses relatórios devem ser preenchidos no final de cada fase. Não deixe de preenchê-lo, pois é ele que mostrará a sua evolução para o treinador.</p>
 				<p><a class=\"btn btn-primary\" href=\"desafio.php\" role=\"button\">Ir para Desafios &raquo;</a></p>
@@ -122,6 +128,8 @@
           	?>
           	
           <?php } //fim do else ?> 
+          
+          <?php } // fim do else da semana 0?>
         </div>
         <div class="col-lg-4">
           <h2>Seus desafios</h2>          
