@@ -281,54 +281,6 @@ $(document).ready(function(){
 
 	}
 </script>
-
-<script type="text/javascript">
-	function validaEnvioRelatorio() {
-		
-		var nota = document.getElementById('notaDesafios');
-		var expDesafios = document.getElementById('expDesafios');
-		var oqObservou = document.getElementById('oqObservou');
-		var periodo = document.getElementById('periodo');
-		var aprendizado = document.getElementById('aprendizado');
-		var msg_si = document.getElementById('msg_si');
-		var msg_trainer = document.getElementById('msg_trainer');
-		
-		if(nota == ''){
-			alert('Você precisa preencher o campo nota');
-			return false;
-		}
-		
-		if(expDesafios == ''){
-			alert('Você precisa preencher o campo nota');
-			return false;
-		}
-		
-		if(oqObservou == ''){
-			alert('Você precisa preencher o campo nota');
-			return false;
-		}
-		
-		if(periodo == ''){
-			alert('Você precisa preencher o campo nota');
-			return false;
-		}
-		
-		if(aprendizado == ''){
-			alert('Você precisa preencher o campo nota');
-			return false;
-		}
-		
-		if(msg_si == ''){
-			alert('Você precisa preencher o campo nota');
-			return false;
-		}
-		
-		if(msg_trainer == ''){
-			alert('Você precisa preencher o campo nota');
-			return false;
-		}		
-	}
-</script>
    
   </head>
 

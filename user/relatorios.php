@@ -664,7 +664,56 @@ $num = mysqli_num_rows($query_lista);
 	<div class="form-group">
 		<div class="col-md-offset-2 col-md-8">
 		
-		<form action="relatorios.php?p=insere" method="post" class="form-horizontal" onSubmit="return validaEnvioRelatorio();">
+		<script type="text/javascript">
+	function validaEnvioRelatorio() {
+		
+		var nota = document.getElementById('notaDesafios');
+		var expDesafios = document.getElementById('expDesafios');
+		var oqObservou = document.getElementById('oqObservou');
+		var periodo = document.getElementById('periodo');
+		var aprendizado = document.getElementById('aprendizado');
+		var msg_si = document.getElementById('msg_si');
+		var msg_trainer = document.getElementById('msg_trainer');
+		
+		
+		if(formRelatorio.notaDesafio.value == ""){
+			alert('Você precisa preencher o campo nota');
+			return false;
+		}
+		
+		if(formRelatorio.expDesafios.value == ""){
+			alert('Você precisa preencher o campo nota');
+			return false;
+		}
+		
+		if(formRelatorio.oqObservou.value == ""){
+			alert('Você precisa preencher o campo nota');
+			return false;
+		}
+		
+		if(formRelatorio.periodo.value == ""){
+			alert('Você precisa preencher o campo nota');
+			return false;
+		}
+		
+		if(formRelatorio.aprendizado.value == ""){
+			alert('Você precisa preencher o campo nota');
+			return false;
+		}
+		
+		if(formRelatorio.msg_si.value == ""){
+			alert('Você precisa preencher o campo nota');
+			return false;
+		}
+		
+		if(formRelatorio.msg_trainer.value == ""){
+			alert('Você precisa preencher o campo nota');
+			return false;
+		}		
+	}
+</script>
+		
+		<form action="relatorios.php?p=insere" method="post" name="formRelatorio" class="form-horizontal" onSubmit="return validaEnvioRelatorio();">
 				
 			<p>Dê uma nota de 0 a 10 que você dá a si mesmo para o seu desempenho nos desafios:
 				<select name="notaDesafios" id="notaDesafios" class="form-control" >
