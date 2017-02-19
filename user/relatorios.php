@@ -660,10 +660,10 @@ $num = mysqli_num_rows($query_lista);
 	<div class="form-group">
 		<div class="col-md-offset-2 col-md-8">
 		
-		<form action="relatorios.php?p=insere" method="post" class="form-horizontal" onSubmit="return validaDados()">
+		<form action="relatorios.php?p=insere" method="post" class="form-horizontal" onSubmit="return validaEnvioRelatorio();">
 				
 			<p>Dê uma nota de 0 a 10 que você dá a si mesmo para o seu desempenho nos desafios:
-				<select name="notaDesafios" class="form-control" >
+				<select name="notaDesafios" id="notaDesafios" class="form-control" >
 	                <option value="0">0</option>
 	                <option value="1">1</option>
 	                <option value="2">2</option>
@@ -680,27 +680,27 @@ $num = mysqli_num_rows($query_lista);
 
 			<p>
 				Qual foi a experiência desse período com os desafios?
-				<textarea name="expDesafios" class="form-control"></textarea>
+				<textarea name="expDesafios" class="form-control" id="expDesafios"></textarea>
 			</p>
 			
 			<p>O que você observou?
-				<textarea name="oqObservou" class="form-control"></textarea>		
+				<textarea name="oqObservou" class="form-control" id="oqObservou"></textarea>		
 			</p>
 			
 			<p>Como foi esse período pra você?
-				<textarea name="periodo" class="form-control"></textarea>
+				<textarea name="periodo" class="form-control" id="periodo"></textarea>
 			</p>
 			
 			<p>Qual foi o maior aprendizado ou benefício pra você nessa fase?
-				<textarea name="aprendizado" class="form-control"></textarea>
+				<textarea name="aprendizado" class="form-control" id="aprendizado"></textarea>
 			</p>
 			
 			<p>Com este aprendizado, qual a mensagem você dá para si mesmo, para aplicá-lo na prática em sua vida a partir de agora?
-				<textarea name="msg_si" class="form-control"></textarea>
+				<textarea name="msg_si" class="form-control" id="msg_si"></textarea>
 			</p>
 			
 			<p>Que mensagem gostaria de enviar para o treinador?
-				<textarea name="msg_trainer" class="form-control"></textarea>
+				<textarea name="msg_trainer" class="form-control" id="msg_trainer"></textarea>
 			</p>           
             
 			<p class="lead">
