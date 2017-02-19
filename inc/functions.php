@@ -1057,5 +1057,39 @@ function insereAdvertencia($usuario,$objetivo,$fase = 0,$semana = 0,$advertencia
 			
 }
 
+function noResend(){
+	$p1 = $_SERVER["HTTP_REFERER"];
+	$p2 = $_SERVER["QUERY_STRING"];
+	echo $p1;
+	header('Location:'.$p1, true, 301);
+}
+
+function vGlobais(){
+	echo "SERVER";
+	echo "<pre>";
+	var_dump($_SERVER);
+	echo "</pre>";
+
+	if(isset($_POST)){
+		echo "POST";
+		echo "<pre>";
+		var_dump($_POST);
+		echo "</pre>";
+	}
+
+	if(isset($_GET)){
+		echo "GET";
+		echo "<pre>";
+		var_dump($_GET);
+		echo "</pre>";	
+	}
+	if(isset($_SESSION)){
+		echo "SESSION";
+		echo "<pre>";
+		var_dump($_SESSION);
+		echo "</pre>";	
+	}
+}
+
 ?>
 

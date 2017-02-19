@@ -2,6 +2,7 @@
 <?php include '../inc/header.php'; ?>
 
 <?php 
+
 	//criar sessão de segurança
 	//session_start();
 	//include "../inc/functions.php";
@@ -79,6 +80,7 @@
 
 <?php
 	if($query){
+
 		/* //tá dando erro
 		if(emailTreinador("objetivo", $user->display_name)){
 			gravarLog("Email enviado",$user->ID);
