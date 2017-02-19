@@ -633,7 +633,11 @@ $con = bancoMysqli();
 $obj = 	ultObj($user->ID);
 $objetivo = verificaObjetivo($user->ID);
 $datas = retornaSemanas($objetivo['data_inicio']);
-$i = $_POST['semana'];
+if(isset($_GET['semana'])){
+	$i = $_GET['semana'];
+}else{
+	$i = $_POST['semana'];
+}
 $sql_lista = "SELECT * FROM iap_aceite WHERE fase = '".$datas[$i]['fase']."' AND objetivo = '".$objetivo['id']."'";
 $query_lista = mysqli_query($con,$sql_lista);
 $num = mysqli_num_rows($query_lista);

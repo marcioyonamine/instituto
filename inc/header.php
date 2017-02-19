@@ -12,7 +12,6 @@ if(!is_user_logged_in()):
    
   
 include "../inc/functions.php";
-
 ?>
 
 <!DOCTYPE html>

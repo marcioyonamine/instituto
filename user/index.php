@@ -50,9 +50,29 @@
       <div class="row">
         <div class="col-lg-4">
           <h2>Sua pontuação</h2>
-          <p class="text-success">Parabéns! Você não possui advertências =) Continue assim!</p>
-          
           <?php 
+		  $adv = retornaAdvertencia($obj['id']);
+
+		  if($adv == 0){
+		  ?>
+          <p class="text-success">Parabéns! Você não possui advertências =) Continue assim!</p>
+          <?php 
+		  }elseif($adv == 1){
+		  ?>
+          <p class="text-success">Texto 1 adv! </p>
+          <?php 
+		  }elseif($adv == 2){
+		  ?>
+          <p class="text-success">Texto 2 adv</p>
+          <?php 
+		  }elseif($adv >= 3){
+		  ?>
+          <p class="text-success">Texto 3 adv</p>
+
+          <?php 
+		  }
+
+
           	
           	$fase_atual = verificaFase($obj['id']); 
 			//echo $fase_atual;
@@ -60,6 +80,12 @@
 			//echo $fase_anterior . "<br>";
           	$usuario = $user->ID;
           	
+			if($fase_anterior == 0){
+			echo "<p>Ao final de cada fase, Não se esqueça de enviar um relatório para o treinador de como foram os desafios para você.</p>
+				<p><a class=\"btn btn-primary\" href=\"desafio.php\" role=\"button\">Ir para Desafios &raquo;</a></p>
+				";			
+			}else{
+			
           	$con = bancoMysqli();
           	
           	$sql_nota_anterior = "SELECT * FROM relatorio_semanal WHERE user_id = '$usuario' AND fase = '$fase_anterior'";
@@ -77,7 +103,7 @@
 			 
 			 * 
 			 */			
-
+			
 			if($mostra_nota == 0){
 				echo "<p>Você não enviou relatório com nota na fase anterior. Esses relatórios devem ser preenchidos no final de cada fase. Não deixe de preenchê-lo, pois é ele que mostrará a sua evolução para o treinador.</p>
 				<p><a class=\"btn btn-primary\" href=\"desafio.php\" role=\"button\">Ir para Desafios &raquo;</a></p>
@@ -102,6 +128,8 @@
           	?>
           	
           <?php } //fim do else ?> 
+          
+          <?php } // fim do else da semana 0?>
         </div>
         <div class="col-lg-4">
           <h2>Seus desafios</h2>          
@@ -131,9 +159,33 @@
        </div>
         <div class="col-lg-4">
           <h2>Próximos eventos do Instituto</h2>
-          <p>15/02 - Palestra Online: Ego vs Consciência</p>
-		  <p>22/02 - Palestra Online: O que é Alta Performance?</p>
-		  <p>13/03 - Encontro Presencial</p>
+          <?php 
+                $events = eo_get_events(array(
+              'numberposts'=>5,
+              'event_start_after'=>'today',
+              'showpastevents'=>true,//Will be deprecated, but set it to true to play it safe.
+         ));
+
+       if($events):
+          echo '<ul>';
+          foreach ($events as $event):
+               //Check if all day, set format accordingly
+               $format2 = ( eo_is_all_day($event->ID) ? get_option('time_format') : get_option('time_format') );
+               $format = ( eo_is_all_day($event->ID) ? get_option('date_format') : get_option('date_format') );
+
+               printf(
+                  '<li> %s<a href="%s"> %s </a> (%s) </li>',
+                  eo_get_the_start( $format, $event->ID, $event->occurrence_id ),
+				  get_permalink($event->ID),
+                  get_the_title($event->ID),
+				  eo_get_the_start( $format2, $event->ID, $event->occurrence_id )
+                 
+               );
+          endforeach;
+          echo '</ul>';
+       endif;
+	   ?>
+
           <p><a class="btn btn-primary" href="agenda.php" role="button">Ver agenda completa &raquo;</a></p>
         </div>
       </div>

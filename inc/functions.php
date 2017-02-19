@@ -1036,5 +1036,60 @@ function geraPreDesafios($desafios){ //$desafios é uma array
 		}
 }
 
+function retornaAdvertencia($obj){
+	$con = bancoMysqli();
+	$sql = "SELECT id FROM iap_advertencia WHERE objetivo = '$obj'";
+	$query = mysqli_query($con,$sql);
+	$num = mysqli_num_rows($query);
+	return $num;
+}
+
+function insereAdvertencia($usuario,$objetivo,$fase = 0,$semana = 0,$advertencia = 0){
+	$con = bancoMysqli();
+	$sql = "INSERT INTO `iap_advertencia` (`id`, `usuario`, `fase`, `objetivo`, `semana`, `advertencia`, `publicado`) 
+	VALUES (NULL, '$usuario', '$fase', '$objetivo', '$semana', '$advertencia', '1')";
+	$query = mysqli_query($con,$sql);
+	if($query){
+		return mysqli_insert_id($con);	
+	}else{
+		return 0;	
+	}
+			
+}
+
+function noResend(){
+	$p1 = $_SERVER["HTTP_REFERER"];
+	$p2 = $_SERVER["QUERY_STRING"];
+	echo $p1;
+	header('Location:'.$p1, true, 301);
+}
+
+function vGlobais(){
+	echo "SERVER";
+	echo "<pre>";
+	var_dump($_SERVER);
+	echo "</pre>";
+
+	if(isset($_POST)){
+		echo "POST";
+		echo "<pre>";
+		var_dump($_POST);
+		echo "</pre>";
+	}
+
+	if(isset($_GET)){
+		echo "GET";
+		echo "<pre>";
+		var_dump($_GET);
+		echo "</pre>";	
+	}
+	if(isset($_SESSION)){
+		echo "SESSION";
+		echo "<pre>";
+		var_dump($_SESSION);
+		echo "</pre>";	
+	}
+}
+
 ?>
 
