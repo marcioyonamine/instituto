@@ -7,9 +7,9 @@ if($diasemana == 1){
 
 function bancoMysqli(){ 
 	$servidor = 'localhost';
-	$usuario = 'root';
-	$senha = '';
-	$banco = 'wordpress';
+	$usuario = 'ialtaper_root';
+	$senha = '%T*BKdbLLTSk';
+	$banco = 'ialtaper_instituto';
 	$con = mysqli_connect($servidor,$usuario,$senha,$banco); 
 	mysqli_set_charset($con,"utf8");
 	return $con;

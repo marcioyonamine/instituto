@@ -774,7 +774,20 @@
 	$sql_insere = "INSERT INTO `iap_aceite` (`id`, `objetivo`, `desafio`, `data_aceite`, `data_inicio`,  `fase`, `relatorio`, `resposta`, `intensidade`, `frequencia` ) VALUES (NULL, '".$objetivo['id']."', '".$caixa[$i]."','$hoje', '$data_inicio',  '".$prox."', '', '', '', '')";
 	$query_insere = mysqli_query($con,$sql_insere);
 	if($query_insere){
-		gravarLog($sql_insere, $user->ID);
+		
+		$current_user = wp_get_current_user();
+		$nome_completo = $current_user->user_firstname . " " . $current_user->user_lastname;
+		//echo $nome_completo;
+		$envia_email = emailTreinador("desafio", $nome_completo);
+		 //tá dando erro
+		if($envia_email){
+			gravarLog("Email enviado",$current_user->ID);
+			
+		}else{
+			gravarLog("Erro ao enviar email",$current_user->ID);
+		};
+		
+	gravarLog($sql_insere, $user->ID);
 	$des = recuperaDados("iap_desafio",$caixa[$i],"id");
 	$mensagem .= "<b>".$des['titulo']."</b><br />";
 	if($prox == 1){ // atualiza a tabela objetivo

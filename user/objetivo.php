@@ -80,15 +80,18 @@
 
 <?php
 	if($query){
-
-		/* //tá dando erro
-		if(emailTreinador("objetivo", $user->display_name)){
-			gravarLog("Email enviado",$user->ID);
+		$current_user = wp_get_current_user();
+		$nome_completo = $current_user->user_firstname . " " . $current_user->user_lastname;
+		//echo $nome_completo;
+		$envia_email = emailTreinador("objetivo", $nome_completo);
+		 //tá dando erro
+		if($envia_email){
+			gravarLog("Email enviado",$current_user->ID);
 			
 		}else{
-			gravarLog("Erro ao enviar email",$user->ID);
+			gravarLog("Erro ao enviar email",$current_user->ID);
 		};
-		*/
+		
  ?>
 	    <div class="jumbotron">
         <h1>Objetivo</h1>
