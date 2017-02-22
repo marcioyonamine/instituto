@@ -261,6 +261,7 @@ padding:2%;
 color:#333333;
 border: solid 8px #183f76;
 /*left:25%;*/
+z-index:10;
 }
 
 

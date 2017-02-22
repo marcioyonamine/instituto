@@ -34,10 +34,6 @@ body{
 }
 
 .centro{
-	  display: -webkit-flex;
-  display: flex;
-  -webkit-align-items: center;
-  align-items: center;
-  -webkit-justify-content: center;
-  justify-content: center;	
+	font-size:10px;
+	text-align:center;	
 }

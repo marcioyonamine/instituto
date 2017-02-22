@@ -54,9 +54,9 @@ Lembre-se sempre do seu objetivo para conseguir completar seus desafios.";
 <?php } ?>  
 
     </table>
-    
-    
-<div class="rodape"><p class="centro">Alta Performance é um estilo de vida, saiba mais em: ialtaperformance.com</p>
-</div>    
+
+
+	<p class="centro">Alta Performance é um estilo de vida, saiba mais em: ialtaperformance.com</p>
+  
     </div>
-</body>   
+</body>
