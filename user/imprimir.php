@@ -35,7 +35,7 @@ Lembre-se sempre do seu objetivo para conseguir completar seus desafios.";
 
 <body>
     <div class="a6">
-    <img class="logo" src="../assets/img/logo_impressao02.jpg" width="350"> 
+    <img class="logo" src="http://www.ialtaperformance.com/sistema/assets/img/logo_impressao02.jpg" width="350"> 
     <p class="mensagem"><?php echo $mensagem; ?></p>
     <table>
     <tr>
