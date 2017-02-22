@@ -49,7 +49,7 @@ Lembre-se sempre do seu objetivo para conseguir completar seus desafios.";
 ?>  
   <tr>
     <td width="50%"><p class="desafio"><?php echo $print; ?></p></td>
-    <td><img src="../assets/img/boxes.png" width="100"></td>
+    <td><img src="http://www.ialtaperformance.com/sistema/assets/img/boxes.png" width="100"></td>
   </tr>
 <?php } ?>  
 
