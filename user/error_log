@@ -1,0 +1,94 @@
+[20-Feb-2017 12:47:45 UTC] PHP Notice:  Undefined variable: obj in /home/ialtaperformance/public_html/sistema/user/index.php on line 54
+[20-Feb-2017 12:47:45 UTC] PHP Notice:  Undefined variable: obj in /home/ialtaperformance/public_html/sistema/user/index.php on line 77
+[20-Feb-2017 12:47:45 UTC] PHP Fatal error:  Call to undefined function eo_get_events() in /home/ialtaperformance/public_html/sistema/user/index.php on line 163
+[20-Feb-2017 12:48:50 UTC] PHP Fatal error:  Call to undefined function eo_get_events() in /home/ialtaperformance/public_html/sistema/user/agenda.php on line 15
+[20-Feb-2017 12:54:21 UTC] PHP Notice:  Undefined variable: obj in /home/ialtaperformance/public_html/sistema/user/index.php on line 54
+[20-Feb-2017 12:54:21 UTC] PHP Notice:  Undefined variable: obj in /home/ialtaperformance/public_html/sistema/user/index.php on line 77
+[20-Feb-2017 13:41:20 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 43
+[20-Feb-2017 13:43:33 UTC] PHP Notice:  Undefined index: semana in /home/ialtaperformance/public_html/sistema/user/imprimir.php on line 12
+[20-Feb-2017 13:43:33 UTC] PHP Notice:  Undefined index: semana in /home/ialtaperformance/public_html/sistema/user/imprimir.php on line 15
+[20-Feb-2017 13:43:33 UTC] PHP Notice:  Undefined index:  in /home/ialtaperformance/public_html/sistema/user/imprimir.php on line 15
+[20-Feb-2017 13:43:33 UTC] PHP Notice:  Undefined index: semana in /home/ialtaperformance/public_html/sistema/user/imprimir.php on line 16
+[20-Feb-2017 13:43:33 UTC] PHP Notice:  Undefined index:  in /home/ialtaperformance/public_html/sistema/user/imprimir.php on line 16
+[20-Feb-2017 13:43:33 UTC] PHP Notice:  Undefined index: semana in /home/ialtaperformance/public_html/sistema/user/imprimir.php on line 17
+[20-Feb-2017 13:43:33 UTC] PHP Notice:  Undefined index:  in /home/ialtaperformance/public_html/sistema/user/imprimir.php on line 17
+[20-Feb-2017 14:52:43 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 43
+[20-Feb-2017 11:52:45 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '}', expecting ',' or ';' in /home/ialtaperformance/public_html/sistema/user/relatorios.php on line 64
+[20-Feb-2017 11:53:49 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '}', expecting ',' or ';' in /home/ialtaperformance/public_html/sistema/user/relatorios.php on line 64
+[20-Feb-2017 11:53:51 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '}', expecting ',' or ';' in /home/ialtaperformance/public_html/sistema/user/relatorios.php on line 64
+[20-Feb-2017 11:54:17 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '}', expecting ',' or ';' in /home/ialtaperformance/public_html/sistema/user/relatorios.php on line 64
+[20-Feb-2017 11:54:57 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '}', expecting ',' or ';' in /home/ialtaperformance/public_html/sistema/user/relatorios.php on line 64
+[20-Feb-2017 11:55:21 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '}', expecting ',' or ';' in /home/ialtaperformance/public_html/sistema/user/relatorios.php on line 64
+[20-Feb-2017 11:55:32 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '}', expecting ',' or ';' in /home/ialtaperformance/public_html/sistema/user/relatorios.php on line 64
+[20-Feb-2017 11:55:49 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '}', expecting ',' or ';' in /home/ialtaperformance/public_html/sistema/user/relatorios.php on line 64
+[20-Feb-2017 18:43:13 UTC] PHP Notice:  Undefined variable: data_inicio in /home/ialtaperformance/public_html/sistema/user/desafio.php on line 211
+[20-Feb-2017 19:10:12 UTC] PHP Notice:  Undefined variable: list in /home/ialtaperformance/public_html/sistema/user/desafio.php on line 878
+[20-Feb-2017 19:19:41 UTC] PHP Notice:  Undefined variable: list in /home/ialtaperformance/public_html/sistema/user/desafio.php on line 878
+[20-Feb-2017 19:20:58 UTC] PHP Notice:  Undefined variable: list in /home/ialtaperformance/public_html/sistema/user/desafio.php on line 878
+[20-Feb-2017 19:26:55 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 43
+[20-Feb-2017 19:44:44 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 43
+[21-Feb-2017 15:00:51 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 43
+[21-Feb-2017 15:02:18 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 43
+[21-Feb-2017 15:03:20 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 43
+[21-Feb-2017 15:13:59 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 43
+[21-Feb-2017 15:14:28 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 43
+[21-Feb-2017 15:14:45 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 43
+[21-Feb-2017 15:22:26 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 43
+[21-Feb-2017 15:22:46 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 43
+[21-Feb-2017 15:23:00 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 43
+[21-Feb-2017 15:23:26 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 42
+[21-Feb-2017 21:08:24 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 69
+[21-Feb-2017 21:15:17 UTC] PHP Fatal error:  Call to undefined function get_the_post() in /home/ialtaperformance/public_html/sistema/user/index.php on line 60
+[21-Feb-2017 21:20:12 UTC] PHP Notice:  Trying to get property of non-object in /home/ialtaperformance/public_html/wp-includes/post-template.php on line 298
+[21-Feb-2017 21:20:12 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 70
+[21-Feb-2017 18:23:51 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected 'echo' (T_ECHO) in /home/ialtaperformance/public_html/sistema/user/index.php on line 60
+[21-Feb-2017 21:24:07 UTC] PHP Notice:  Trying to get property of non-object in /home/ialtaperformance/public_html/wp-includes/post-template.php on line 298
+[21-Feb-2017 21:24:07 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 70
+[21-Feb-2017 21:27:10 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 73
+[21-Feb-2017 21:27:56 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 74
+[21-Feb-2017 21:28:23 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 75
+[21-Feb-2017 21:30:41 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 75
+[21-Feb-2017 21:40:34 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 72
+[21-Feb-2017 21:40:51 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 72
+[21-Feb-2017 18:51:15 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected ')', expecting ',' or ';' in /home/ialtaperformance/public_html/sistema/user/treinador.php on line 96
+[21-Feb-2017 22:51:44 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 72
+[21-Feb-2017 22:52:19 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 72
+[21-Feb-2017 23:23:55 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 72
+[22-Feb-2017 00:11:37 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 72
+[22-Feb-2017 00:12:22 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 72
+[22-Feb-2017 00:17:18 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 72
+[22-Feb-2017 00:17:46 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 83
+[22-Feb-2017 00:17:57 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 83
+[22-Feb-2017 00:18:27 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 83
+[22-Feb-2017 00:19:28 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 83
+[22-Feb-2017 00:19:52 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 83
+[22-Feb-2017 00:20:12 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 83
+[21-Feb-2017 21:27:27 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected 'echo' (T_ECHO) in /home/ialtaperformance/public_html/sistema/user/index.php on line 72
+[21-Feb-2017 21:27:28 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected 'echo' (T_ECHO) in /home/ialtaperformance/public_html/sistema/user/index.php on line 72
+[22-Feb-2017 00:27:54 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 87
+[22-Feb-2017 00:33:00 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 80
+[22-Feb-2017 00:35:40 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 80
+[22-Feb-2017 00:35:40 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 80
+[22-Feb-2017 00:35:41 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 80
+[22-Feb-2017 00:35:41 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 80
+[22-Feb-2017 00:35:41 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 80
+[22-Feb-2017 00:35:41 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 80
+[22-Feb-2017 00:35:42 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 80
+[22-Feb-2017 00:36:27 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 80
+[22-Feb-2017 00:36:28 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 80
+[22-Feb-2017 00:36:28 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 80
+[22-Feb-2017 00:36:29 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 80
+[22-Feb-2017 00:38:07 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 80
+[22-Feb-2017 00:38:39 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 80
+[22-Feb-2017 00:42:32 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 80
+[22-Feb-2017 00:45:07 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 80
+[22-Feb-2017 00:45:07 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 80
+[22-Feb-2017 00:45:07 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 80
+[22-Feb-2017 00:45:08 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 80
+[22-Feb-2017 00:46:30 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 80
+[22-Feb-2017 00:49:37 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 80
+[22-Feb-2017 00:50:26 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 80
+[22-Feb-2017 00:51:56 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 80
+[22-Feb-2017 00:55:42 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 80
+[22-Feb-2017 00:57:16 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 80
+[22-Feb-2017 12:41:47 UTC] PHP Notice:  Undefined variable: des in /home/ialtaperformance/public_html/sistema/user/index.php on line 80

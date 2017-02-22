@@ -7,7 +7,7 @@ Multiple lines will require custom code not provided by Bootstrap. -->
                 <a href="index.php">Home</a>
             </li>
             <li <?php if (basename($_SERVER['PHP_SELF']) == 'objetivo.php') echo 'class="active"' ?>>
-                <a href="objetivo.php">Objetivos</a>
+                <a href="objetivo.php">Objetivo</a>
             </li>
             <li <?php if (basename($_SERVER['PHP_SELF']) == 'desafio.php') echo 'class="active"' ?>>
                 <a href="desafio.php">Desafios</a>

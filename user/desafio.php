@@ -84,7 +84,7 @@
   	 	<p class="lead"><a href="http://ialtaperformance.com/downloads/baixar.php?arquivo=7-niveis-profissionais-pessoais.png"> Clique aqui</a> para entender mais sobre os níveis que nós trabalhamos.</p>
   	 	<p class="lead">
   	 		
-  	 		Agora voce está na <strong>fase <?php $fase_atual = verificaFase($obj['id']);
+  	 		Agora você está na <strong>fase <?php $fase_atual = verificaFase($obj['id']);
 			
 			if($fase_atual == 0){
 				echo "inicial";
@@ -114,7 +114,7 @@
 <div id="box-toggle">
 	<hr>
    
-   <!--<h3>Semana <?php echo $i; ?>--> 
+   <!--<h3>Semana <?php #echo $i; ?>--> 
  	
  	
  	
@@ -208,27 +208,28 @@
    		<?php
 		switch ($fase_atual) {
 			case '0' :?>
-				<p class="lead" style="text-align: center; margin-top:-7%;">O seu treinamento começará na próxima segunda-feira, que é o dia que você deve escolher e salvar seu objetivo. Enquanto isso, já pode ver a lista dos desafios que poderá escolher para essa fase inicial.</p>
+				<p class="lead" style="text-align: center; margin-top:-7%;"><strong>O seu treinamento começará na próxima segunda-feira,  <?php $data_inicio = nextMonday($hoje); echo exibirDataBrOrdem($data_inicio); ?></strong>, que é o dia que você deve escolher seu desafio e iniciará seu treinamento, salve essa data. Enquanto isso, já pode ver a lista dos desafios que poderá escolher para essa fase inicial.</p>
 				<?php
 					break;
 
 					case '1' :
 				?>
-				 <p class="lead" style="margin-top:3%;">Hoje você está na Fase <b><?php $fase_atual = verificaFase($obj['id']);
-				echo $fase_atual;
- ?> </b>.</p>
+				<div class="jumbotron" style="margin-top:-5%; padding-top:0px;">
+				 <!--<p class="lead">Hoje você está na Fase <b>--><?php //$fase_atual = verificaFase($obj['id']);
+				//echo $fase_atual;
+ ?> <!--</b>.</p>-->
 				 <p class="lead">Para a sua próxima fase (<strong>Fase <?php $fase_mostra = $fase_atual + 1;
 					echo $fase_mostra;
  ?></strong>), você deve <strong>manter o seu desafio inicial de Nível 1</strong>, e ainda escolher um novo desafio do nível do seu objetivo <em>(<?php echo "lembrando que o seu objetivo é " . $objetivo['objetivo'] . " e o treinador classificou ele como Nível " . $objetivo['nivel'] ?>)</em>.</p> 
 				 	<p class="lead">O seu total de desafios para essa próxima fase será 2.</p>
 				 <p class="lead">
-				 Abaixo estão listados os desafios do nível do seu objetivo. Você ainda não pode marcá-los, mas já pode visualizá-los.</p>
+				 Abaixo estão listados os desafios do nível do seu objetivo. Você ainda não pode marcá-los, mas já pode visualizá-los.</p></div>
 				<?php
 				break;
 
 				case '2' :
 			?>
-			
+				<div class="jumbotron" style="margin-top:-5%; padding-top:0px;">
 				<p class="lead" style="margin-top:3%;">Hoje você está na <b>Fase <?php $fase_atual = verificaFase($obj['id']);
 				echo $fase_atual;
  ?></b>.</p>
@@ -238,12 +239,14 @@
 				 	<p class="lead">O seu total de desafios para essa próxima fase será 3.</p>
 				 <p class="lead">
 				 Veja abaixo a lista de desafios. Você ainda não pode marcá-los, mas já pode visualizá-los.</p>
+				 </div>
 			
 				<?php
 				break;
 
 				case '3' :
 			?>
+			<div class="jumbotron" style="margin-top:-5%; padding-top:0px;">
 				<p class="lead" style="margin-top:3%;">Hoje você está na <b>Fase <?php $fase_atual = verificaFase($obj['id']);
 				echo $fase_atual;
  ?></b>.</p>
@@ -253,11 +256,13 @@
 				 	<p class="lead">O seu total de desafios para essa próxima fase será 5.</p>
 				 <p class="lead">
 				 Veja abaixo a lista de desafios. Você ainda não pode marcá-los, mas já pode visualizá-los.</p>
+				 </div>
 				<?php
 				break;
 
 				case '4' :
 			?>
+			<div class="jumbotron" style="margin-top:-5%; padding-top:0px;">
 				<p class="lead" style="margin-top:3%;">Hoje você está na <b>Fase <?php $fase_atual = verificaFase($obj['id']);
 				echo $fase_atual;
  ?></b>.</p>
@@ -267,11 +272,13 @@
 				 	<p class="lead">O seu total de desafios para essa próxima fase será 8.</p>
 				 <p class="lead">
 				 Veja abaixo a lista de desafios. Você ainda não pode marcá-los, mas já pode visualizá-los.</p>
+				 </div>
 				<?php
 				break;
 
 				case '5' :
 			?>
+			<div class="jumbotron" style="margin-top:-5%; padding-top:0px;">
 				<p class="lead" style="margin-top:3%;">Hoje você está na <b>Fase <?php $fase_atual = verificaFase($obj['id']);
 				echo $fase_atual;
  ?></b>.</p>
@@ -281,11 +288,13 @@
 				 	<p class="lead">O seu total de desafios para essa próxima fase será 13.</p>
 				 <p class="lead">
 				 Veja abaixo a lista de desafios. Você ainda não pode marcá-los, mas já pode visualizá-los.</p>
+				 </div>
 				<?php
 				break;
 
 				case '6' :
 			?>
+			<div class="jumbotron" style="margin-top:-5%; padding-top:0px;">
 				<p class="lead" style="margin-top:3%;">Hoje você está na <b>Fase <?php $fase_atual = verificaFase($obj['id']);
 				echo $fase_atual;
  ?></b>.</p>
@@ -295,11 +304,13 @@
 				 	<p class="lead">O seu total de desafios para essa próxima fase será 21.</p>
 				 <p class="lead">
 				 Veja abaixo a lista de desafios. Você ainda não pode marcá-los, mas já pode visualizá-los.</p>
+				 </div>
 				<?php
 				break;
 
 				case '7' :
 			?>
+			<div class="jumbotron" style="margin-top:-5%; padding-top:0px;">
 				<p class="lead" style="margin-top:3%;">Hoje você está na <b>Fase <?php $fase_atual = verificaFase($obj['id']);
 				echo $fase_atual;
  ?></b>.</p>
@@ -309,11 +320,13 @@
 				 	<p class="lead">O seu total de desafios para essa próxima fase será 34.</p>
 				 <p class="lead">
 				 Veja abaixo a lista de desafios. Você ainda não pode marcá-los, mas já pode visualizá-los.</p>
+				 </div>
 				<?php
 				break;
 
 				case '8' :
 			?>
+			<div class="jumbotron" style="margin-top:-5%; padding-top:0px;">
 				<p class="lead" style="margin-top:3%;">Hoje você está na <b>Fase <?php $fase_atual = verificaFase($obj['id']);
 				echo $fase_atual;
  ?></b>.</p>
@@ -324,11 +337,13 @@
 				 <p class="lead">Você terá 14 desafios nessa próxima fase.</p>
 				 <p class="lead">
 				 Veja abaixo a lista de desafios. Você ainda não pode marcá-los, mas já pode visualizá-los.</p>
+				 </div>
 				<?php
 				break;
 
 				case '9' :
 			?>
+			<div class="jumbotron" style="margin-top:-5%; padding-top:0px;">
 				<p class="lead" style="margin-top:3%;">Hoje você está na <b>Fase <?php $fase_atual = verificaFase($obj['id']);
 				echo $fase_atual;
  ?></b>.</p>
@@ -339,12 +354,15 @@
 				 <p class="lead">Fazendo isso, você continuará desfrutando do estilo de vida em Alta Performance.</p>
 				 <p class="lead">
 				 Veja abaixo a lista de desafios. Você ainda não pode marcá-los, mas já pode visualizá-los.</p>
+				 </div>
 				<?php
 				break;
 
 				case '10' :
 			?>
+			<div class="jumbotron" style="margin-top:-5%; padding-top:0px;">
 				<p class="lead">O seu treinamento chegou ao fim. [Mensagem]</p>
+				</div>
 				<?php
 				break;
 
@@ -875,7 +893,7 @@
   <tr>
   	
   	<td>
-  		<?php echo "<strong>Desafio:</strong><br />" . $desafio['titulo']; ?> (Nível: <?php echo $desafio['nivel']; ?> - <?php echo recTermo($desafio['yy']); ?>)
+  		<?php echo "<strong>Desafio:</strong><br />" . $desafio['titulo']; ?> (Nível: <?php echo $desafio['nivel']; ?> - <?php echo recTermo($desafio['yy']); ?>)&nbsp;<div class="tooltip-explica"><img src="../assets/img/tooltip_des.png" width="15" /><span class="tooltiptext-explica"><?php echo $desafio['tooltip_des']; ?> </span></div>
   	</td>
   	
   	<td>

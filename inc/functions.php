@@ -945,7 +945,7 @@ function gravarLog($log, $idUsuario){ //grava na tabela ig_log os inserts e upda
 
 function emailTreinador($funcao, $nome, $email = null){//ENVIA EMAIL DE NOVO RELATÓRIO - TROCAR PRO DO CAIO
 		if($email == null){
-			$to = "caio@ialtaperformance.com, thiagonegro@gmail.com";
+			$to = "thiagonegro@gmail.com";
 		}else{
 			$to = $email;
 		}

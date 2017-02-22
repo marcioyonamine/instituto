@@ -4,7 +4,7 @@
 	if (isset($_GET['p'])) {
 		$p = $_GET['p'];
 	} else {
-		$p = "inicial";
+	$p = "inicial";
 	}
 
 	$mensagem = "";
@@ -59,6 +59,10 @@ $datas = retornaSemanas($objetivo['data_inicio']);
 		<?php
 		$obj = ultObj($user -> ID);
 		$fase_atual = verificaFase($obj['id']);
+		if ($fase_atual == '0'){
+			echo "<h1>Relatórios</h1><p class=\"lead\">Você ainda não começou o seu treinamento.</p><p class=\"lead\">Após começar, lembre-se sempre de enviar o relatório da fase para o seu treinador.</p><p class=\"lead\">É ele que permite uma avaliação da sua evolução e sua continuidade para próxima fase.</p>";
+			break;
+		}
 		
 		if ($fase_atual == '1'){?>
 			<h1>Parabéns!</h1>
@@ -85,6 +89,9 @@ $datas = retornaSemanas($objetivo['data_inicio']);
 			 e acaba dia 
 			 <?php
 			switch ($fase_atual) {
+				case '0' :
+					echo "";
+					break;
 				case '1' :
 					echo exibirDataBrOrdem($datas[1]['fim']);
 					break;
@@ -136,9 +143,13 @@ $datas = retornaSemanas($objetivo['data_inicio']);
 			 ?>.</p>
 			 
 			 <p class="lead">Lembre-se de até no dia 
-		<?php		
+		<?php
 				
 		switch ($fase_atual) {		
+			
+			case '0' :
+				echo "";
+				break;
 			
 			case '1' :
 				
@@ -283,7 +294,7 @@ $datas = retornaSemanas($objetivo['data_inicio']);
 	<hr>
    <!--<h3>Semana <?php echo $i; ?>--> 
  	<h3> 		
-  		Fase:  <?php echo $datas[$i]['fase']; ?> (<?php echo exibirDataBr($datas[$i]['inicio']) ?>  a <?php echo exibirDataBr($datas[$i]['fim']) ?>)   
+  		Fase:  <?php echo $datas[$i]['fase']; ?> (<?php echo exibirDataBrOrdem($datas[$i]['inicio']) ?>  a <?php echo exibirDataBrOrdem($datas[$i]['fim']) ?>)   
 	</h3>
 	
 	<p class="lead">Conta pra gente como foi essa fase pra você =)</p>
@@ -323,7 +334,7 @@ $datas = retornaSemanas($objetivo['data_inicio']);
 			?>
             <tr>                
                 <td colspan="2">
-                	<?php echo "<strong>Desafio:</strong><br /> " . $desafio['titulo'] . "(Nível " . $desafio['nivel'] . " - " . recTermo($desafio['yy']) . ")"; ?>
+                	<?php echo "<strong>Desafio:</strong><br />" . $desafio['titulo'] . "(Nível " . $desafio['nivel'] . " - " . recTermo($desafio['yy']); ?>
                 </td>
                 <td>
                 	<?php echo "<strong>Foco: </strong><br />Ter: <strong style=\"color: #56C4F1;\">(" . marcaX($x['ter']) . ")&nbsp;&nbsp;&nbsp;</strong>Ser: <strong style=\"color: #56C4F1;\">(" . marcaX($x['ser']) . ")</strong>&nbsp;&nbsp;&nbsp;Fazer: <strong style=\"color: #56C4F1;\">(" . marcaX($x['fazer']) . ")</strong>"; ?>

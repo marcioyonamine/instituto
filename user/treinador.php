@@ -77,6 +77,7 @@ $query_lista = mysqli_query($con,$sql_lista);
 ?>
 
 </div>
+
       <div class="table-responsive">
           <table class="table table-striped">
             <thead>
@@ -92,6 +93,7 @@ $query_lista = mysqli_query($con,$sql_lista);
 <?php 
 		while($obj = mysqli_fetch_array($query_lista)){
 			$user_lista = get_user_by( 'ID', $obj['usuario'] );
+			
 ?>
            <tr>
            <td><?php echo $obj['objetivo']; ?></td>
@@ -110,7 +112,7 @@ $query_lista = mysqli_query($con,$sql_lista);
 		   
            </select>
            </td>
-           <td><?php if($obj['data_inicio'] == NULL){echo "";}else{echo exibirDataBrOrdem($obj['data_inicio']);} ?></td>
+           <td><?php if($obj['data_inicio'] == NULL OR $obj['data_inicio'] == '0000-00-00'){echo "";}else{echo exibirDataBrOrdem($obj['data_inicio']);} ?></td>
 			<td>
             <input type="hidden" name="idObj" value="<?php echo $obj['id']?>" />
  			<input type="submit" class="btn btn-sm btn-success" value="Atualiza">
