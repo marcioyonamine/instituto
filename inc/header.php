@@ -264,7 +264,6 @@ border: solid 8px #183f76;
 z-index:10;
 }
 
-
 /* Styles the lightbox image, centers it vertically and horizontally, adds the zoom-in transition and makes it responsive using a combination of margin and absolute positioning */
 
 
@@ -331,6 +330,110 @@ bottom: 0;
 }
 
 .lightbox-target-home-evento:target a.lightbox-close {
+top: 0px;
+}
+
+======================
+
+/*LIGHTBOX EVENTOS HOME*/
+a.lightbox-target-bloco-home img {
+/*height: 150px;*/
+border: 3px solid white;
+box-shadow: 0px 0px 8px rgba(0,0,0,.3);
+/*margin: 94px 20px 20px 20px;*/
+}
+
+/* Styles the lightbox, removes it from sight and adds the fade-in transition */
+
+.lightbox-target-bloco-home {
+position: absolute;
+top: -100%;
+left:0;
+width: 100%;
+height:100%;
+background: rgba(255,255,255,1);
+/*width: 100%;*/
+opacity: 0;
+-webkit-transition: opacity .5s ease-in-out;
+-moz-transition: opacity .5s ease-in-out;
+-o-transition: opacity .5s ease-in-out;
+transition: opacity .5s ease-in-out;
+overflow: hidden;
+padding:2%;
+color:#333333;
+border: solid 8px #183f76;
+/*left:25%;*/
+z-index:10;
+position:fixed;
+text-align:center;
+}
+
+/* Styles the lightbox image, centers it vertically and horizontally, adds the zoom-in transition and makes it responsive using a combination of margin and absolute positioning */
+
+
+/* Styles the close link, adds the slide down transition */
+
+a.lightbox-target-bloco-home {
+display: block;
+width:50px;
+height:50px;
+box-sizing: border-box;
+background: white;
+color: black;
+text-decoration: none;
+position: absolute;
+top: -80px;
+right: 0;
+-webkit-transition: .5s ease-in-out;
+-moz-transition: .5s ease-in-out;
+-o-transition: .5s ease-in-out;
+transition: .5s ease-in-out;
+z-index:1;
+}
+
+/* Provides part of the "X" to eliminate an image from the close link */
+
+a.lightbox-target-bloco-home:before {
+content: "";
+display: block;
+height: 30px;
+width: 1px;
+background: black;
+position: absolute;
+left: 26px;
+top:10px;
+-webkit-transform:rotate(45deg);
+-moz-transform:rotate(45deg);
+-o-transform:rotate(45deg);
+transform:rotate(45deg);
+}
+
+/* Provides part of the "X" to eliminate an image from the close link */
+
+a.lightbox-target-bloco-home:after {
+content: "";
+display: block;
+height: 30px;
+width: 1px;
+background: black;
+position: absolute;
+left: 26px;
+top:10px;
+-webkit-transform:rotate(-45deg);
+-moz-transform:rotate(-45deg);
+-o-transform:rotate(-45deg);
+transform:rotate(-45deg);
+}
+
+/* Uses the :target pseudo-class to perform the animations upon clicking the .lightbox-target anchor */
+
+.lightbox-target-bloco-home:target {
+opacity: 1;
+top: 0;
+bottom: 0;
+}
+
+.lightbox-target-bloco-home:target a.lightbox-close {
 top: 0px;
 }
 
