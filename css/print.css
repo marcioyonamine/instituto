@@ -1,0 +1,43 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{
+	font-family:Arial, Helvetica, sans-serif;	
+}
+
+.a6{
+	height: 148mm;
+	width: 105mm;
+	padding: 2px 2px 2px 2px;
+	border: dotted  #000;
+}
+
+.logo{
+	margin: 5px 5px;	
+}
+
+.mensagem{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	margin: 5px 5px;			
+}
+
+.desafio{
+	font-size: 10px;
+	margin: 0px 0px 0px 0px;
+}
+
+.rodape{
+	position:absolute;
+	top:150mm;
+	font-size: 9px;
+}
+
+.centro{
+	  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;	
+}
