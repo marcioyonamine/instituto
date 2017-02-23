@@ -598,7 +598,7 @@ function geraDesafios($nivel,$checado = array()){ //checked é uma array
 	echo '
 	       
 	<h2>Desafios Nível: '.$nivel.'</h2>
-        <div class="table-responsive">';
+        <div class="table-responsive" style="overflow:hidden;">';
           
         if($nivel == 1){
         	echo '<table class="table table-striped tbl-des-nvl1">';
@@ -712,7 +712,7 @@ function listaDesafios($nivel){ //checked é uma array
 	echo '
 	       
 	<h2>Desafios Nível: '.$nivel.'</h2>
-        <div class="table-responsive">';
+        <div class="table-responsive" style="overflow:hidden;">';
         
         if($nivel == 1){
         	echo '<table class="table table-striped tbl-des-nvl1">';
