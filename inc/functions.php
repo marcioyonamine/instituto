@@ -664,7 +664,7 @@ Da mesma forma cada desafios tem um objetivo de levar o participante a ser mais 
 				
    				 echo '         <tr>
                 <td style="text-align:left;">'.$list['titulo'].' <div class="tooltip-explica"><img src="../assets/img/tooltip_des.png" width="15" /><span class="tooltiptext-explica">' . $list['tooltip_des'] . '</span></div></td>
-                <td>'. recTermo($list['yy']).'</td>
+                <td style="text-align:center;">'. recTermo($list['yy']).'</td>
                 <td>
                 	
            			 <input onchange="validaEscolhaDesafio();" type="checkbox" name="'.$list['id'].'" '.checado($list['id'],$checado).'>
@@ -777,7 +777,7 @@ Da mesma forma cada desafios tem um objetivo de levar o participante a ser mais 
 				
    				 echo '         <tr>
                 <td style="text-align:left;">'.$list['titulo'].' <div class="tooltip-explica"><img src="../assets/img/tooltip_des.png" width="15" /><span class="tooltiptext-explica">' . $list['tooltip_des'] . '</span></div> </td>
-                <td>'. recTermo($list['yy']).'</td>
+                <td style="text-align:center;">'. recTermo($list['yy']).'</td>
              	 </tr>';
 			 }
 

@@ -151,7 +151,7 @@ top: -100%;
 left:0;
 width: 100%;
 height:100%;
-background: rgba(0,0,0,.7);
+background: rgba(255,255,255,1);
 /*width: 100%;*/
 opacity: 0;
 -webkit-transition: opacity .5s ease-in-out;
@@ -160,7 +160,11 @@ opacity: 0;
 transition: opacity .5s ease-in-out;
 overflow: scroll;
 padding:2%;
-color:#ffffff;
+color:#333333;
+border: solid 8px #183f76;
+z-index:10;
+position:fixed;
+text-align:center;
 }
 
 
@@ -333,8 +337,6 @@ bottom: 0;
 top: 0px;
 }
 
-======================
-
 /*LIGHTBOX EVENTOS HOME*/
 a.lightbox-target-bloco-home img {
 /*height: 150px;*/
@@ -439,6 +441,7 @@ top: 0px;
 
 .tbl-yy{
 	width:300px;
+	margin:0 auto;
 	
 }
 
