@@ -14,8 +14,8 @@ if(isset($_GET['p'])){
 
  ?>
 <div class="container">
-	<?php include '../inc/fixed-navbar-user.php'; ?>
-	<?php include '../inc/menu-principal.php';	?>
+	<?php include '../inc/fixed-navbar-trainer.php'; ?>
+	<?php include '../inc/menu-trainer.php';	?>
 
 <?php  
 switch($p){
@@ -23,15 +23,40 @@ case "inicial":
 ?>
 
 	<div class="jumbotron">
-		<?php echo "<h1>Objetivo</h1>"; ?>
+		<?php echo "<h1>Olá, " . $level->user_firstname .  "!</h1>"; 
+		
+		//Verifica se o cliente está com o treinamento em andamento
+		$sql_andamento = "SELECT * FROM iap_objetivo WHERE finalizado = '0'";
+		$query_andamento = mysqli_query($con, $sql_andamento);
+		$conta_andamento = mysqli_num_rows($query_andamento);
+		
+		//Verifica se o cliente está com o treinamento em andamento ou finalizado
+		$sql_finalizado = "SELECT * FROM iap_objetivo WHERE finalizado = '1'";
+		$query_finalizado = mysqli_query($con, $sql_finalizado);
+		$conta_finalizado = mysqli_num_rows($query_finalizado);	
+		
+		?>
+		
+		<p class="lead">Hoje é dia <?php echo date('d/m/Y');?>, e atualmente <?php echo $conta_andamento; ?> pessoas estão com o treinamento em andamento.</p>
+		
+		<p class="lead">Até hoje, <?php echo $conta_finalizado; ?> pessoas já terminaram o treinamento.</p>
+		
 		<?php 
+		
+		
+		
+		//Verifica se tem objetivos ainda não avaliados na tabela objetivo
 		$sql_conta = "SELECT id FROM iap_objetivo WHERE nivel = '0' OR nivel is null";
 		$query_conta = mysqli_query($con,$sql_conta);
 		$num = mysqli_num_rows($query_conta);
-		?>
-		<p class="lead">Você tem <?php echo $num ?> objetivos para avaliar.</p> 
-		<p> <a class="btn btn-lg btn-success" href="treinador.php?p=objetivo" role="button">Ir para objetivos.</a>
 		
+		if($num == 0 || $num == NULL){
+		?>
+		<p class="lead">Você não tem novos objetivos para avaliar.</p>
+		<?php }else{ ?>
+		<p class="lead">Você tem <?php echo $num ?> objetivos para avaliar.</p> 
+		<p> <a class="btn btn-lg btn-success" href="treinador.php?p=objetivo" role="button">Avaliar objetivos</a>
+		<?php } ?>
 		
 		
 

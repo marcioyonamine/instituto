@@ -7,10 +7,7 @@
 	
 	<?php include '../inc/fixed-navbar-user.php'; ?>
 	<?php include '../inc/menu-principal.php';	?>
-	<div class="jumbotron">
-		             
-                    
-                
+	<div class="jumbotron">           
                 
                 <?php
 					$nome=$user->user_firstname;

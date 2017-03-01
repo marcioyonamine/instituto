@@ -488,6 +488,25 @@ $(document).ready(function(){
 
 	}
 </script>
+
+<script type="text/javascript">
+	function validaIndicacao() {
+
+		var nomeIndica = document.forms["formIndica"]["nomeIndicacao"].value;
+		var emailIndica = document.forms["formIndica"]["emailIndicacao"].value;
+		
+		if (nomeIndica == '') {
+			alert('Ops..parece que você esqueceu de inserir o nome do seu amigo...');
+			return false;
+		} 
+		
+		if (emailIndica == '') {
+			alert('Ops..parece que você esqueceu de inserir o e-mail do seu amigo...');
+			return false;
+		}
+
+	}
+</script>
    
   </head>
 
