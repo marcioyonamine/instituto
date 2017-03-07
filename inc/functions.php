@@ -1127,5 +1127,13 @@ function checadoUnitario($x,$y){
 	}	
 }
 
+function recRelatorio($objetivo,$fase){
+	$con = bancoMysqli();
+	$sql = "SELECT * FROM relatorio_semanal WHERE objetivo = '$objetivo' AND fase = '$fase' LIMIT 0,1";
+	$query = mysqli_query($con,$sql);
+	$x = mysqli_fetch_array($query);
+	return $x;	
+}
+
 ?>
 
