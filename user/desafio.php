@@ -107,7 +107,7 @@
 	<?php 
 	$sem = retornaSemana($obj['id']);
 	//echo "$sem";
-	for($i = $sem; $i <= $sem AND $i > 0; $i--){ ?>
+	for($i = $sem; $i <= $sem AND $i > 0; $i--){?>
   
   
 
@@ -119,7 +119,7 @@
  	
  	
  	<h3>
-  	Fase:  <?php echo $datas[$i]['fase']; ?> (<?php echo exibirDataBr($datas[$i]['inicio']) ?>  a <?php echo exibirDataBr($datas[$i]['fim']) ?>)   
+  	Fase:  <?php echo $datas[$i]['fase']; ?> (<?php echo exibirDataBrOrdem($datas[$i]['inicio']) ?>  a <?php echo exibirDataBrOrdem($datas[$i]['fim']) ?>)   
   	</h3> 
   	
 <div class="tgl">
@@ -178,10 +178,85 @@
             </tr>
             
             <tr>               
-                <td><strong>Dúvidas?</strong><br /></td>
+                <td><strong>Dúvidas?</strong><br />
+                	<a class="lightbox" href="#goofy"> Entenda como funciona</a>
+					<div class="lightbox-target" id="goofy">
+		
+					<h2>Medição dos Desafios</h2>
+					Nessa área vamos deixar o autodesafio palpáveis para conseguirmos mensurar o nosso desempenho com o nosso comprometimento.
+					<br /><br />
+					<strong>Intensidade</strong> - Nesse bloco você indicará o quão desafiante será o seu autodesafio. O importante é você definir uma intensidade bem específica e que seja desafiadora para você!
+					<br /><br /> 
+					Não existe certo ou errado, melhor ou pior, o mais importante é você sair da zona de conforto de forma consciente e que não te leve para a zona de saturação. Só que lembre-se que quanto mais você se desafiar, mais padrões você conseguir identificar, maior a tendência de expansão de consciência.
+					  <br /><br />
+					
+					<strong>Frequência</strong> - Aqui você indicará quantas vezes irá realizar o desafio até a próxima fase do treinamento.
+					<br /><br /> 
+					Alguns desafios podemos fazer diariamente ou até mais de uma vez por dia, outros somente uma vez durante essa fase do treinamento. O importante é você definir uma frequência que seja possível dentro do seu contexto para realizar os desafios conforme você se comprometeu. 
+					<br /><br />
+					<strong>Atenção:</strong> Lembre que o mais importante é mantermos a disciplina com que nos comprometemos. O ego perde espaço com disciplina.
+					<br /><br />
+					
+					<h2>Foco</h2>
+					<br /><br />
+					Nessa área você irá selecionar o foco da sua consciência. Qual o foco em realizar esse autodesafio? Pode selecionar mais de uma opção se fizer sentido no seu desafio.
+					<br /><br />
+					<strong>Ter</strong> - Nessa área o foco é ter, podendo ser algum resultado, conhecimento, experiência ou outros. Também podemos interpretar como deixar de ter. Como exemplo, deixar de ter o conforto do banho quente para observar como vou reagir a esse desconforto. Tanto para ter algo como deixar de ter, nesses casos essa opção é válida.
+					<br /><br />
+					<strong>Fazer</strong> - Nessa opção o foco da consciência é fazer algo ou deixar de fazer, como um hábito por exemplo. Como exemplo fazer uma coisa com a mão trocada, deixar de fazer um hábito enraizado. Se a sua intenção com esse desafios for essa, selecione essa opção. 
+					<br /><br />
+					<strong>Ser</strong> - O foco em Ser, está relacionado a mudança do Ser. A intenção da sua consciência está em Ser uma pessoa diferente do que você é hoje. Por exemplo quem pegou o desafio de Meditar todos os dias com a intenção de Ser mais calmo, ou de desafiar limites pré-estabelecidos para Ser mais corajoso. Se essa for a sua intenção selecione essa opção.
+					<br /><br />
+					<h2>Corpos</h2>
+					<br /><br />
+					Todos nós possuimos diferentes corpos que usamos em diferentes experiências. Por exemplo o corpo físico para fazer desafios que necessitam de força física como praticar exercícios. 
+					<br /><br />
+					Mas no processo de Alta Performance como uma das formas de expandirmos a consciência, podemos utilizar também do corpo mental para melhorar o desempenho nesses exercícios, por exemplo. 
+					Nesse sentido para te ajudar com os autodesafios nós separamos em 4 corpos, veja abaixo a explicação de cada um e veja qual deles você irá utilizar na realização dos seus desafios nessa fase. Pode selecionar mais de uma opção.
+					<br /><br />
+					<strong>Físico</strong> - Corpo físico propriamente dito, envolve assuntos que vão mexer com suas condições físicas e terrenas, é o nosso corpo mais denso. Se você acredita que esse desafio mexerá fisicamente com você selecione-o para te trazer mais consciência sobre o desafio.
+					<br /><br />
+					<strong>Emocional</strong> - Quando você acreditar que um desafio mexerá com as suas emoções, positivamente ou negativamente, selecione essa opção. É importante observar como os autodesafios influenciam as emoções pois muitos dos nossos padrões negativos aparecem nesse corpo. Observe bem como isso acontece com você.
+					<br /><br />
+					<strong>Mental</strong> - Com o corpo mental que criamos soluções, materializamos a intuição e criatividade e utilizamos da lógica, esse corpo, se usado de forma íntegra, pode ser bem útil no dia a dia dos desafios, uma vez que com ele é que ativamos a razão para solucionar problemas deixando as emoções de lado. Se fizer sentido no seu desafio selecione esse campo.
+					<br /><br />
+					<strong>Espiritual</strong> - O corpo espiritual é o mais sutil de todos, dizemos que é a nossa conexão com algo maior e onde vive a nossa intuição. Veja se os desafios que você selecionou irão mexer com a energia do seu espírito, caso positivo, selecione esse campo.
+					<br /><br />
+					<strong>Atenção:</strong> Lembre-se de que não existe certo ou errado, essas opções você seleciona os corpos que acredita que serão influenciados pelo seu desafio.
+					<br /><br />
+					<h2>Âncora e Lembretes</h2>
+					<br /><br />
+					O ego utiliza do "esquecimento" como principal ferramenta para manter um hábito, e a melhor forma de quebrarmos esse padrão é colocarmos lembretes no dia a dia.
+					<br /><br />
+					É muito comum os participantes utilizarem o celular, post it's, anotações, lembretes na agenda para fazerem os desafios. Quanto mais formas de lembrar melhor. Para o celular é importante colocar alarmes ou notificações dos lembretes, dessa forma eles apitam todos os dias para te lembrar.
+					<br /><br />
+					Para Android nós conhecemos: Do It Later, Trello, e Google Keep.
+					<br /><br />
+					Para iPhone: Calendário do iPhone, Productive, Trello e Google Keep.
+					<br /><br />
+					As âncoras são instrumentos poderosos que invoca nossa disposição para realizar o que é necessário e nos faz retornar ao nosso centro quando acabamos nos desviando ou desequilibrando.
+					<br /><br />
+					Uma âncora que é muito fácil de ser feita. Pegue algum objeto que te faça lembrar do Treinamento de Alta Performance, e programe a sua mente falando para você mesmo: "Todas as vezes que eu olhar/pegar/ver esse objeto vou verificar os meus desafios." Deixe esse objeto sempre por perto para te ajudar a lembrar. 
+					<br /><br />
+					Exemplos: 
+					<br /><br />
+					OLFATO: Incenso / Perfume / Cheiro da natureza / 
+					<br /><br />
+					AUDIÇÃO: Música específica / Alarme com música entusiasmada / Sons da natureza
+					<br /><br />
+					TATO: Exercícios físicos / Adorno ou acessório / Golpe de Timo
+					<br /><br />
+					VISÃO: Tela de celular ou computador / Quadro de paisagem  / Frases empoderadoras 
+					<br /><br />
+					PALADAR: Toda vez que for colocar açúcar / Fazer jejum ao acordar / Toda vez que comer uma frutas 
+					<br /><br />
+					MENTE: Meditar / Orar / Autoconhecimento
+
+				<a class="lightbox-close" href="#"></a>
+                </td>
                 <td><strong>Frequência:</strong> <br /><?php echo $x['frequencia']; ?> </td>
       			<td><strong>Intensidade:</strong> <br /><?php echo $x['intensidade']; ?> </td>
-      			<td><strong>Âncora/Lembrete</strong><br /></td>
+      			<td><strong>Âncora/Lembrete</strong><br /><?php echo $x['lembrete']; ?></td>
                 
            </tr>
        
@@ -193,10 +268,10 @@
 
 	    </tbody>
           </table>
-          </div>
-          
+         </div>
           
           <?php } //for ?>
+           
           </div>
           </div>
             	 		
@@ -208,28 +283,28 @@
    		<?php
 		switch ($fase_atual) {
 			case '0' :?>
-				<p class="lead" style="text-align: center; margin-top:-7%;"><strong>O seu treinamento começará na próxima segunda-feira,  <?php $data_inicio = nextMonday($hoje); echo exibirDataBrOrdem($data_inicio); ?></strong>, que é o dia que você deve escolher seu desafio e iniciará seu treinamento, salve essa data. Enquanto isso, já pode ver a lista dos desafios que poderá escolher para essa fase inicial.</p>
+				<p class="lead" style="text-align: center; margin-top:5%;"><strong>O seu treinamento começará na próxima segunda-feira,  <?php $data_inicio = nextMonday($hoje); echo exibirDataBrOrdem($data_inicio); ?></strong>, que é o dia que você deve escolher seu desafio e iniciará seu treinamento, salve essa data. Enquanto isso, já pode ver a lista dos desafios que poderá escolher para essa fase inicial.</p>
 				<?php
 					break;
 
 					case '1' :
 				?>
-				<div class="jumbotron" style="margin-top:-5%; padding-top:0px;">
+				<div class="jumbotron" style="margin-top:5%; padding-top:0px;">
 				 <!--<p class="lead">Hoje você está na Fase <b>--><?php //$fase_atual = verificaFase($obj['id']);
 				//echo $fase_atual;
  ?> <!--</b>.</p>-->
 				 <p class="lead">Para a sua próxima fase (<strong>Fase <?php $fase_mostra = $fase_atual + 1;
 					echo $fase_mostra;
- ?></strong>), você deve <strong>manter o seu desafio inicial de Nível 1</strong>, e ainda escolher um novo desafio do nível do seu objetivo <em>(<?php echo "lembrando que o seu objetivo é " . $objetivo['objetivo'] . " e o treinador classificou ele como Nível " . $objetivo['nivel'] ?>)</em>.</p> 
+ ?></strong>), você deve <strong>manter o seu desafio inicial de Nível 1</strong>, e ainda escolher um novo desafio do nível do seu objetivo <em>(<?php echo "lembrando que o seu objetivo é <strong> \"".$objetivo['objetivo']."\"</strong> e o treinador classificou ele como Nível " . $objetivo['nivel'] ?>)</em>.</p> 
 				 	<p class="lead">O seu total de desafios para essa próxima fase será 2.</p>
 				 <p class="lead">
-				 Abaixo estão listados os desafios do nível do seu objetivo. Você ainda não pode marcá-los, mas já pode visualizá-los.</p></div>
+				 Abaixo estão listados os desafios do nível do seu objetivo pra você já dar uma olhada.  </p></div>
 				<?php
 				break;
 
 				case '2' :
 			?>
-				<div class="jumbotron" style="margin-top:-5%; padding-top:0px;">
+				<div class="jumbotron" style="margin-top:5%; padding-top:0px;">
 				<p class="lead" style="margin-top:3%;">Hoje você está na <b>Fase <?php $fase_atual = verificaFase($obj['id']);
 				echo $fase_atual;
  ?></b>.</p>
@@ -238,7 +313,7 @@
  ?></strong>), você deve <strong>parar com um dos desafios que estava</strong>, e ainda escolher <strong>DOIS NOVOS</strong> desafios, sendo um do nível do seu objetivo <em>(<?php echo $objetivo['objetivo'] . ", " . "Nível: " . $objetivo['nivel'] ?>)</em> e um do nível abaixo do seu objetivo <em>(nível <?php echo $objetivo['nivel'] - 1; ?>)</em>.</p> 
 				 	<p class="lead">O seu total de desafios para essa próxima fase será 3.</p>
 				 <p class="lead">
-				 Veja abaixo a lista de desafios. Você ainda não pode marcá-los, mas já pode visualizá-los.</p>
+				 Veja abaixo a lista de desafios.  </p>
 				 </div>
 			
 				<?php
@@ -246,7 +321,7 @@
 
 				case '3' :
 			?>
-			<div class="jumbotron" style="margin-top:-5%; padding-top:0px;">
+			<div class="jumbotron" style="margin-top:5%; padding-top:0px;">
 				<p class="lead" style="margin-top:3%;">Hoje você está na <b>Fase <?php $fase_atual = verificaFase($obj['id']);
 				echo $fase_atual;
  ?></b>.</p>
@@ -255,14 +330,14 @@
  ?></strong>), você deve <strong>PARAR com UM dos desafios que estava</strong>, deve MANTER DOIS desafios, e ainda escolher <strong>DOIS NOVOS</strong> desafios, sendo um do nível do seu objetivo <em>(<?php echo $objetivo['objetivo'] . ", " . "Nível: " . $objetivo['nivel'] ?>)</em>, um do nível abaixo do seu objetivo <em>(nível <?php echo $objetivo['nivel'] - 1; ?>)</em> e um do nível acima do seu objetivo <em>(nível <?php echo $objetivo['nivel'] + 1; ?>)</em>. </p>
 				 	<p class="lead">O seu total de desafios para essa próxima fase será 5.</p>
 				 <p class="lead">
-				 Veja abaixo a lista de desafios. Você ainda não pode marcá-los, mas já pode visualizá-los.</p>
+				 Veja abaixo a lista de desafios.  </p>
 				 </div>
 				<?php
 				break;
 
 				case '4' :
 			?>
-			<div class="jumbotron" style="margin-top:-5%; padding-top:0px;">
+			<div class="jumbotron" style="margin-top:5%; padding-top:0px;">
 				<p class="lead" style="margin-top:3%;">Hoje você está na <b>Fase <?php $fase_atual = verificaFase($obj['id']);
 				echo $fase_atual;
  ?></b>.</p>
@@ -271,14 +346,14 @@
  ?></strong>), você deve <strong>PARAR com DOIS dos desafios que estava</strong>, deve MANTER TRÊS desafios, e ainda escolher <strong>CINCO NOVOS</strong> desafios, sendo pelo menos um do nível do seu objetivo <em>(<?php echo $objetivo['objetivo'] . ", " . "Nível: " . $objetivo['nivel'] ?>)</em>, pelo menos um do nível abaixo do seu objetivo <em>(nível <?php echo $objetivo['nivel'] - 1; ?>)</em> e pelo menos um do nível acima do seu objetivo <em>(nível <?php echo $objetivo['nivel'] + 1; ?>)</em>.</p> 
 				 	<p class="lead">O seu total de desafios para essa próxima fase será 8.</p>
 				 <p class="lead">
-				 Veja abaixo a lista de desafios. Você ainda não pode marcá-los, mas já pode visualizá-los.</p>
+				 Veja abaixo a lista de desafios.  </p>
 				 </div>
 				<?php
 				break;
 
 				case '5' :
 			?>
-			<div class="jumbotron" style="margin-top:-5%; padding-top:0px;">
+			<div class="jumbotron" style="margin-top:5%; padding-top:0px;">
 				<p class="lead" style="margin-top:3%;">Hoje você está na <b>Fase <?php $fase_atual = verificaFase($obj['id']);
 				echo $fase_atual;
  ?></b>.</p>
@@ -287,14 +362,14 @@
  ?></strong>), você deve <strong>PARAR com TRÊS dos desafios que estava</strong>, deve MANTER CINCO desafios, e ainda escolher <strong>OITO NOVOS</strong> desafios, podendo ser de qualquer nível, desde que tenha pelo menos um de cada nível.</p> 
 				 	<p class="lead">O seu total de desafios para essa próxima fase será 13.</p>
 				 <p class="lead">
-				 Veja abaixo a lista de desafios. Você ainda não pode marcá-los, mas já pode visualizá-los.</p>
+				 Veja abaixo a lista de desafios.  </p>
 				 </div>
 				<?php
 				break;
 
 				case '6' :
 			?>
-			<div class="jumbotron" style="margin-top:-5%; padding-top:0px;">
+			<div class="jumbotron" style="margin-top:5%; padding-top:0px;">
 				<p class="lead" style="margin-top:3%;">Hoje você está na <b>Fase <?php $fase_atual = verificaFase($obj['id']);
 				echo $fase_atual;
  ?></b>.</p>
@@ -303,14 +378,14 @@
  ?></strong>), você deve <strong>PARAR com CINCO dos desafios que estava</strong>, deve MANTER OITO desafios, e ainda escolher <strong>TREZE NOVOS</strong> desafios, podendo ser de qualquer nível, desde que tenha pelo menos um de cada nível. </p>
 				 	<p class="lead">O seu total de desafios para essa próxima fase será 21.</p>
 				 <p class="lead">
-				 Veja abaixo a lista de desafios. Você ainda não pode marcá-los, mas já pode visualizá-los.</p>
+				 Veja abaixo a lista de desafios.  </p>
 				 </div>
 				<?php
 				break;
 
 				case '7' :
 			?>
-			<div class="jumbotron" style="margin-top:-5%; padding-top:0px;">
+			<div class="jumbotron" style="margin-top:5%; padding-top:0px;">
 				<p class="lead" style="margin-top:3%;">Hoje você está na <b>Fase <?php $fase_atual = verificaFase($obj['id']);
 				echo $fase_atual;
  ?></b>.</p>
@@ -319,14 +394,14 @@
  ?></strong>), você deve <strong>PARAR com OITO dos desafios que estava</strong>, deve MANTER TREZE desafios, e ainda escolher <strong>VINTE E UM NOVOS</strong> desafios, podendo ser de qualquer nível, desde que tenha pelo menos um ou dois de cada nível.</p> 
 				 	<p class="lead">O seu total de desafios para essa próxima fase será 34.</p>
 				 <p class="lead">
-				 Veja abaixo a lista de desafios. Você ainda não pode marcá-los, mas já pode visualizá-los.</p>
+				 Veja abaixo a lista de desafios.  </p>
 				 </div>
 				<?php
 				break;
 
 				case '8' :
 			?>
-			<div class="jumbotron" style="margin-top:-5%; padding-top:0px;">
+			<div class="jumbotron" style="margin-top:5%; padding-top:0px;">
 				<p class="lead" style="margin-top:3%;">Hoje você está na <b>Fase <?php $fase_atual = verificaFase($obj['id']);
 				echo $fase_atual;
  ?></b>.</p>
@@ -336,14 +411,14 @@
 				 <p class="lead"> É importante que você considere parar com os desafios que se tornaram fáceis para você. Mantenha os que ainda estão desafiadores, e escolha novos desafios tão desafiadores quanto estes.</p>
 				 <p class="lead">Você terá 14 desafios nessa próxima fase.</p>
 				 <p class="lead">
-				 Veja abaixo a lista de desafios. Você ainda não pode marcá-los, mas já pode visualizá-los.</p>
+				 Veja abaixo a lista de desafios.  </p>
 				 </div>
 				<?php
 				break;
 
 				case '9' :
 			?>
-			<div class="jumbotron" style="margin-top:-5%; padding-top:0px;">
+			<div class="jumbotron" style="margin-top:5%; padding-top:0px;">
 				<p class="lead" style="margin-top:3%;">Hoje você está na <b>Fase <?php $fase_atual = verificaFase($obj['id']);
 				echo $fase_atual;
  ?></b>.</p>
@@ -353,14 +428,14 @@
 				 <p class="lead"> À partir de agora, você está pronto para seguir se desafiando por conta própria. Mantenha pelo menos 7 desafios e renove a cada 14 dias.</p>
 				 <p class="lead">Fazendo isso, você continuará desfrutando do estilo de vida em Alta Performance.</p>
 				 <p class="lead">
-				 Veja abaixo a lista de desafios. Você ainda não pode marcá-los, mas já pode visualizá-los.</p>
+				 Veja abaixo a lista de desafios.  </p>
 				 </div>
 				<?php
 				break;
 
 				case '10' :
 			?>
-			<div class="jumbotron" style="margin-top:-5%; padding-top:0px;">
+			<div class="jumbotron" style="margin-top:5%; padding-top:0px;">
 				<p class="lead">O seu treinamento chegou ao fim. [Mensagem]</p>
 				</div>
 				<?php
@@ -506,7 +581,7 @@
    		<!--<p class="lead">Serão 16 semanas com 10 fases.</p>-->
         <?php
         $fase_atual = verificaFase($obj['id']);
-		echo $fase_atual;
+		//echo $fase_atual;
 		switch ($fase_atual) {
 			case '0' :?>
 				<p class="lead">Para iniciar o seu treinamento, você deve escolher um desafio de Nível 1.</p>
@@ -523,7 +598,7 @@
  ?></strong>), você deve <strong>manter o seu desafio inicial de Nível 1</strong>, e ainda escolher um novo desafio do nível do seu objetivo <em>(<?php echo $objetivo . $objetivo['nivel'] ?>)</em>.</p> 
 				 	<p class="lead">O seu total de desafios para essa próxima fase será 2.</p>
 				 <p class="lead">
-				 Abaixo estão listados os desafios do nível do seu objetivo. Você ainda não pode marcá-los, mas já pode visualizá-los.</p>
+				 Abaixo estão listados os desafios do nível do seu objetivo.  </p>
 				<?php
 				break;
 
@@ -538,7 +613,7 @@
  ?></strong>), você deve <strong>parar com um dos desafios que estava</strong>, e ainda escolher <strong>DOIS NOVOS</strong> desafios, sendo um do nível do seu objetivo <em>(<?php echo $objetivo['objetivo'] . ", " . "Nível: " . $objetivo['nivel'] ?>)</em> e um do nível abaixo do seu objetivo <em>(nível <?php echo $objetivo['nivel'] - 1; ?>)</em>.</p> 
 				 	<p class="lead">O seu total de desafios para essa próxima fase será 3.</p>
 				 <p class="lead">
-				 Veja abaixo a lista de desafios. Você ainda não pode marcá-los, mas já pode visualizá-los.</p>
+				 Veja abaixo a lista de desafios.  </p>
 			
 				<?php
 				break;
@@ -553,7 +628,7 @@
  ?></strong>), você deve <strong>PARAR com UM dos desafios que estava</strong>, deve MANTER DOIS desafios, e ainda escolher <strong>DOIS NOVOS</strong> desafios, sendo um do nível do seu objetivo <em>(<?php echo $objetivo['objetivo'] . ", " . "Nível: " . $objetivo['nivel'] ?>)</em>, um do nível abaixo do seu objetivo <em>(nível <?php echo $objetivo['nivel'] - 1; ?>)</em> e um do nível acima do seu objetivo <em>(nível <?php echo $objetivo['nivel'] + 1; ?>)</em>. </p>
 				 	<p class="lead">O seu total de desafios para essa próxima fase será 5.</p>
 				 <p class="lead">
-				 Veja abaixo a lista de desafios. Você ainda não pode marcá-los, mas já pode visualizá-los.</p>
+				 Veja abaixo a lista de desafios.  </p>
 				<?php
 				break;
 
@@ -567,7 +642,7 @@
  ?></strong>), você deve <strong>PARAR com DOIS dos desafios que estava</strong>, deve MANTER TRÊS desafios, e ainda escolher <strong>CINCO NOVOS</strong> desafios, sendo pelo menos um do nível do seu objetivo <em>(<?php echo $objetivo['objetivo'] . ", " . "Nível: " . $objetivo['nivel'] ?>)</em>, pelo menos um do nível abaixo do seu objetivo <em>(nível <?php echo $objetivo['nivel'] - 1; ?>)</em> e pelo menos um do nível acima do seu objetivo <em>(nível <?php echo $objetivo['nivel'] + 1; ?>)</em>.</p> 
 				 	<p class="lead">O seu total de desafios para essa próxima fase será 8.</p>
 				 <p class="lead">
-				 Veja abaixo a lista de desafios. Você ainda não pode marcá-los, mas já pode visualizá-los.</p>
+				 Veja abaixo a lista de desafios.  </p>
 				<?php
 				break;
 
@@ -581,7 +656,7 @@
  ?></strong>), você deve <strong>PARAR com TRÊS dos desafios que estava</strong>, deve MANTER CINCO desafios, e ainda escolher <strong>OITO NOVOS</strong> desafios, podendo ser de qualquer nível, desde que tenha pelo menos um de cada nível.</p> 
 				 	<p class="lead">O seu total de desafios para essa próxima fase será 13.</p>
 				 <p class="lead">
-				 Veja abaixo a lista de desafios. Você ainda não pode marcá-los, mas já pode visualizá-los.</p>
+				 Veja abaixo a lista de desafios.  </p>
 				<?php
 				break;
 
@@ -595,7 +670,7 @@
  ?></strong>), você deve <strong>PARAR com CINCO dos desafios que estava</strong>, deve MANTER OITO desafios, e ainda escolher <strong>TREZE NOVOS</strong> desafios, podendo ser de qualquer nível, desde que tenha pelo menos um de cada nível. </p>
 				 	<p class="lead">O seu total de desafios para essa próxima fase será 21.</p>
 				 <p class="lead">
-				 Veja abaixo a lista de desafios. Você ainda não pode marcá-los, mas já pode visualizá-los.</p>
+				 Veja abaixo a lista de desafios.  </p>
 				<?php
 				break;
 
@@ -609,7 +684,7 @@
  ?></strong>), você deve <strong>PARAR com OITO dos desafios que estava</strong>, deve MANTER TREZE desafios, e ainda escolher <strong>VINTE E UM NOVOS</strong> desafios, podendo ser de qualquer nível, desde que tenha pelo menos um ou dois de cada nível.</p> 
 				 	<p class="lead">O seu total de desafios para essa próxima fase será 34.</p>
 				 <p class="lead">
-				 Veja abaixo a lista de desafios. Você ainda não pode marcá-los, mas já pode visualizá-los.</p>
+				 Veja abaixo a lista de desafios.  </p>
 				<?php
 				break;
 
@@ -624,7 +699,7 @@
 				 <p class="lead"> É importante que você considere parar com os desafios que se tornaram fáceis para você. Mantenha os que ainda estão desafiadores, e escolha novos desafios tão desafiadores quanto estes.</p>
 				 <p class="lead">Você terá 14 desafios nessa próxima fase.</p>
 				 <p class="lead">
-				 Veja abaixo a lista de desafios. Você ainda não pode marcá-los, mas já pode visualizá-los.</p>
+				 Veja abaixo a lista de desafios.  </p>
 				<?php
 				break;
 
@@ -639,13 +714,13 @@
 				 <p class="lead"> À partir de agora, você está pronto para seguir se desafiando por conta própria. Mantenha pelo menos 7 desafios e renove a cada 14 dias.</p>
 				 <p class="lead">Fazendo isso, você continuará desfrutando do estilo de vida em Alta Performance.</p>
 				 <p class="lead">
-				 Veja abaixo a lista de desafios. Você ainda não pode marcá-los, mas já pode visualizá-los.</p>
+				 Veja abaixo a lista de desafios.  </p>
 				<?php
 				break;
 
 				case '10' :
 			?>
-				<p class="lead">O seu treinamento chegou ao fim. [Mensagem]</p>
+				<p class="lead">O seu treinamento chegou ao fim.</p>
 				<?php
 				break;
 

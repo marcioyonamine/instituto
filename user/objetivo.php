@@ -41,17 +41,16 @@
         <p class="lead">Agora que você já consegue ver o seu objetivo de forma mais clara, escreva ele em uma frase curta. Essa frase será o seu objetivo durante o treinamento:</p>
         
         <p><a class="btn btn-lg btn-success" href="?p=insere" role="button">Inserir um objetivo</a></p>
-		<?php }else{ ?> 
-		<p class="lead">O seu objetivo já foi definido e validado pelo treinador.</p>
+		<?php }elseif($objetivo['nivel'] == '0'){ ?> 
+		<p class="lead">O seu objetivo está sendo avaliado.</p>
+		<p class="lead">Não se preocupe, em breve o seu treinador irá indicar qual o nível está o seu desafio e você poderá ver a lista com os primeiros desafios.</p>
 		<p class="lead">Lembre-se sempre que do começo até o final do treinamento este será o seu foco:<br /> <strong><?php echo $objetivo['objetivo']; ?>.</strong></p>
-        <p class="lead">Clique no botão abaixo para visualizar seus desafios.</p>
-        <br /><br />
-        <?php if($objetivo['nivel'] != '0'){ ?>
+		<?php }else{ ?>
+        <p class="lead">O seu objetivo foi avaliado pelo treinador como <strong>nível <?php echo $objetivo['nivel']; ?></strong>.</p>
+        <p class="lead">Lembre-se sempre que do começo até o final do treinamento este será o seu foco:<br /> <strong><?php echo $objetivo['objetivo']; ?>.</strong></p>
+        <p class="lead">Você pode agora visualizar a lista de desafios que você poderá escolher na segunda-feira.</p>
         <p><a class="btn btn-lg btn-success" href="desafio.php" role="button">Visualizar meus desafios</a></p>
-		<?php }else{?>
-    		<p class="lead">Em breve, o treinador irá indicar qual o nível está o seu desafio.</p>    
-        <?php } ?>
-        <?php } ?>
+		<?php } ?>
 
       </div>
       

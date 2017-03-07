@@ -15,7 +15,7 @@
 					$emailIndicacao = $_POST['emailIndicacao'];
 					$telIndicacao = $_POST['telIndicacao'];
 					$msgIndicacao = $_POST['msgIndica'];
-					$enviaEmail = "Olá! O trainee " . $nome ."(" . $email . ") indicou uma pessoa para participar do Treinamento de Alta Performance. Veja os detalhes abaixo:\r\n \r\n Nome do indicado: " . $nomeIndicacao . "\r\n E-mail do indicado: " . $emailIndicacao . "\r\n Telefone do indicado: " . $telIndicacao . "\r\n Mensagem de quem indicou: " . $msgIndicacao;
+					$enviaEmail = "Olá! O trainee " . $nome ."(" . $email . ") quer convidar um amigo para participar do Treinamento de Alta Performance. Veja os detalhes abaixo:\r\n \r\n Nome do amigo convidado: " . $nomeIndicacao . "\r\n E-mail do amigo convidado: " . $emailIndicacao . "\r\n Telefone do amigo convidado: " . $telIndicacao . "\r\n Mensagem do amigo que convidou: " . $msgIndicacao;
 
 					if (empty($_POST))
 					{
@@ -27,7 +27,7 @@
 					$from="From: $nome<$email>\r\nReturn-path: $email";
 					$subject="Indicação de trainee via sistema Hawk.";
 					mail("caio@ialtaperformance.com", $subject, nl2br($enviaEmail), $from);
-					echo "<h1 class=\"bg-success\">Indicação enviada!</h1>Sua indicação foi enviada à nossa equipe e será analisada em breve!<br><a href=\"index.php\">Continuar navegando >></a>";
+					echo "<h1 class=\"bg-success\">Obrigado!</h1>Recebemos o contato do seu amigo e vamos conversar com ele para fazer o convite do treinamento.<br><a href=\"index.php\">Continuar navegando >></a>";
 					}
                 ?>
                 

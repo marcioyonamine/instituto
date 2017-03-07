@@ -13,7 +13,7 @@
 
 <?php 
                 $events = eo_get_events(array(
-              'numberposts'=>5,
+              'numberposts'=>30,
               'event_start_after'=>'today',
               'showpastevents'=>true,//Will be deprecated, but set it to true to play it safe.
          ));
@@ -32,8 +32,8 @@
 				//var_dump($evento);
 				
 				//Arrumar aqui pra abrir dentro do lightbox..
-               echo eo_get_the_start( $format, $event->ID, $event->occurrence_id ) . ' - ' . '<a class="lightbox-home-evento" href="#' . $event->ID . '">' . get_the_title($event->ID) . '</a><div class="lightbox-target-bloco-home" id="' . $event->ID . '"><h2>' . get_the_title($event->ID) . '</h2><br /><p class="lead">' . eo_get_the_start( $format, $event->ID, $event->occurrence_id ) . '</p><p class="lead">' . $descricao . '</p><a class="lightbox-close" href="#"></a></div>';
-			   			echo '</p>';   
+               echo eo_get_the_start( $format, $event->ID, $event->occurrence_id ) . ' - ' . '<a class="lightbox-home-evento" href="#' . $event->ID . '">' . get_the_title($event->ID) . '</a> ('. eo_get_the_start( $format2, $event->ID, $event->occurrence_id ) .')<div class="lightbox-target-bloco-home" id="' . $event->ID . '"><h2>' . get_the_title($event->ID) . '</h2><br /><p class="lead">' . eo_get_the_start( $format, $event->ID, $event->occurrence_id ) . ' (' . eo_get_the_start( $format2, $event->ID, $event->occurrence_id ) . ')</p><p class="lead">' . $descricao . '</p><a class="lightbox-close" href="#"></a></div>';
+			   			echo '</p><hr>';   
           endforeach;
           
        endif;

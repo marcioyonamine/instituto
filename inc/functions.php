@@ -153,50 +153,64 @@ function recTermo($id){
 	return $x['termo'];	
 }
 
-function retornaSemanas($data){
+function retornaSemanas($data){ //está retornando fase
 	$inicio = nextMonday($data);
 	$x[1]['inicio'] = $inicio;
 	$x[1]['fim'] = date('Y-m-d', strtotime($inicio. ' + 6 days'));
 	$x[1]['fase'] = 1;	
 	for($i = 2; $i <= 16; $i++){
-		$x[$i]['inicio'] = date('Y-m-d', strtotime($x[$i-1]['inicio']. ' + 7 days'));
-		$x[$i]['fim'] = date('Y-m-d', strtotime($x[$i]['inicio']. ' + 6 days'));
+	//	$x[$i]['inicio'] = date('Y-m-d', strtotime($x[$i-1]['inicio']. ' + 7 days'));
+	//	$x[$i]['fim'] = date('Y-m-d', strtotime($x[$i]['inicio']. ' + 6 days'));
 		switch($i){
 			case 2:
 			case 3:
 			case 4:
 				$x[$i]['fase'] = $i;
+				$x[$i]['inicio'] = date('Y-m-d', strtotime($x[$i-1]['inicio']. ' + 7 days'));
+				$x[$i]['fim'] = date('Y-m-d', strtotime($x[$i]['inicio']. ' + 6 days'));
 			break;
 			
 			case 5:
 			case 6:
 				$x[$i]['fase'] = 5;
+				$x[$i]['inicio'] = date('Y-m-d', strtotime($x[4]['inicio']. ' + 7 days'));
+				$x[$i]['fim'] = date('Y-m-d', strtotime($x[5]['inicio']. ' + 13 days'));
 			break;
 			
 			case 7:
 			case 8:
 				$x[$i]['fase'] = 6;			
+				$x[$i]['inicio'] = date('Y-m-d', strtotime($x[5]['inicio']. ' + 14 days'));
+				$x[$i]['fim'] = date('Y-m-d', strtotime($x[7]['inicio']. ' + 13 days'));
 			break;
 
 			case 9:
 			case 10:
 				$x[$i]['fase'] = 7;			
+				$x[$i]['inicio'] = date('Y-m-d', strtotime($x[7]['inicio']. ' + 14 days'));
+				$x[$i]['fim'] = date('Y-m-d', strtotime($x[9]['inicio']. ' + 13 days'));
 			break;
 				
 			case 11:
 			case 12:
-				$x[$i]['fase'] = 8;			
+				$x[$i]['fase'] = 8;	
+				$x[$i]['inicio'] = date('Y-m-d', strtotime($x[9]['inicio']. ' + 14 days'));
+				$x[$i]['fim'] = date('Y-m-d', strtotime($x[11]['inicio']. ' + 13 days'));		
 			break;
 
 
 			case 13:
 			case 14:
-				$x[$i]['fase'] = 9;			
+				$x[$i]['fase'] = 9;	
+				$x[$i]['inicio'] = date('Y-m-d', strtotime($x[11]['inicio']. ' + 14 days'));
+				$x[$i]['fim'] = date('Y-m-d', strtotime($x[13]['inicio']. ' + 13 days'));		
 			break;
 
 			case 15:
 			case 16:
-				$x[$i]['fase'] = 10;			
+				$x[$i]['fase'] = 10;	
+				$x[$i]['inicio'] = date('Y-m-d', strtotime($x[13]['inicio']. ' + 14 days'));
+				$x[$i]['fim'] = date('Y-m-d', strtotime($x[15]['inicio']. ' + 13 days'));		
 			break;
 
 
@@ -913,7 +927,7 @@ function retornaNota($id, $obj){
 	
 	
 	if(!$resultado){
-		echo "Você ainda não enviou relatório com nota de avaliação";
+		echo "<p class=\"lead bg-primary\">Você ainda não enviou relatório com nota de avaliação</p>";
 	}else{
 		echo "
 		<div class=\"table-responsive center-block\" style=\"width:30%;\" >
@@ -944,8 +958,11 @@ function gravarLog($log, $idUsuario){ //grava na tabela ig_log os inserts e upda
 }
 
 function emailTreinador($funcao, $nome, $email = null){//ENVIA EMAIL DE NOVO RELATÓRIO - TROCAR PRO DO CAIO
+		
+		$user = get_currentuserinfo();
+		
 		if($email == null){
-			$to = "thiagonegro@gmail.com";
+			$to = "thiagonegro@gmail.com, caio@ialtaperformance.com";
 		}else{
 			$to = $email;
 		}
@@ -966,14 +983,14 @@ function emailTreinador($funcao, $nome, $email = null){//ENVIA EMAIL DE NOVO REL
 		break;
 		case "nivelinserido":
 			$subject = utf8_decode("O seu treinador avaliou seu objetivo");
-			$txt = "Acesse o sistema para visualizar:http://ialtaperformance.com/login";
+			$txt = "Olá ". $user->user_firstname . "! \n\n Acabamos de avaliar o seu objetivo. Dê uma olhada na sua área interna do participante: http://ialtaperformance.com/login . Estamos ansiosos para que você inicie seu treinamento! \n\n Nos vemos em breve! \n Um grande abraço \n\n \"Uma longa caminhada começa com o primeiro passo.\"";
 		break;
 		case "segunda":
 			$subject = utf8_decode("Não se esqueça de mandar seu relatório de fase.");
 			$txt = "Acesse o sistema para visualizar:http://ialtaperformance.com/login";
 		break;
 		}
-		$x = mail($to,$subject,$txt,$headers);
+		$x = mail($to,$subject,nl2br($txt),$headers);
 		return $x;
 }
 

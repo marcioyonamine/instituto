@@ -38,8 +38,9 @@
       </form>
 	  -->
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="http://ialtaperformance.com" target="_blank" title="Instituto de Alta Performance">Visitar o site</a></li>
-        <li><a href="indicacao.php" target="_self" title="Indique um amigo">Indique um amigo</a></li>
+        <li><a href="http://ialtaperformance.com" target="_blank" title="Instituto de Alta Performance">Visitar Site</a></li>
+        <li><a href="indicacao.php" target="_self" title="Indique um amigo">Convide um amigo</a></li>
+        <li><a href="https://docs.google.com/spreadsheets/d/15U0bOItK_oltuMT5z_OxOElVOcK2jZ5phFyd0K6wsPA/edit#gid=456464551" target="_blank" title="Sugestão de conteúdo">Sugestão de Conteúdo</a></li>
         <li><a href="contato.php" target="_self" title="Mensagem para o treinador">Falar com treinador</a></li>
         <li><a title="Sair" href="<?php echo wp_logout_url(); ?>">Sair</a></li>
       </ul>

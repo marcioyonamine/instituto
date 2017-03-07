@@ -64,11 +64,11 @@ $datas = retornaSemanas($objetivo['data_inicio']);
 			break;
 		}
 		
-		if ($fase_atual == '1'){?>
+		if ($fase_atual == '0'){?>
 			<h1>Parabéns!</h1>
 			<p class="lead">O seu treinamento começa oficialmente dia <?php echo exibirDataBrOrdem($datas[1]['inicio']) ?>. </p>
 			<?php }else{ ?>
-			<h1>Vamos em frente!</h1>			
+			<h1>Vamos em frente!</h1>	
 			<?php } ?>
 			
 			<p class="lead">
@@ -286,7 +286,12 @@ $datas = retornaSemanas($objetivo['data_inicio']);
 		<?php 
 		$sem = retornaSemana($obj['id']);
 		//echo "$sem";
-		for($i = $sem + 1; $i <= $sem + 1 AND $i > 0; $i--){ ?>
+		$f = 0;
+		for($i = $sem; $i <= $sem  AND $i > 0; $i--){ 
+		if($i != 6 && $i != 8 && $i != 10 && $i != 12 && $i != 14){	
+			
+			?>
+			
   
   
 
@@ -464,10 +469,10 @@ $datas = retornaSemanas($objetivo['data_inicio']);
 				 ?>
 				 
 				 
-     	<form action="relatorios.php?p=insere" method="post">
-            <input type="hidden" name="fase" value="<?php echo $datas[$i]['fase']; ?>">
-            <input type="hidden" name="objetivo" value="<?php echo $objetivo['id']; ?>">
-            <input type="hidden" name="semana" value="<?php echo $i; ?>">
+     	<form action="relatorios.php?p=insere&fase=<?php echo $datas[$i]['fase'] . "&semana=" . $i; ?>" method="post">
+            <input type="hidden" name="fase" value="<?php echo $datas[$i]['fase']; ?>" />
+            <!--<input type="hidden" name="objetivo" value="<?php echo $objetivo['id']; ?>" />-->
+            <!--<input type="hidden" name="semana" value="<?php echo $i; ?>" />-->
             
             <?php  if($current_date != $data_envio_relatorio && $current_date !=$data_envio_relatorio2  ){ echo "<p class=\"alert alert-warning\">Você só pode enviar o relatório no final da fase:" . exibirDataBrOrdem($data_envio_relatorio) ."</p>";}
             ?>
@@ -490,8 +495,9 @@ $datas = retornaSemanas($objetivo['data_inicio']);
         				
         				<h1>Relatório</h1>
         				<p>Objetivo: <?php echo $obj['objetivo']; ?> (Nível <?php echo $obj['nivel']; ?>)</p>
-        				<p>Semana <?php echo $i; ?> Fase:  <?php echo $datas[$i]['fase']; ?> (<?php echo exibirDataBr($datas[$i]['inicio']) ?>  a <?php echo exibirDataBr($datas[$i]['fim']) ?>)</p>
-						<p>Desafios: <?php echo $num; ?></p>
+        				<p>Preencha o relatório da fase: <?php $fase_atual = verificaFase($obj['id']); echo $fase_atual; ?> 
+        				<!--(<?php echo exibirDataBr($datas[$i]['inicio']) ?>  a <?php echo exibirDataBr($datas[$i]['fim']) ?>)</p>
+						<p>Desafios: <?php echo $num; ?></p>-->
 			
 			<?php
 			while ($x = mysqli_fetch_array($query_lista)) {
@@ -499,7 +505,7 @@ $datas = retornaSemanas($objetivo['data_inicio']);
 				echo "+ " . $desafio['titulo'] . "<br />";
 			}
 
-			$sql_lei = "SELECT * FROM relatorio_semanal WHERE objetivo = '" . $_GET['obj'] . "' AND semana = '" . $_GET['sem'] . "'";
+			$sql_lei = "SELECT * FROM relatorio_semanal WHERE objetivo = '" . $objetivo['id'] . "' AND semana = '" . $i . "'";
 			$query_lei = mysqli_query($con, $sql_lei);
 			$lei = mysqli_fetch_array($query_lei);
 			?>
@@ -532,11 +538,13 @@ $datas = retornaSemanas($objetivo['data_inicio']);
                 
                 <?php } //finaliza o if
 				echo "</div><hr>";
+				}
 				}//finaliza o for
 				?>	
 			</div>
 			</div>
 	</div>
+	
 
 
 
@@ -644,12 +652,19 @@ $con = bancoMysqli();
 $obj = 	ultObj($user->ID);
 $objetivo = verificaObjetivo($user->ID);
 $datas = retornaSemanas($objetivo['data_inicio']);
-if(isset($_GET['semana'])){
-	$i = $_GET['semana'];
+if(isset($_GET['fase'])){
+	$i = $_GET['fase'];
 }else{
-	$i = $_POST['semana'];
+	$i = $_POST['fase'];
+	var_dump($_POST);
 }
-$sql_lista = "SELECT * FROM iap_aceite WHERE fase = '".$datas[$i]['fase']."' AND objetivo = '".$objetivo['id']."'";
+if(isset($_GET['semana'])){
+	$s = $_GET['semana'];
+}else{
+	$s = $_POST['semana'];
+	var_dump($_POST);
+}
+$sql_lista = "SELECT * FROM iap_aceite WHERE fase = '". $i ."' AND objetivo = '".$objetivo['id']."'";
 $query_lista = mysqli_query($con,$sql_lista);
 $num = mysqli_num_rows($query_lista);
 ?>
@@ -768,9 +783,9 @@ $num = mysqli_num_rows($query_lista);
 			</p>           
             
 			<p class="lead">
-            <input type="hidden" name="semana" value="<?php echo $_POST['semana']; ?>">
-            <input type="hidden" name="fase" value="<?php echo $_POST['fase']; ?>">
-            <input type="hidden" name="objetivo" value="<?php echo $_POST['objetivo']; ?>">
+            <input type="hidden" name="semana" value="<?php echo $s; ?>">
+            <input type="hidden" name="fase" value="<?php echo $i; ?>">
+            <input type="hidden" name="objetivo" value="<?php echo $obj['id']; ?>">
 			<input class="btn-primary center-block" name="insere_relatorio" type="submit" value="Enviar relatório" />
 			</p>
 			

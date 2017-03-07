@@ -35,18 +35,19 @@
 		<?php }else{
 			$obj = 	ultObj($user->ID);
 			?> 
-		<p class="lead">Você está na <strong>Fase 
+		<p class="lead">Você está na fase 
 			
 			<?php $fase_atual = verificaFase($obj['id']);
 				if($fase_atual == '0' || $fase_atual == null){
-						echo " inicial";
+						echo " inicial do treinamento. Seus autodesafios começarão na próxima segunda-feira, que é o dia que você deve escolher o seu primeiro desafio.</p>";
 					}else{
-						echo $fase_atual; 
+						$datas = retornaSemanas($objetivo['data_inicio']);
+						echo $fase_atual . " do treinamento. Esta fase termina em " . exibirDataBrOrdem($datas[$fase_atual]['fim']) . ".</p>"; 
 					}
 				
 			?>
 				
-				</strong> do treinamento. Esta fase termina em <?php echo exibirDataBrOrdem(nextMonday(date('Y-m-d'))); ?>.</p>
+				 
 		<p class="lead">O seu objetivo para este treinamento é:<strong> <?php echo $objetivo['objetivo']; ?></strong>.</p>
 		<p class="lead">O seu próximo evento agendado será em: 
 			<?php 
@@ -97,15 +98,15 @@
           <?php 
 		  }elseif($adv == 1){
 		  ?>
-          <p class="text-success">Texto 1 adv! </p>
+          <p class="text-warning"><strong>Você tem 1 advertência!</strong><br />Ops, algo não saiu conforme o combinado. =/ <br />Mas não se preocupe! Organize-se para conseguir cumprir com o combinado e alcançar o seu objetivo.</p>
           <?php 
 		  }elseif($adv == 2){
 		  ?>
-          <p class="text-success">Texto 2 adv</p>
+          <p class="text-warning"><strong>Você tem 2 advertências!</strong><br />Humm, algo não está legal. <br />Confira as suas próximas tarefas aqui na <a href="agenda.php" title="Eventos do Instituto">agenda</a> e organize melhor a sua rotina. <br />Lembre-se a disciplina é a melhor ferramenta para conquistarmos qualquer coisa.</p>
           <?php 
 		  }elseif($adv >= 3){
 		  ?>
-          <p class="text-success">Texto 3 adv</p>
+          <p class="text-danger"><strong>Você tem 3 advertências!</strong><br />Ops, o que aconteceu? Está tudo bem?<br /> Melhor falar com o seu treinador né? <a href="contato.php" title="Fale com seu treinador">Clique aqui</a>.</p>
 
           <?php 
 		  }
@@ -118,7 +119,7 @@
 			//echo $fase_anterior . "<br>";
           	$usuario = $user->ID;
           	
-			if($fase_anterior == 0){
+			if($fase_atual == 0 || $fase_atual == 1){
 			echo "<p>Ao final de cada fase, não se esqueça de enviar um relatório para o treinador de como foram os desafios para você.</p>
 				<p><a class=\"btn btn-primary\" href=\"desafio.php\" role=\"button\">Ir para Desafios &raquo;</a></p>
 				";			
@@ -150,7 +151,7 @@
           ?>          
           <p>Sua nota para os desafios na fase anterior foi <?php echo $recupera_nota['iap_rel_nota_desafios']; ?>. 
           	<?php
-          		if($recupera_nota > 0 && $recupera_nota<=5){
+          		if($recupera_nota >= 0 && $recupera_nota<=5){
           			echo "Algo não está legal né, " . $user->user_firstname . "? Essa é a oportunidade para você observar o ego agindo e vencê-lo! Pegue os autodesafios que fazem mais sentido, não há certo ou errado, apenas observação e coragem, lembre-se disso. Siga em frente é normal termos algumas recaídas!</p>
           <p><a class=\"btn btn-primary\" href=\"desafio.php\" role=\"button\">Ir para Desafios &raquo;</a></p>";
 		  
