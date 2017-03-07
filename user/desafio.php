@@ -107,7 +107,8 @@
 	<?php 
 	$sem = retornaSemana($obj['id']);
 	//echo "$sem";
-	for($i = $sem; $i <= $sem AND $i > 0; $i--){?>
+	for($i = $sem; $i <= $sem  AND $i > 0; $i--){ 
+		if($i != 6 && $i != 8 && $i != 10 && $i != 12 && $i != 14){	?>
   
   
 
@@ -269,10 +270,11 @@
 	    </tbody>
           </table>
          </div>
-          
-          <?php } //for ?>
-           
           </div>
+          
+          <?php } //if
+				} //for ?>
+           
           </div>
             	 		
    		<!--<p class="lead">O seu treinamento terminará em <strong> <?php echo exibirDataBr($des[1]['inicio']) ?>  a <?php echo exibirDataBr($des[16]['fim']) ?> </strong>.</p>-->     
@@ -864,12 +866,20 @@
 		
 	gravarLog($sql_insere, $user->ID);
 	$des = recuperaDados("iap_desafio",$caixa[$i],"id");
-	$mensagem .= "<b>".$des['titulo']."</b><br />";
+	//$mensagem .= "<b>".$des['titulo']."</b><br />";
 	if($prox == 1){ // atualiza a tabela objetivo
 	$sql_obj = "UPDATE iap_objetivo SET data_inicio = '$hoje' WHERE id = '".$objetivo['id']."'";
 	$query_obj = mysqli_query($con,$sql_obj);
 	if($query_obj){
-	$mensagem .= " ";
+	$mensagem .= "<h1>Desafios</h1>
+        <p class=\"lead\">Muito bem! Os desafios que você escolheu estão listados abaixo.</p>
+        	<p class=\"lead\">
+        	Para te ajudar no cumprimento dos desafios é importante você definir qual será o Foco (ser, fazer, ter) da sua Consciência e os Corpos (físico, emocional, mental e espiritual).</p>
+        	<p class=\"lead\">
+        	A ferramenta principal para desarmar o ego é a disciplina. Para isso, defina qual será a frequência e a intensidade para cada desafio.</p>
+        	<p class=\"lead\">
+        		Se tiver dúvidas, <a class=\"lightbox\" href=\"#goofy\">clique aqui</a> para ler a explicação detalhada.
+        	</p>";
 		gravarLog($sql_insere, $user->ID);
 	}else{
 	$mensagem .= "Erro ao atualizar objetivo.<br />";
@@ -894,15 +904,7 @@
 			include '../inc/menu-principal.php';
  ?>
         <div class="jumbotron">
-        <h1>Desafios</h1>
-        <p class="lead">Muito bem! Os desafios que você escolheu estão listados abaixo.</p>
-        	<p class="lead">
-        	Para te ajudar no cumprimento dos desafios é importante você definir qual será o Foco (ser, fazer, ter) da sua Consciência e os Corpos (físico, emocional, mental e espiritual).</p>
-        	<p class="lead">
-        	A ferramenta principal para desarmar o ego é a disciplina. Para isso, defina qual será a frequência e a intensidade para cada desafio.</p>
-        	<p class="lead">
-        		Se tiver dúvidas, <a class="lightbox" href="#goofy">clique aqui</a> para ler a explicação detalhada.
-        	</p>
+        
 	  	<p><?php 
 			if (isset($mensagem)) {echo $mensagem;
 			}
@@ -912,7 +914,7 @@
 
  <form action="relatorios.php" method="post" onsubmit="return validaCorpos();" name="form_corpos">
 <?php 
-		if($verifica['bool_des'] == 1){		
+			if($verifica['bool_des'] == 1){		
 			$sql_lista = "SELECT * FROM iap_aceite WHERE fase = '".$datas[$i]['fase']."' AND objetivo = '".$objetivo['id']."'";
 			$query_lista = mysqli_query($con,$sql_lista);
 			$num = mysqli_num_rows($query_lista);
@@ -970,9 +972,11 @@
 
 		<?php 
 			$sql_lista2 = "SELECT * FROM iap_aceite WHERE fase = '".$datas[$i]['fase']."' AND objetivo = '".$objetivo['id']."'";
+			//echo $sql_lista2;
 			$query_lista2 = mysqli_query($con,$sql_lista2);
 			while($x = mysqli_fetch_array($query_lista2)){ 
 				$desafio = recuperaDados("iap_desafio",$x['desafio'],"id");
+				//var_dump($desafio);
 				
 				$desafio_antigo = recDes($objetivo['id'],$datas[$i]['fase'] - 1);
 				if(in_array($desafio['id'],$desafio_antigo)){					
@@ -982,8 +986,8 @@
 				}else{
 					$sql_rec = "SHOW COLUMNS FROM iap_aceite";
 					$query_rec = mysqli_query($con,$sql_rec);
-					while($x = mysqli_fetch_assoc($query_rec)){	
-						$desrec[$x['Field']] = "";	
+					while($w = mysqli_fetch_assoc($query_rec)){	
+						$desrec[$w['Field']] = "";	
 					}
 				}
 				
