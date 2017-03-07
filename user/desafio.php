@@ -973,6 +973,21 @@
 			$query_lista2 = mysqli_query($con,$sql_lista2);
 			while($x = mysqli_fetch_array($query_lista2)){ 
 				$desafio = recuperaDados("iap_desafio",$x['desafio'],"id");
+				
+				$desafio_antigo = recDes($objetivo['id'],$datas[$i]['fase'] - 1);
+				if(in_array($desafio['id'],$desafio_antigo)){					
+					$sql_rec = "SELECT * FROM iap_aceite WHERE desafio = '".$desafio['id']."' AND fase = '".($datas[$i]['fase'] - 1)."'";
+					$query_rec = mysqli_query($con,$sql_rec);
+					$desrec = mysqli_fetch_array($query_rec);	
+				}else{
+					$sql_rec = "SHOW COLUMNS FROM iap_aceite";
+					$query_rec = mysqli_query($con,$sql_rec);
+					while($x = mysqli_fetch_assoc($query_rec)){	
+						$desrec[$x['Field']] = "";	
+					}
+				}
+				
+				
 			?>		
 			
                       <table class="table table-striped" style="text-align: left;">
@@ -985,23 +1000,23 @@
   	</td>
   	
   	<td>
-  		<strong>Foco: </strong><br /><input id="ter_<?php echo $x['id']; ?>" type="checkbox" name="ter_<?php echo $x['id']; ?>"> Ter&nbsp;&nbsp;&nbsp;<input id="fazer_<?php echo $x['id']; ?>" type="checkbox" name="fazer_<?php echo $x['id']; ?>"> Fazer&nbsp;&nbsp;&nbsp;<input id="ser_<?php echo $x['id']; ?>" type="checkbox" name="ser_<?php echo $x['id']; ?>"> Ser
+  		<strong>Foco: </strong><br /><input id="ter_<?php echo $x['id']; ?>" type="checkbox" name="ter_<?php echo $x['id']; ?>" <?php echo checadoUnitario($desrec['ter'],1); ?> > Ter&nbsp;&nbsp;&nbsp;<input id="fazer_<?php echo $x['id']; ?>" type="checkbox" name="fazer_<?php echo $x['id']; ?>" <?php echo checadoUnitario($desrec['fazer'],1); ?>> Fazer&nbsp;&nbsp;&nbsp;<input id="ser_<?php echo $x['id']; ?>" type="checkbox" name="ser_<?php echo $x['id']; ?>" <?php echo checadoUnitario($desrec['ser'],1); ?>> Ser
   	</td>
   	
   	<td colspan="2">
-  		<strong>Corpos: </strong><br /><input id="fisico_<?php echo $x['id']; ?>" type="checkbox" name="fisico_<?php echo $x['id']; ?>"> Físico&nbsp;&nbsp;&nbsp;<input id="emocional_<?php echo $x['id']; ?>" type="checkbox" name="emocional_<?php echo $x['id']; ?>"> Emocional&nbsp;&nbsp;&nbsp;<input id="mental_<?php echo $x['id']; ?>" type="checkbox" name="mental_<?php echo $x['id']; ?>">Mental&nbsp;&nbsp;&nbsp;<input id="espiritual_<?php echo $x['id']; ?>" type="checkbox" name="espiritual_<?php echo $x['id']; ?>"> Espiritual
+  		<strong>Corpos: </strong><br /><input id="fisico_<?php echo $x['id']; ?>" type="checkbox" name="fisico_<?php echo $x['id']; ?>" <?php echo checadoUnitario($desrec['fisico'],1); ?>> Físico&nbsp;&nbsp;&nbsp;<input id="emocional_<?php echo $x['id']; ?>" type="checkbox" name="emocional_<?php echo $x['id']; ?>" <?php echo checadoUnitario($desrec['emocional'],1); ?>> Emocional&nbsp;&nbsp;&nbsp;<input id="mental_<?php echo $x['id']; ?>" type="checkbox" name="mental_<?php echo $x['id']; ?>" <?php echo checadoUnitario($desrec['mental'],1); ?>>Mental&nbsp;&nbsp;&nbsp;<input id="espiritual_<?php echo $x['id']; ?>" type="checkbox" name="espiritual_<?php echo $x['id']; ?>" <?php echo checadoUnitario($desrec['espiritual'],1); ?>> Espiritual
   	</td>  	
   </tr>
   
   <tr>  	
   	<td>
-  		<strong>Frequência: </strong><br /><input id="frequencia_<?php echo $x['id']; ?>" class="form-control" type="text" name="frequencia_<?php echo $x['id']; ?>" />
+  		<strong>Frequência: </strong><br /><input id="frequencia_<?php echo $x['id']; ?>" class="form-control" type="text" name="frequencia_<?php echo $x['id']; ?>" value="<?php echo $desrec['frequencia']; ?>"/>
   	</td>
   	<td>
-  		<strong>Intensidade: </strong><br /><input id="intensidade_<?php echo $x['id']; ?>" class="form-control" type="text" name="intensidade_<?php echo $x['id']; ?>" />
+  		<strong>Intensidade: </strong><br /><input id="intensidade_<?php echo $x['id']; ?>" class="form-control" type="text" name="intensidade_<?php echo $x['id']; ?>" value="<?php echo $desrec['intensidade']; ?>"/>
   	</td>
   	<td>
-  		<strong>Âncora/Lembrete: </strong><br /><input id="lembrete_<?php echo $x['id']; ?>" class="form-control" type="text" name="lembrete_<?php echo $x['id']; ?>" />
+  		<strong>Âncora/Lembrete: </strong><br /><input id="lembrete_<?php echo $x['id']; ?>" class="form-control" type="text" name="lembrete_<?php echo $x['id']; ?>" value="<?php echo $desrec['lembrete']; ?>"/>
   	</td>  	
   	<td style="vertical-align: bottom;">
   		

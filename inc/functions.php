@@ -595,6 +595,8 @@ function checado($x,$array){
 	}
 }
 
+
+
 function marcaX($x){
 	if($x == 1){
 		return "X";		
@@ -1106,6 +1108,23 @@ function vGlobais(){
 		var_dump($_SESSION);
 		echo "</pre>";	
 	}
+}
+
+function recDes($obj,$fase){
+	$con = bancoMysqli();
+	$sql = "SELECT desafio FROM iap_aceite WHERE objetivo = '$obj' AND fase = '$fase'";
+	$query = mysqli_query($con,$sql);
+	$caixa = array();
+	while($x = mysqli_fetch_array($query)){
+		array_push($caixa, $x['desafio']);		
+	}
+	return $caixa;
+}
+
+function checadoUnitario($x,$y){
+	if($x == $y){
+		return "checked='checked'";	
+	}	
 }
 
 ?>
