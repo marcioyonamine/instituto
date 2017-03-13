@@ -103,7 +103,7 @@ var eventorganiser = {"ajaxurl":"http:\/\/amarelinha.cc\/wordpress\/wp-admin\/ad
 	cursor:pointer;
 	font-weight:bold;
 	font-size:14px;
-	color:#23527c; 
+	/*color:#23527c;*/ 
 	margin-top:15px;
 	}
 

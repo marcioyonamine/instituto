@@ -151,11 +151,11 @@
           ?>          
           <p>Sua nota para os desafios na fase anterior foi <?php echo $recupera_nota['iap_rel_nota_desafios']; ?>. 
           	<?php
-          		if($recupera_nota >= 0 && $recupera_nota<=5){
+          		if($recupera_nota['iap_rel_nota_desafios'] >= 0 && $recupera_nota['iap_rel_nota_desafios']<=5){
           			echo "Algo não está legal né, " . $user->user_firstname . "? Essa é a oportunidade para você observar o ego agindo e vencê-lo! Pegue os autodesafios que fazem mais sentido, não há certo ou errado, apenas observação e coragem, lembre-se disso. Siga em frente é normal termos algumas recaídas!</p>
           <p><a class=\"btn btn-primary\" href=\"desafio.php\" role=\"button\">Ir para Desafios &raquo;</a></p>";
 		  
-          		}elseif($recupera_nota >=6 && $recupera_nota <= 8){
+          		}elseif($recupera_nota['iap_rel_nota_desafios'] >=6 && $recupera_nota['iap_rel_nota_desafios'] <= 8){
           			echo "Legal " . $user->user_firstname . ", você está na direção, veja em que pontos que você pode melhorar e coloque mais foco nos seus desafios e na observação, assim você terá mais resultados. Lembre-se, seu objetivo só depende de você vencer o seu ego. Imprima o lembrete dos desafios para facilitar no seu dia a dia.</p>
           <p><a class=\"btn btn-primary\" href=\"desafio.php\" role=\"button\">Ir para Desafios &raquo;</a></p>";
           

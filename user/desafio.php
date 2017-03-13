@@ -93,7 +93,7 @@
 			}
 			
 				
- ?> </strong> do seu treinamento, e abaixo estão os seus desafios para essa fase:</p>
+ ?> </strong> do seu treinamento.</p>
   	 		
   	 		<p> <?php
 				if (isset($mensagem)) { echo $mensagem;
@@ -254,6 +254,7 @@
 					MENTE: Meditar / Orar / Autoconhecimento
 
 				<a class="lightbox-close" href="#"></a>
+				</div>
                 </td>
                 <td><strong>Frequência:</strong> <br /><?php echo $x['frequencia']; ?> </td>
       			<td><strong>Intensidade:</strong> <br /><?php echo $x['intensidade']; ?> </td>
@@ -262,20 +263,25 @@
            </tr>
        
 			<tr><td colspan="4" style="background-color: #d7e2ef;">&nbsp;</td></tr>      
-			 <?php } //while
-				} //if
-			  ?>
+			 <?php } //while ?>
                              
 
 	    </tbody>
           </table>
-         </div>
-          </div>
+       </div>  
           
-          <?php } //if
-				} //for ?>
+          
+          <?php 
+				} //if ?> 
+        
+			<?php	}
+			//}if
+			
+			 }//for ?>
+			</div><hr>
+			</div>	
            
-          </div>
+          
             	 		
    		<!--<p class="lead">O seu treinamento terminará em <strong> <?php echo exibirDataBr($des[1]['inicio']) ?>  a <?php echo exibirDataBr($des[16]['fim']) ?> </strong>.</p>-->     
    		<!--<p class="lead">Serão 16 semanas com 10 fases.</p>-->
@@ -597,7 +603,7 @@
  ?> </b>.</p>
 				 <p class="lead">Para a sua próxima fase (<strong>Fase <?php $fase_mostra = $fase_atual + 1;
 					echo $fase_mostra;
- ?></strong>), você deve <strong>manter o seu desafio inicial de Nível 1</strong>, e ainda escolher um novo desafio do nível do seu objetivo <em>(<?php echo $objetivo . $objetivo['nivel'] ?>)</em>.</p> 
+ ?></strong>), você deve <strong>manter o seu desafio inicial de Nível 1</strong>, e ainda escolher um novo desafio do nível do seu objetivo <em>(<?php echo $objetivo['objetivo']; ?>)</em>.</p> 
 				 	<p class="lead">O seu total de desafios para essa próxima fase será 2.</p>
 				 <p class="lead">
 				 Abaixo estão listados os desafios do nível do seu objetivo.  </p>
