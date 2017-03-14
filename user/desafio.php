@@ -93,7 +93,7 @@
 			}
 			
 				
- ?> </strong> do seu treinamento, e abaixo estão os seus desafios para essa fase:</p>
+ ?> </strong> do seu treinamento.</p>
   	 		
   	 		<p> <?php
 				if (isset($mensagem)) { echo $mensagem;
@@ -107,7 +107,8 @@
 	<?php 
 	$sem = retornaSemana($obj['id']);
 	//echo "$sem";
-	for($i = $sem; $i <= $sem AND $i > 0; $i--){?>
+	for($i = $sem; $i <= $sem  AND $i > 0; $i--){ 
+		if($i != 6 && $i != 8 && $i != 10 && $i != 12 && $i != 14){	?>
   
   
 
@@ -253,6 +254,7 @@
 					MENTE: Meditar / Orar / Autoconhecimento
 
 				<a class="lightbox-close" href="#"></a>
+				</div>
                 </td>
                 <td><strong>Frequência:</strong> <br /><?php echo $x['frequencia']; ?> </td>
       			<td><strong>Intensidade:</strong> <br /><?php echo $x['intensidade']; ?> </td>
@@ -261,19 +263,25 @@
            </tr>
        
 			<tr><td colspan="4" style="background-color: #d7e2ef;">&nbsp;</td></tr>      
-			 <?php } //while
-				} //if
-			  ?>
+			 <?php } //while ?>
                              
 
 	    </tbody>
           </table>
-         </div>
+       </div>  
           
-          <?php } //for ?>
+          
+          <?php 
+				} //if ?> 
+        
+			<?php	}
+			//}if
+			
+			 }//for ?>
+			</div><hr>
+			</div>	
            
-          </div>
-          </div>
+          
             	 		
    		<!--<p class="lead">O seu treinamento terminará em <strong> <?php echo exibirDataBr($des[1]['inicio']) ?>  a <?php echo exibirDataBr($des[16]['fim']) ?> </strong>.</p>-->     
    		<!--<p class="lead">Serão 16 semanas com 10 fases.</p>-->
@@ -595,7 +603,7 @@
  ?> </b>.</p>
 				 <p class="lead">Para a sua próxima fase (<strong>Fase <?php $fase_mostra = $fase_atual + 1;
 					echo $fase_mostra;
- ?></strong>), você deve <strong>manter o seu desafio inicial de Nível 1</strong>, e ainda escolher um novo desafio do nível do seu objetivo <em>(<?php echo $objetivo . $objetivo['nivel'] ?>)</em>.</p> 
+ ?></strong>), você deve <strong>manter o seu desafio inicial de Nível 1</strong>, e ainda escolher um novo desafio do nível do seu objetivo <em>(<?php echo $objetivo['objetivo']; ?>)</em>.</p> 
 				 	<p class="lead">O seu total de desafios para essa próxima fase será 2.</p>
 				 <p class="lead">
 				 Abaixo estão listados os desafios do nível do seu objetivo.  </p>
@@ -864,12 +872,20 @@
 		
 	gravarLog($sql_insere, $user->ID);
 	$des = recuperaDados("iap_desafio",$caixa[$i],"id");
-	$mensagem .= "<b>".$des['titulo']."</b><br />";
+	//$mensagem .= "<b>".$des['titulo']."</b><br />";
 	if($prox == 1){ // atualiza a tabela objetivo
 	$sql_obj = "UPDATE iap_objetivo SET data_inicio = '$hoje' WHERE id = '".$objetivo['id']."'";
 	$query_obj = mysqli_query($con,$sql_obj);
 	if($query_obj){
-	$mensagem .= " ";
+	$mensagem .= "<h1>Desafios</h1>
+        <p class=\"lead\">Muito bem! Os desafios que você escolheu estão listados abaixo.</p>
+        	<p class=\"lead\">
+        	Para te ajudar no cumprimento dos desafios é importante você definir qual será o Foco (ser, fazer, ter) da sua Consciência e os Corpos (físico, emocional, mental e espiritual).</p>
+        	<p class=\"lead\">
+        	A ferramenta principal para desarmar o ego é a disciplina. Para isso, defina qual será a frequência e a intensidade para cada desafio.</p>
+        	<p class=\"lead\">
+        		Se tiver dúvidas, <a class=\"lightbox\" href=\"#goofy\">clique aqui</a> para ler a explicação detalhada.
+        	</p>";
 		gravarLog($sql_insere, $user->ID);
 	}else{
 	$mensagem .= "Erro ao atualizar objetivo.<br />";
@@ -894,15 +910,7 @@
 			include '../inc/menu-principal.php';
  ?>
         <div class="jumbotron">
-        <h1>Desafios</h1>
-        <p class="lead">Muito bem! Os desafios que você escolheu estão listados abaixo.</p>
-        	<p class="lead">
-        	Para te ajudar no cumprimento dos desafios é importante você definir qual será o Foco (ser, fazer, ter) da sua Consciência e os Corpos (físico, emocional, mental e espiritual).</p>
-        	<p class="lead">
-        	A ferramenta principal para desarmar o ego é a disciplina. Para isso, defina qual será a frequência e a intensidade para cada desafio.</p>
-        	<p class="lead">
-        		Se tiver dúvidas, <a class="lightbox" href="#goofy">clique aqui</a> para ler a explicação detalhada.
-        	</p>
+        
 	  	<p><?php 
 			if (isset($mensagem)) {echo $mensagem;
 			}
@@ -912,7 +920,7 @@
 
  <form action="relatorios.php" method="post" onsubmit="return validaCorpos();" name="form_corpos">
 <?php 
-		if($verifica['bool_des'] == 1){		
+			if($verifica['bool_des'] == 1){		
 			$sql_lista = "SELECT * FROM iap_aceite WHERE fase = '".$datas[$i]['fase']."' AND objetivo = '".$objetivo['id']."'";
 			$query_lista = mysqli_query($con,$sql_lista);
 			$num = mysqli_num_rows($query_lista);
@@ -970,9 +978,11 @@
 
 		<?php 
 			$sql_lista2 = "SELECT * FROM iap_aceite WHERE fase = '".$datas[$i]['fase']."' AND objetivo = '".$objetivo['id']."'";
+			//echo $sql_lista2;
 			$query_lista2 = mysqli_query($con,$sql_lista2);
 			while($x = mysqli_fetch_array($query_lista2)){ 
 				$desafio = recuperaDados("iap_desafio",$x['desafio'],"id");
+				//var_dump($desafio);
 				
 				$desafio_antigo = recDes($objetivo['id'],$datas[$i]['fase'] - 1);
 				if(in_array($desafio['id'],$desafio_antigo)){					
