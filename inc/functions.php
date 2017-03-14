@@ -897,7 +897,11 @@ function retornaSemana($id){
 		$x = $i;
 		}			
 	}
-	return $x;
+	if($x != 0){
+		return TRUE;
+	}else{
+		return FALSE;		
+	}
 }
 
 function select($id,$sel){
