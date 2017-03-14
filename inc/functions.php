@@ -897,10 +897,28 @@ function retornaSemana($id){
 		$x = $i;
 		}			
 	}
+	return $x;
+}
+
+function retornaSemanaSegunda($id){
+	$hoje = date('Y-m-d');
+	$ult = recuperaDados("iap_objetivo",$id,"id");
+	//echo "<h1>$id ".$ult['data_inicio']."</h1>";
+	$semana = retornaSemanas($ult['data_inicio']);
+	$x = 0;
+	for($i = 1; $i <= 16; $i++){
+		//echo strtotime($semana[$i]['inicio'])." - ".strtotime($hoje)." - ".strtotime($semana[$i]['fim']) . "<br>";
+		//echo ($semana[$i]['inicio'])." - ".($hoje)." - ".($semana[$i]['fim']) . "<br>";
+		if(strtotime($semana[$i]['inicio']) <= strtotime($hoje) AND
+		 strtotime($semana[$i]['fim']) >= strtotime($hoje)){
+		$x = $i;
+		}			
+	}
 	if($x != 0){
 		return TRUE;
 	}else{
-		return FALSE;		
+		return FALSE;
+		
 	}
 }
 

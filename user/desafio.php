@@ -17,7 +17,7 @@
 
 	} else {
 		$p = "inicio";
-		if (verificaSegunda($objetivo['id'], retornaSemana($user -> ID)) == TRUE) {
+		if (verificaSegunda($objetivo['id'], retornaSemanaSegunda($user -> ID)) == TRUE) {
 			$p = "insere";
 		}
 	}
