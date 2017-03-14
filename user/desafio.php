@@ -982,8 +982,8 @@
 				}else{
 					$sql_rec = "SHOW COLUMNS FROM iap_aceite";
 					$query_rec = mysqli_query($con,$sql_rec);
-					while($x = mysqli_fetch_assoc($query_rec)){	
-						$desrec[$x['Field']] = "";	
+					while($w = mysqli_fetch_assoc($query_rec)){	
+						$desrec[$w['Field']] = "";	
 					}
 				}
 				
