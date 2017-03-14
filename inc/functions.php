@@ -861,6 +861,7 @@ function verificaSegunda($objetivo,$semana){
 	$semana == '09' OR
 	$semana == '11' OR
 	$semana == '13' OR
+	$semana == '0' OR
 	$semana == '15'){
 		if($diasemana_numero == 1){ //verifica se é segunda-feira
 			$sql_desafios = "SELECT id,data_inicio,fase FROM iap_aceite WHERE objetivo = '$objetivo' ORDER BY data_inicio DESC LIMIT 0,1";
@@ -920,6 +921,7 @@ function retornaSemanaSegunda($id){
 		return FALSE;
 		
 	}
+	return $x;
 }
 
 function select($id,$sel){
