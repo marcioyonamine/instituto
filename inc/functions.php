@@ -849,7 +849,7 @@ function verificaSegunda($objetivo,$semana){
 	$sql_semana = "SELECT id,data_aceite FROM iap_aceite WHERE objetivo = '$objetivo' ORDER BY id ASC LIMIT 0,1";
 	$query_semana = mysqli_query($con,$sql_semana);
 	$semana_inicio = mysqli_fetch_array($query_semana);
-	
+	if(mysqli_num_rows($query_semana) != 0) {
 	$sem = retornaSemanas($semana_inicio['data_aceite']);
 	
 	if($semana == 01 OR	//verifica se a semana permite abertura de desafios
@@ -861,7 +861,6 @@ function verificaSegunda($objetivo,$semana){
 	$semana == '09' OR
 	$semana == '11' OR
 	$semana == '13' OR
-	$semana == '0' OR
 	$semana == '15'){
 		if($diasemana_numero == 1){ //verifica se é segunda-feira
 			$sql_desafios = "SELECT id,data_inicio,fase FROM iap_aceite WHERE objetivo = '$objetivo' ORDER BY data_inicio DESC LIMIT 0,1";
@@ -881,6 +880,12 @@ function verificaSegunda($objetivo,$semana){
 	}else{
 		return FALSE;
 			
+	}
+	}elseif($semana == 0){
+		return TRUE;	
+	}else{
+		return FALSE;	
+		
 	}
 }
 
@@ -915,12 +920,7 @@ function retornaSemanaSegunda($id){
 		$x = $i;
 		}			
 	}
-	if($x != 0){
-		return TRUE;
-	}else{
-		return FALSE;
-		
-	}
+
 	return $x;
 }
 

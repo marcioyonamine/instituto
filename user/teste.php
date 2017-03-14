@@ -3,15 +3,13 @@
 error_reporting(E_ALL); 
 
 require_once("../../wp-load.php"); //carrega WP
-require_once("../inc/functions.php"); //carrega as funcoes
 require_once("../inc/lib/fpdf/fpdf.php"); //carrega a biblioteca PDF
+include '../inc/header.php';
+	$con = bancoMysqli();
+	$objetivo = verificaObjetivo($user -> ID);
+var_dump(verificaSegunda($objetivo['id'], retornaSemana($user -> ID)));
 
-$con = bancoMysqli();
-					$sql_rec = "SHOW COLUMNS FROM iap_aceite";
-					$query_rec = mysqli_query($con,$sql_rec);
-					while($x = mysqli_fetch_assoc($query_rec)){	
-						$desrec[$x['Field']] = "";	
-					}
+
 echo "<pre>";
-print_r($desrec);
+//print_r($desrec);
 echo "</pre>";

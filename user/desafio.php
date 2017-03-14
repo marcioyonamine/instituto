@@ -11,12 +11,19 @@
 
 	$con = bancoMysqli();
 	$objetivo = verificaObjetivo($user -> ID);
+	
 
 	if (isset($_GET['p'])) {
 		$p = $_GET['p'];
 
 	} else {
 		$p = "inicio";
+		echo $objetivo['id'];
+		echo " - ";
+		echo retornaSemana($user -> ID);
+		echo verificaSegunda($objetivo['id'], retornaSemana($user -> ID));
+		
+		
 		if (verificaSegunda($objetivo['id'], retornaSemana($user -> ID)) == TRUE) {
 			$p = "insere";
 		}
