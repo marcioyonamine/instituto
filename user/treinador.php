@@ -70,7 +70,7 @@ $con = bancoMysqli();
 if(isset($_POST['idObj'])){
 	$objetivo = recuperaDados("iap_objetivo", $_POST['idObj'], "id");
 	$user_info = get_userdata($objetivo['usuario']);
-	$hoje = date('Y-m-d');
+	$hoje = $GLOBALS['hoje'];
 	$sql_atualiza = "UPDATE iap_objetivo SET nivel = '".$_POST['nivel']."' ,
 	data_inicio = '$hoje' , finalizado = '0' , treinador = '". $user->ID ."'
 	WHERE id = '".$_POST['idObj']."'";

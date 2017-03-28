@@ -18,13 +18,13 @@
 
 	} else {
 		$p = "inicio";
-		echo $objetivo['id'];
-		echo " - ";
-		echo retornaSemana($user -> ID);
-		echo verificaSegunda($objetivo['id'], retornaSemana($user -> ID));
+		//echo $objetivo['id'];
+		//echo " - ";
+		//echo retornaSemana($objetivo['id']);
+		//echo verificaSegunda($objetivo['id'], retornaSemana($user -> ID));
 		
 		
-		if (verificaSegunda($objetivo['id'], retornaSemana($user -> ID)) == TRUE) {
+		if (verificaSegunda($objetivo['id'], retornaSemana($objetivo['id'])) == TRUE) {
 			$p = "insere";
 		}
 	}
@@ -50,7 +50,7 @@
         <?php
 		$objetivo = verificaObjetivo($user->ID); 
 		// Mensagem inicial
-		if($objetivo == 0){ // verifica objetivo?>
+		if($objetivo == NULL){ // verifica objetivo?>
 			<p class="lead">Para liberar a escolha dos desafios, precisamos que você nos diga qual objetivo você quer alcançar com este treinamento.</p>
 			<p class="lead">Fizemos um vídeo explicativo para te ajudar a definir este objetivo.</p>
 			<p class="lead"><a href="objetivo.php">Assistir vídeo!</a></p>
@@ -112,10 +112,14 @@
     
     
 	<?php 
-	$sem = retornaSemana($obj['id']);
-	//echo "$sem";
-	for($i = $sem; $i <= $sem  AND $i > 0; $i--){ 
-		if($i != 6 && $i != 8 && $i != 10 && $i != 12 && $i != 14){	?>
+		$sem = retornaSemana($obj['id']);
+		//echo "$sem";
+		$f = 0;
+		$ultfase = verificaFase($obj['id']);
+		for($i = $sem; $i <= $sem  AND $i > 0; $i--){ 
+		if($i != 6 && $i != 8 && $i != 10 && $i != 12 && $i != 14){	
+			if($datas[$i]['fase'] <= $ultfase){
+			?>
   
   
 
@@ -146,9 +150,9 @@
         <div class="table-responsive" >
         	
           <table class="table table-striped" style="text-align: left;">
-          	
+          	<!--
             <thead>
-              <!--
+              
               <tr>
                 <th>Desafio</th>
                 <th>Nível</th>
@@ -163,8 +167,9 @@
                 <th>Emo</th>
                 <th>Men</th>
                 <th>Esp</th>
-              </tr>-->
+              </tr>
             </thead>
+            -->
             <tbody>
             	
             	
@@ -187,8 +192,8 @@
             
             <tr>               
                 <td><strong>Dúvidas?</strong><br />
-                	<a class="lightbox" href="#goofy"> Entenda como funciona</a>
-					<div class="lightbox-target" id="goofy">
+                	<a class="lightbox" href="#entenda"> Entenda como preencher</a>
+					<div class="lightbox-target" id="entenda">
 		
 					<h2>Medição dos Desafios</h2>
 					Nessa área vamos deixar o autodesafio palpáveis para conseguirmos mensurar o nosso desempenho com o nosso comprometimento.
@@ -278,15 +283,20 @@
        </div>  
           
           
-          <?php 
-				} //if ?> 
-        
-			<?php	}
-			//}if
+          <?php //}  
+          	} //if 
 			
-			 }//for ?>
-			</div><hr>
-			</div>	
+				}echo "</div><hr>";
+			}//if
+			
+				//}
+		//}
+				}//finaliza o for
+				
+				 ?>
+			</div>
+			</div>
+			</div>
            
           
             	 		
@@ -342,7 +352,7 @@
  ?></b>.</p>
 				 <p class="lead">Para a sua próxima fase (<strong>Fase <?php $fase_mostra = $fase_atual + 1;
 					echo $fase_mostra;
- ?></strong>), você deve <strong>PARAR com UM dos desafios que estava</strong>, deve MANTER DOIS desafios, e ainda escolher <strong>DOIS NOVOS</strong> desafios, sendo um do nível do seu objetivo <em>(<?php echo $objetivo['objetivo'] . ", " . "Nível: " . $objetivo['nivel'] ?>)</em>, um do nível abaixo do seu objetivo <em>(nível <?php echo $objetivo['nivel'] - 1; ?>)</em> e um do nível acima do seu objetivo <em>(nível <?php echo $objetivo['nivel'] + 1; ?>)</em>. </p>
+ ?></strong>), você deve <strong>PARAR com UM dos desafios que estava</strong>, deve MANTER DOIS desafios, e ainda escolher <strong>TRÊS NOVOS</strong> desafios, sendo um do nível do seu objetivo <em>(<?php echo $objetivo['objetivo'] . ", " . "Nível: " . $objetivo['nivel'] ?>)</em>, um do nível abaixo do seu objetivo <em>(nível <?php echo $objetivo['nivel'] - 1; ?>)</em> e um do nível acima do seu objetivo <em>(nível <?php echo $objetivo['nivel'] + 1; ?>)</em>. </p>
 				 	<p class="lead">O seu total de desafios para essa próxima fase será 5.</p>
 				 <p class="lead">
 				 Veja abaixo a lista de desafios.  </p>
@@ -547,12 +557,12 @@
 					break;
 			}
 		?>
-		<?php } // fim da condicao ?>
+		<?php }} // fim da condicao ?>
 
 		<?php } // não tem objetivo válido no sistema ?>
         
 		
-        <?php } ?>
+        <?php //} ?>
 
       </div>
       
@@ -576,7 +586,7 @@
 	$checados = matrizDesafios($objetivo['id'],$fase);
 	$obj = 	ultObj($user->ID);
  ?>
-
+ 
     <div class="container">
  		<?php
 		include '../inc/fixed-navbar-user.php';
@@ -586,6 +596,9 @@
  ?>
         <div class="jumbotron">
         <h1>Desafios</h1>
+		<div class="contador" style="position:fixed;bottom:0;right:0;width:10%;height:auto;background-color:#183f76;color:#ffffff;padding:6px;font-size:17px;">
+			[Contador de desafios]
+		</div>
 	  	<p><?php
 			if (isset($mensagem)) {echo $mensagem;
 			}
@@ -640,7 +653,7 @@
  ?></b>.</p>
 				 <p class="lead">Para a sua próxima fase (<strong>Fase <?php $fase_mostra = $fase_atual + 1;
 					echo $fase_mostra;
- ?></strong>), você deve <strong>PARAR com UM dos desafios que estava</strong>, deve MANTER DOIS desafios, e ainda escolher <strong>DOIS NOVOS</strong> desafios, sendo um do nível do seu objetivo <em>(<?php echo $objetivo['objetivo'] . ", " . "Nível: " . $objetivo['nivel'] ?>)</em>, um do nível abaixo do seu objetivo <em>(nível <?php echo $objetivo['nivel'] - 1; ?>)</em> e um do nível acima do seu objetivo <em>(nível <?php echo $objetivo['nivel'] + 1; ?>)</em>. </p>
+ ?></strong>), você deve <strong>PARAR com UM dos desafios que estava</strong>, deve MANTER DOIS desafios, e ainda escolher <strong>TRÊS NOVOS</strong> desafios, sendo um do nível do seu objetivo <em>(<?php echo $objetivo['objetivo'] . ", " . "Nível: " . $objetivo['nivel'] ?>)</em>, um do nível abaixo do seu objetivo <em>(nível <?php echo $objetivo['nivel'] - 1; ?>)</em> e um do nível acima do seu objetivo <em>(nível <?php echo $objetivo['nivel'] + 1; ?>)</em>. </p>
 				 	<p class="lead">O seu total de desafios para essa próxima fase será 5.</p>
 				 <p class="lead">
 				 Veja abaixo a lista de desafios.  </p>
@@ -745,7 +758,9 @@
 				<?php
 				break;
 				}
-		?>   
+		?>  
+
+		
  <form action="desafio.php?p=insere_options" method="post">
 
 <?php
@@ -757,6 +772,7 @@
 
 		case 1 :
 			//vai para fase 2
+			
 			geraDesafios(1, $checados);
 			geraDesafios($objetivo['nivel'], $checados);
 			break;
@@ -770,6 +786,17 @@
 			break;
 		case 3 :
 			//vai para fase 4
+			if($objetivo['nivel'] == 1) {
+				$tabelas = array($objetivo['nivel'],7);
+			}
+			elseif($objetivo['nivel'] == 7){
+				$tabelas = array($objetivo['nivel'],1);
+			}else{
+				$tabelas = array($objetivo['nivel'],$objetivo['nivel'] - 1);
+			}
+
+			geraDesafiosOutras($tabelas,$checados);
+
 
 			geraDesafios($objetivo['nivel'], $checados);
 			if ($objetivo['nivel'] == 1) {
@@ -786,6 +813,16 @@
 
 		case 4 :
 			//vai para fase 5
+	
+			if($objetivo['nivel'] == 1) {
+				$tabelas = array($objetivo['nivel'],7);
+			}
+			elseif($objetivo['nivel'] == 7){
+				$tabelas = array($objetivo['nivel'],1);
+			}else{
+				$tabelas = array($objetivo['nivel'],$objetivo['nivel'] - 1);
+			}
+
 			geraDesafios($objetivo['nivel'], $checados);
 			if ($objetivo['nivel'] == 1) {
 				geraDesafios(7, $checados);
@@ -838,18 +875,18 @@
 </div>
 <?php
 	break;
+	
 	case "insere_options":
 
 	$objetivo = verificaObjetivo($user->ID);
 	$datas = retornaSemanas($objetivo['data_inicio']);
 	$mensagem = "";
-	if(isset($_POST['insere'])){ //insere
 	$i = 0;
 	$caixa = array();
 	foreach($_POST as $x => $valor){
-	if(!preg_match('/[^0-9]/',$x)){ //verifica se é um número
-	array_push($caixa, $x);
-	}
+		if(!preg_match('/[^0-9]/',$x)){ //verifica se é um número
+			array_push($caixa, $x);
+		}
 	}
 
 	$objetivo = verificaObjetivo($user->ID);
@@ -858,56 +895,45 @@
 
 	//$verifica = desFas($objetivo['id'],$caixa,$prox);
 	$verifica = desFas($objetivo['id'],$caixa,$prox);
-	if($verifica['bool_des'] == 1){ //se passar pela verificação, gravar a tabela aceite
-	for($i = 0; $i < count($caixa); $i++){
-	$data_inicio = nextMonday($hoje);
-	$sql_insere = "INSERT INTO `iap_aceite` (`id`, `objetivo`, `desafio`, `data_aceite`, `data_inicio`,  `fase`, `relatorio`, `resposta`, `intensidade`, `frequencia` ) VALUES (NULL, '".$objetivo['id']."', '".$caixa[$i]."','$hoje', '$data_inicio',  '".$prox."', '', '', '', '')";
-	$query_insere = mysqli_query($con,$sql_insere);
-	if($query_insere){
-		
-		$current_user = wp_get_current_user();
-		$nome_completo = $current_user->user_firstname . " " . $current_user->user_lastname;
-		//echo $nome_completo;
-		$envia_email = emailTreinador("desafio", $nome_completo);
-		 //tá dando erro
-		if($envia_email){
-			gravarLog("Email enviado",$current_user->ID);
-			
-		}else{
-			gravarLog("Erro ao enviar email",$current_user->ID);
-		};
-		
-	gravarLog($sql_insere, $user->ID);
-	$des = recuperaDados("iap_desafio",$caixa[$i],"id");
-	//$mensagem .= "<b>".$des['titulo']."</b><br />";
-	if($prox == 1){ // atualiza a tabela objetivo
-	$sql_obj = "UPDATE iap_objetivo SET data_inicio = '$hoje' WHERE id = '".$objetivo['id']."'";
-	$query_obj = mysqli_query($con,$sql_obj);
-	if($query_obj){
-	$mensagem .= "<h1>Desafios</h1>
-        <p class=\"lead\">Muito bem! Os desafios que você escolheu estão listados abaixo.</p>
-        	<p class=\"lead\">
-        	Para te ajudar no cumprimento dos desafios é importante você definir qual será o Foco (ser, fazer, ter) da sua Consciência e os Corpos (físico, emocional, mental e espiritual).</p>
-        	<p class=\"lead\">
-        	A ferramenta principal para desarmar o ego é a disciplina. Para isso, defina qual será a frequência e a intensidade para cada desafio.</p>
-        	<p class=\"lead\">
-        		Se tiver dúvidas, <a class=\"lightbox\" href=\"#goofy\">clique aqui</a> para ler a explicação detalhada.
-        	</p>";
-		gravarLog($sql_insere, $user->ID);
-	}else{
-	$mensagem .= "Erro ao atualizar objetivo.<br />";
-	}
-	}
-	}else{
-	$mensagem .= "Erro ao inserir.<br />".$sql_insere;
 
-	}
-	}
+	//var_dump($tudo);
+	//echo "<br><br>";
+	//var_dump($caixa);
+	//var_dump ($verifica);
+	if($verifica['bool_des'] == 1){//se passar pela verificação, gravar a tabela aceite 0
+	
+		for($i = 0; $i < count($caixa); $i++){ //1
+			$data_inicio = nextMonday($hoje);
+			$sql_insere = "INSERT INTO `iap_aceite` (`id`, `objetivo`, `desafio`, `data_aceite`, `data_inicio`,  `fase`, `relatorio`, `resposta`, `intensidade`, `frequencia` ) VALUES (NULL, '".$objetivo['id']."', '".$caixa[$i]."','$hoje', '$data_inicio',  '".$prox."', '', '', '', '')";
+			$query_insere = mysqli_query($con,$sql_insere);
+			if($query_insere){ //2
+				
+					$mensagem = "<h1>Desafios</h1>
+					<p class=\"lead\">Muito bem! Os desafios que você escolheu estão listados abaixo.</p>
+						<p class=\"lead\">
+						Para te ajudar no cumprimento dos desafios é importante você definir qual será o Foco (ser, fazer, ter) da sua Consciência e os Corpos (físico, emocional, mental e espiritual).</p>
+						<p class=\"lead\">
+						A ferramenta principal para desarmar o ego é a disciplina. Para isso, defina qual será a frequência e a intensidade para cada desafio.</p>
+						<p class=\"lead\">
+							Se tiver dúvidas, <a class=\"lightbox\" href=\"#goofy\">clique aqui</a> para ler a explicação detalhada.
+						</p>";
+					gravarLog($sql_insere, $user->ID);
+				}else{ //04
+					$mensagem = "Erro ao atualizar objetivo.<br />";
+				
+			}//02
+		} //finaliza o for 1
+		
+		
+		
+		
 
 	}else{
-	$mensagem = $verifica['err_men']."<br /> <a href = 'desafio.php?p=insere'>Tente novamente. </a>";
+		$mensagem = $verifica['err_men'] . "<br><br><a class=\"btn btn-warning\" href=\"desafio.php\">Tente novamente</a>";
 	}
-	}
+	
+	// 0
+	
 ?>
     <div class="container">
     	<?php
@@ -918,20 +944,19 @@
  ?>
         <div class="jumbotron">
         
-	  	<p><?php 
-			if (isset($mensagem)) {echo $mensagem;
-			}
+	  	<p><?php
+			if (isset($mensagem)) {echo $mensagem;}
  ?></p>
       	
-
-
  <form action="relatorios.php" method="post" onsubmit="return validaCorpos();" name="form_corpos">
 <?php 
-			if($verifica['bool_des'] == 1){		
-			$sql_lista = "SELECT * FROM iap_aceite WHERE fase = '".$datas[$i]['fase']."' AND objetivo = '".$objetivo['id']."'";
+			if($verifica['bool_des'] == 1){	 //0	
+			
+			
+			$sql_lista = "SELECT * FROM iap_aceite WHERE fase = '".$prox."' AND objetivo = '".$objetivo['id']."'";
 			$query_lista = mysqli_query($con,$sql_lista);
 			$num = mysqli_num_rows($query_lista);
-			if($num > 0){
+			if($num > 0){ //02
 	
 
 ?>
@@ -984,16 +1009,16 @@
 
 
 		<?php 
-			$sql_lista2 = "SELECT * FROM iap_aceite WHERE fase = '".$datas[$i]['fase']."' AND objetivo = '".$objetivo['id']."'";
+			$sql_lista2 = "SELECT * FROM iap_aceite WHERE fase = '".$prox."' AND objetivo = '".$objetivo['id']."'";
 			//echo $sql_lista2;
 			$query_lista2 = mysqli_query($con,$sql_lista2);
 			while($x = mysqli_fetch_array($query_lista2)){ 
 				$desafio = recuperaDados("iap_desafio",$x['desafio'],"id");
 				//var_dump($desafio);
 				
-				$desafio_antigo = recDes($objetivo['id'],$datas[$i]['fase'] - 1);
+				$desafio_antigo = recDes($objetivo['id'],$prox - 1);
 				if(in_array($desafio['id'],$desafio_antigo)){					
-					$sql_rec = "SELECT * FROM iap_aceite WHERE desafio = '".$desafio['id']."' AND fase = '".($datas[$i]['fase'] - 1)."'";
+					$sql_rec = "SELECT * FROM iap_aceite WHERE desafio = '".$desafio['id']."' AND fase = '".($prox - 1)."'";
 					$query_rec = mysqli_query($con,$sql_rec);
 					$desrec = mysqli_fetch_array($query_rec);	
 				}else{
@@ -1130,64 +1155,28 @@ MENTE: Meditar / Orar / Autoconhecimento
           <input type="hidden" value="1" name="insere">
     	<input type="submit" class="btn btn-lg btn-success" value="Salvar">
     </div>
+
     	
-        <?php } //finaliza o if($num) ?>
-    <?php }  ?>
-    
-
-
+        <?php 
+			} //finaliza o if($num)
+		}  
+	
+	?>
+  
 
 </form>
 
-<?php
-break;
-case "pre_insere":
-	if(isset($_GET['nivel'])){
-	$objetivo['nivel'] = $_GET['nivel'];
-	}else{
-	$objetivo = verificaObjetivo($user->ID);
 
-	}
-
-	if(isset($_GET['fase'])){
-	$fase = $_GET['fase'];
-	}else{
-	$fase = verificaFase($objetivo['id']);
-	}
-	//echo $objetivo['nivel']." - ".$fase;
-	$checados = matrizDesafios($objetivo['id'],$fase);
-	$obj = 	ultObj($user->ID);
-?>
-
-        <div class="jumbotron">
-        <h1>Desafios</h1>
-	  	<p><?php
-			if (isset($mensagem)) {echo $mensagem;
-			}
- ?></p>
-			<?php	$des = retornaSemanas($obj['data_inicio']); ?>
-  	 	<p class="lead">O seu treinador avaliou o seu desafio <strong> "<?php echo $obj['objetivo'] ?>"</strong> como de nível <strong><?php echo $obj['nivel']; ?></strong>.</p>    
-   		<!--<p class="lead">O seu treinamento iniciará depois que você escolher o seu primeiro desafio. <strong> <?php echo exibirDataBr($des[1]['inicio']) ?>  a <?php echo exibirDataBr($des[16]['fim']) ?> </strong>--></p>     
-   <form action="desafio.php?p=insere" method="post">      
-        <?php 
-		geraPreDesafios($checados);
-		?>
-  	<input type="hidden" value="1" name="preinsere">
-    	<input type="submit" class="btn btn-lg btn-success" value="Próximo >>">
-		</form>	      
-
-<?php 
-break;
-
-?>
 
 <?php
+
 	break;
  ?>
-<?php } ?>
+<?php } //fim da switch?>
 
 <?php
 	include '../inc/footer.php';
+	
  ?>
 
 

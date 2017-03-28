@@ -29,8 +29,10 @@
 		<?php 
 			$user = $user -> ID;
 			//echo $user;
-			$obj = 	ultObj($user);
-			retornaNota($user);
+			$objetivo = verificaObjetivo($user);
+			$obj = $objetivo['id'];
+			//echo $user . " //" . $obj;
+			retornaNota($user,$obj);
 			
 		?>
 

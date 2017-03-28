@@ -1,14 +1,11 @@
 <?php $page_title = "iAP | Fale com seu treinador"; ?>
 <?php include '../inc/header.php'; ?>
 
-<div class="container">
-	
-	
+<div class="container">	
 	
 	<?php include '../inc/fixed-navbar-user.php'; ?>
 	<?php include '../inc/menu-principal.php';	?>
-	<div class="jumbotron" style="padding-bottom:0px; margin-bottom:0px;">
-		
+	<div class="jumbotron" style="padding-bottom:0px; margin-bottom:0px;">		
                 
                     <h1>Contato</h1>
                     <p class="lead">

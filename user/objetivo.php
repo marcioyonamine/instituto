@@ -65,7 +65,7 @@
 	$objetivo = addslashes($_POST['objetivo']);
 	$user = $user->ID;
 	$sql = "INSERT INTO `iap_objetivo` (`id`, `objetivo`, `usuario`, `treinador`, `nivel`, `data_inicio`, `finalizado`)
-	VALUES (NULL, '$objetivo', '$user', '0', '0', '0','0')";
+	VALUES (NULL, '$objetivo', '$user', '0', '0', null,'0')";
 	
 	
 	$query = mysqli_query($con,$sql);

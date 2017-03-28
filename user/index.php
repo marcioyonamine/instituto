@@ -27,7 +27,7 @@
         
         <p class="lead"><a href="http://ialtaperformance.com/downloads/baixar.php?arquivo=meta-smart.pdf">Baixar ferramenta SMART</a></p>
         -->
-        <p class="lead">A sua data prevista para início do treinamento é: <?php echo exibirDataBrOrdem(nextMonday(date('Y-m-d'))); ?>, segunda-feira!  </p>
+        <p class="lead">A sua data prevista para início do treinamento é: <?php echo exibirDataBrOrdem(nextMonday($GLOBALS['hoje'])); ?>, segunda-feira!  </p>
         
         <p class="lead">Pronto para definir o seu objetivo?</p>
         
@@ -42,7 +42,7 @@
 						echo " inicial do treinamento. Seus autodesafios começarão na próxima segunda-feira, que é o dia que você deve escolher o seu primeiro desafio.</p>";
 					}else{
 						$datas = retornaSemanas($objetivo['data_inicio']);
-						echo $fase_atual . " do treinamento. Esta fase termina em " . exibirDataBrOrdem($datas[$fase_atual]['fim']) . ".</p>"; 
+						echo $fase_atual . " do treinamento.</p>"; 
 					}
 				
 			?>
@@ -180,7 +180,7 @@
           ?>
           
           <p><?php 
-          	if($sem == 0){ ?>
+          	if($fase_atual == 0){ ?>
           		<p>
           			Você vai iniciar o seu treinamento na próxima segunda-feira. Enquanto isso, navegue pelo sistema ou <a href="#" title="Módulo Online">assista o módulo online</a> com os vídeos já disponíveis. 
           		</p>

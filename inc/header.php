@@ -454,7 +454,7 @@ top: 0px;
 
 </style>
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 <script type="text/javascript"> 
 jQuery.fn.toggleText = function(a,b) {
@@ -506,6 +506,20 @@ $(document).ready(function(){
 		}
 
 	}
+</script>
+
+<script type="text/javascript">
+function contaChkbox(){
+var inputTags = document.getElementsByTagName('input');
+var checkboxCount = 0;
+for (var i=0, length = inputTags.length; i<length; i++) {
+     if (inputTags[i].type == 'checkbox' && inputTags[i].checked == true) {
+         checkboxCount++;
+     }
+}
+//alert('Total de desafios marcados: ' + checkboxCount + '\n Verifique se eles atendem às condições dessa fase.');
+document.getElementsByClassName("contador")[0].innerHTML = 'Total de desafios marcados:<span style="font-size:22px;"><br />' + checkboxCount + '</span>';
+}
 </script>
    
   </head>

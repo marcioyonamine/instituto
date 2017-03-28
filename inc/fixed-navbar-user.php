@@ -15,10 +15,12 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <!--
 	  <ul class="nav navbar-nav">
+	  	
 		<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
         <li><a href="#">Link</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+		
           <ul class="dropdown-menu">
             <li><a href="#">Action</a></li>
             <li><a href="#">Another action</a></li>
@@ -42,6 +44,7 @@
         <li><a href="indicacao.php" target="_self" title="Indique um amigo">Convide um amigo</a></li>
         <li><a href="https://docs.google.com/spreadsheets/d/15U0bOItK_oltuMT5z_OxOElVOcK2jZ5phFyd0K6wsPA/edit#gid=456464551" target="_blank" title="Sugestão de conteúdo">Sugestão de Conteúdo</a></li>
         <li><a href="contato.php" target="_self" title="Mensagem para o treinador">Falar com treinador</a></li>
+		<li><a href="altera-senha.php" target="_self" title="Mensagem para o treinador">Alterar senha</a></li>
         <li><a title="Sair" href="<?php echo wp_logout_url(); ?>">Sair</a></li>
       </ul>
         <!--</li>
