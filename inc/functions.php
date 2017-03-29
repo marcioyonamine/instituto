@@ -73,6 +73,7 @@ function somarDatas($data,$dias){
 }
 
 function nextMonday($data){
+	$user = get_currentuserinfo();
 	$diasemana_numero = date('w', strtotime($data)); //data em sql Y-m-d
 	switch($diasemana_numero){
 		case 0:
@@ -1057,9 +1058,9 @@ function retornaNota($id, $obj){
 	$sql = "SELECT * FROM relatorio_semanal WHERE user_id = '$id'";
 	$query = mysqli_query($con, $sql);
 		
-	$num_linhas = mysqli_num_rows($query);	
+	$num_linhas = mysqli_num_rows($query);
 	
-	if(!$query){
+	if(!$num_linhas){
 		echo "<p class=\"lead bg-primary\">Você ainda não enviou relatório com nota de avaliação</p>";
 	}else{
 		//echo $id . " " . $obj . "<br><br><br>";
