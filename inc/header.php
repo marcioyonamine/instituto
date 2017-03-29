@@ -6,7 +6,7 @@ if(!is_user_logged_in()):
 
       /*** REMEMBER THE PAGE TO RETURN TO ONCE LOGGED IN ***/      $_SESSION["return_to"] = $_SERVER['REQUEST_URI'];
 
-      /*** REDIRECT TO LOGIN PAGE ***/      header("location: /wordpress/login/login.php");
+      /*** REDIRECT TO LOGIN PAGE ***/      header("location: /login/");
 
    endif;
    

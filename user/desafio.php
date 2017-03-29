@@ -91,7 +91,12 @@
   	 	<p class="lead"><a href="http://ialtaperformance.com/downloads/baixar.php?arquivo=7-niveis-profissionais-pessoais.png"> Clique aqui</a> para entender mais sobre os níveis que nós trabalhamos.</p>
   	 	<p class="lead">
   	 		
-  	 		Agora você está na <strong>fase <?php $fase_atual = verificaFase($obj['id']);
+  	 		Agora você está na <strong>fase 
+			<?php 
+			$sem = retornaSemana($obj['id']);
+			$fase_atual = verificaFase($obj['id']);
+			//echo "<br />" . $sem;
+			
 			
 			if($fase_atual == 0){
 				echo "inicial";
@@ -764,6 +769,11 @@
  <form action="desafio.php?p=insere_options" method="post">
 
 <?php
+	
+	if(!verificaRelFase($objetivo['id'], $fase_atual)){
+		echo "Você ainda não enviou o relatório da fase $fase_atual.<br /><br /> <a class=\"btn btn-warning\" href=\"relatorios.php\" title=\"Enviar relatório\">Enviar relatório</a>";
+	}else{
+	
 	switch($fase) {
 		case 0 :
 			//vai para fase 1
@@ -773,13 +783,20 @@
 		case 1 :
 			//vai para fase 2
 			
-			geraDesafios(1, $checados);
+			//geraDesafios(1, $checados);
+			$tabelas = array($objetivo['nivel'],2);
+			echo "<p>Por favor, mantenha o desafio de nível 1</p>";
+			geraDesafiosOutras($tabelas,$checados);
 			geraDesafios($objetivo['nivel'], $checados);
 			break;
 
 		case 2 :
 			//vai para fase 3
-			geraDesafios(1, $checados);
+			//geraDesafios(1, $checados);
+			$tudo = array(1,2,3,4,5,6,7);
+			$nivel_obj = array($objetivo['nivel'], 1);
+			$tabelas = array_diff($tudo, $nivel_obj);
+			geraDesafiosOutras($tabelas,$checados);
 			geraDesafios($objetivo['nivel'], $checados);
 			geraDesafios($objetivo['nivel'] - 1, $checados);
 
@@ -866,12 +883,13 @@
 			}
 			break;
 	}
+	
 ?>
 
 	<input type="hidden" value="1" name="insere">
     	<input type="submit" class="btn btn-lg btn-success" value="Próximo >>">
 		</form>	
-			
+		<?php } ?>	
 </div>
 <?php
 	break;

@@ -79,11 +79,19 @@ function nextMonday($data){
 			return somarDatas($data,"+ 1");
 		break;		
 		case 1:
-			return somarDatas($data,"+ 7");
+			if($user->ID > 60){
+				return $data;
+			}else{
+				return somarDatas($data,"+ 7");
+			}			
 		break;		
 		case 2:
-			return somarDatas($data,"+ 6");
-		break;		
+			if($user->ID > 60){
+				return somarDatas($data,"- 1");
+			}else{
+				return somarDatas($data,"+ 6");
+			}			
+		break;
 		case 3:
 			return somarDatas($data,"+ 5");
 		break;		
@@ -261,31 +269,39 @@ function desFas($objetivo,$desafios,$fase,$ajax = NULL){
 			}else{
 				$f['bool_des'] = 0;
 				$f['err_men'] = "Foram enviados ".count($y)." desafios. Na fase 1 é permitido 1 desafio apenas.";
-			}
+			}		
 		break; 
 
 		case 2: // - 0, = 1,  + 1 (2) 
 			if(count($y) != 2){ //verifica se o número de opções está de acordo com o da fase. caso não,
 				$f['bool_des'] = 0;
-				$f['err_men'] = "Forma enviados ".count($y)." desafios. Na fase 2 são permitidos 2 desafios.";
+				$f['err_men'] = "Foram enviados ".count($y)." desafios. Na fase 2 são permitidos 2 desafios.";
 			
-			}else{ // caso esteja, é verificado se há duas novas
-				if($t == 1){
-					$f['bool_des'] = 1;	
-				}else{
-					$f['bool_des'] = 0;
-					$f['err_men'] = "Você deve manter 1 desafio da fase anterior. Foram mantidos $t";
-					$f['dump'] = $e;
+			}else{ // caso esteja, é verificado se há um novo
+				if($t == 1){							
+						$f['bool_des'] = 1;	
+					}else{
+						$f['bool_des'] = 0;
+						$f['err_men'] = "Você deve manter 1 desafio da fase anterior (nível 1) e pegar um novo desafio do nível do seu objetivo.";//Foram mantidos $t";
+						$f['dump'] = $e;
+					}
 				}
-		
+			
+			if(!verificaRelFase($objetivo, 1)){
+				$f['bool_des'] = 0;
+				$f['err_men'] = "Você ainda não enviou o relatório da fase anterior.<br /><br /> <a class=\"btn btn-warning\" href=\"relatorios.php\" title=\"Enviar relatório\">Enviar relatório</a>;";
+				$f['dump'] = $e;
+			}else{
+				$f['bool_des'] = 1;
 			}
+			
 		break;		
 
 		case 3: // - 1, = 1, + 2 (3) / n e n - 1 (se n = 1, n - 1 = 7)
 			$i = 0;
 			if(count($y) != 3){ //verifica se o número de opções está de acordo com o da fase. caso não,
 				$f['bool_des'] = 0;
-				$f['err_men'] = "Forma enviados ".count($y)." desafios. Na fase 3 são permitidos 3 desafios.";
+				$f['err_men'] = "Foram enviados ".count($y)." desafios. Na fase 3 são permitidos 3 desafios.";
 			}else{ // caso esteja, é verificado se há duas novas
 				if($t == 1){ //se dois forem iguais, passa na condição
 					$f['bool_des'] = 1;
@@ -293,6 +309,14 @@ function desFas($objetivo,$desafios,$fase,$ajax = NULL){
 					$f['bool_des'] = 0;
 					$f['err_men'] = "Você deve manter 1 desafio da fase anteior. Foram mantidos $t";
 				}
+			}
+			
+			if(!verificaRelFase($objetivo, 2)){
+				$f['bool_des'] = 0;
+				$f['err_men'] = "Você ainda não enviou o relatório da fase anterior.<br /><br /> <a class=\"btn btn-warning\" href=\"relatorios.php\" title=\"Enviar relatório\">Enviar relatório</a>;";
+				$f['dump'] = $e;
+			}else{
+				$f['bool_des'] = 1;
 			}
 
 		
@@ -310,7 +334,15 @@ function desFas($objetivo,$desafios,$fase,$ajax = NULL){
 					$f['bool_des'] = 0;
 					$f['err_men'] = /*count($y).*/"Você deve manter 2 desafios da fase anterior. Foram mantidos $t";
 				}
-			}		
+			}
+			
+			if(!verificaRelFase($objetivo, 3)){
+				$f['bool_des'] = 0;
+				$f['err_men'] = "Você ainda não enviou o relatório da fase anterior.<br /><br /> <a class=\"btn btn-warning\" href=\"relatorios.php\" title=\"Enviar relatório\">Enviar relatório</a>;";
+				$f['dump'] = $e;
+			}else{
+				$f['bool_des'] = 1;
+			}	
 		
 		break;
 
@@ -319,7 +351,7 @@ function desFas($objetivo,$desafios,$fase,$ajax = NULL){
 			$i = 0;	
 			if(count($y) != 8){ //verifica se o número de opções está de acordo com o da fase. caso não,
 				$f['bool_des'] = 0;
-				$f['err_men'] = "Forma enviados ".count($y)." desafios. Na fase 5 são permitidos 8 desafios.";
+				$f['err_men'] = "Foram enviados ".count($y)." desafios. Na fase 5 são permitidos 8 desafios.";
 			}else{ // caso esteja, é verificado se há duas novas
 				if($t == 3){ //se numero de mantidos forem iguais, passa na condição
 					$f['bool_des'] = 1;
@@ -327,7 +359,15 @@ function desFas($objetivo,$desafios,$fase,$ajax = NULL){
 					$f['bool_des'] = 0;
 					$f['err_men'] = "Você deve manter 3 desafios da fase anterior. Foram mantidos $t";
 				}
-			}		
+			}
+			
+			if(!verificaRelFase($objetivo, 4)){
+				$f['bool_des'] = 0;
+				$f['err_men'] = "Você ainda não enviou o relatório da fase anterior.<br /><br /> <a class=\"btn btn-warning\" href=\"relatorios.php\" title=\"Enviar relatório\">Enviar relatório</a>;";
+				$f['dump'] = $e;
+			}else{
+				$f['bool_des'] = 1;
+			}
 		
 		break;
 
@@ -336,7 +376,7 @@ function desFas($objetivo,$desafios,$fase,$ajax = NULL){
 			$i = 0;	
 			if(count($y) != 13){ //verifica se o número de opções está de acordo com o da fase. caso não,
 				$f['bool_des'] = 0;
-				$f['err_men'] = "Forma enviados ".count($y)." desafios. Na fase 6 são permitidos 13 desafios.";
+				$f['err_men'] = "Foram enviados ".count($y)." desafios. Na fase 6 são permitidos 13 desafios.";
 			}else{ // caso esteja, é verificado se há duas novas
 				if($t == 5){ //se numero de mantidos forem iguais, passa na condição
 					//verifica se tem um cada nível
@@ -363,7 +403,13 @@ function desFas($objetivo,$desafios,$fase,$ajax = NULL){
 				}
 			}		
 		
-
+			if(!verificaRelFase($objetivo, 5)){
+				$f['bool_des'] = 0;
+				$f['err_men'] = "Você ainda não enviou o relatório da fase anterior.<br /><br /> <a class=\"btn btn-warning\" href=\"relatorios.php\" title=\"Enviar relatório\">Enviar relatório</a>;";
+				$f['dump'] = $e;
+			}else{
+				$f['bool_des'] = 1;
+			}
 		
 		break;
 
@@ -372,7 +418,7 @@ function desFas($objetivo,$desafios,$fase,$ajax = NULL){
 			$i = 0;	
 			if(count($y) != 21){ //verifica se o número de opções está de acordo com o da fase. caso não,
 				$f['bool_des'] = 0;
-				$f['err_men'] = "Forma enviados ".count($y)." desafios. Na fase 7 são permitidos 21 desafios.";
+				$f['err_men'] = "Foram enviados ".count($y)." desafios. Na fase 7 são permitidos 21 desafios.";
 			}else{ // caso esteja, é verificado se há duas novas
 				if($t == 8){ //se numero de mantidos forem iguais, passa na condição
 					
@@ -401,7 +447,13 @@ function desFas($objetivo,$desafios,$fase,$ajax = NULL){
 				}
 			}		
 		
-
+			if(!verificaRelFase($objetivo, 6)){
+				$f['bool_des'] = 0;
+				$f['err_men'] = "Você ainda não enviou o relatório da fase anterior.<br /><br /> <a class=\"btn btn-warning\" href=\"relatorios.php\" title=\"Enviar relatório\">Enviar relatório</a>;";
+				$f['dump'] = $e;
+			}else{
+				$f['bool_des'] = 1;
+			}
 		
 
 		
@@ -412,7 +464,7 @@ function desFas($objetivo,$desafios,$fase,$ajax = NULL){
 			$i = 0;	
 			if(count($y) != 34){ //verifica se o número de opções está de acordo com o da fase. caso não,
 				$f['bool_des'] = 0;
-				$f['err_men'] = "Forma enviados ".count($y)." desafios. Na fase 8 são permitidos exatos 34 desafios.";
+				$f['err_men'] = "Foram enviados ".count($y)." desafios. Na fase 8 são permitidos exatos 34 desafios.";
 			}else{ // caso esteja, é verificado se há duas novas
 				if($t == 13){ //se numero de mantidos forem iguais, passa na condição
 					//verifica se tem um cada nível
@@ -439,9 +491,13 @@ function desFas($objetivo,$desafios,$fase,$ajax = NULL){
 				}
 			}		
 		
-
-		
-		
+			if(!verificaRelFase($objetivo, 7)){
+				$f['bool_des'] = 0;
+				$f['err_men'] = "Você ainda não enviou o relatório da fase anterior.<br /><br /> <a class=\"btn btn-warning\" href=\"relatorios.php\" title=\"Enviar relatório\">Enviar relatório</a>;";
+				$f['dump'] = $e;
+			}else{
+				$f['bool_des'] = 1;
+			}		
 		
 		break;
 
@@ -472,6 +528,14 @@ function desFas($objetivo,$desafios,$fase,$ajax = NULL){
 			}
 			 */
 			 $f['bool_des'] = 1;
+			 
+			 if(!verificaRelFase($objetivo, 8)){
+				$f['bool_des'] = 0;
+				$f['err_men'] = "Você ainda não enviou o relatório da fase anterior.<br /><br /> <a class=\"btn btn-warning\" href=\"relatorios.php\" title=\"Enviar relatório\">Enviar relatório</a>;";
+				$f['dump'] = $e;
+			}else{
+				$f['bool_des'] = 1;
+			}
 		break;
 
 		case 10: // pelo menos 1n (7)
@@ -497,6 +561,14 @@ function desFas($objetivo,$desafios,$fase,$ajax = NULL){
 				}
 			}*/
 			$f['bool_des'] = 1;
+			
+			if(!verificaRelFase($objetivo, 9)){
+				$f['bool_des'] = 0;
+				$f['err_men'] = "Você ainda não enviou o relatório da fase anterior.<br /><br /> <a class=\"btn btn-warning\" href=\"relatorios.php\" title=\"Enviar relatório\">Enviar relatório</a>;";
+				$f['dump'] = $e;
+			}else{
+				$f['bool_des'] = 1;
+			}
 		
 		break;
 		
@@ -750,6 +822,21 @@ Da mesma forma cada desafios tem um objetivo de levar o participante a ser mais 
 
 }
 
+function verificaRelFase($objetivo,$semana){
+	$con = bancoMysqli();
+	$sql = "SELECT iap_rel_id FROM relatorio_semanal WHERE objetivo = '$objetivo' AND fase = '$semana'";
+	$query = mysqli_query($con,$sql);
+	$num = mysqli_num_rows($query);
+	if($num > 0){
+		return TRUE;
+	
+	}else{
+		return FALSE;
+	}
+		
+}
+
+
 function verificaRelatorio($objetivo,$semana){
 	$con = bancoMysqli();
 	$sql = "SELECT iap_rel_id FROM relatorio_semanal WHERE objetivo = '$objetivo' AND semana = '$semana'";
@@ -781,7 +868,7 @@ function verificaRelatorioObj($objetivo){
 	}
 		
 }
- * 
+* 
  */
 /*
 function verificaSegunda($objetivo,$semana){
@@ -863,8 +950,8 @@ function verificaSegunda($objetivo,$semana){
 	//case 14:
 	case 15:
 		if(($obj['datas'][$semana]['inicio'] == $GLOBALS['hoje']) OR
-		 (somarDatas($obj['datas'][$semana]['inicio']," +1") == $GLOBALS['hoje']) OR 
-		 (somarDatas($obj['datas'][$semana]['inicio']," +2") == $GLOBALS['hoje']) 
+		 (somarDatas($obj['datas'][$semana]['inicio'],"+1") == $GLOBALS['hoje']) /*OR 
+		 (somarDatas($obj['datas'][$semana]['inicio'],"+2") == $GLOBALS['hoje'])*/ 
 		 AND (count($obj['datas'][$semana]['desafios']) == 0)){
 			 return TRUE;
 		}else{
@@ -880,11 +967,12 @@ function verificaSegunda($objetivo,$semana){
 	case 12:
 	case 14:
 		$user = get_currentuserinfo();
+		//echo $user->ID;
 		
 		if(($obj['datas'][$semana]['inicio'] == $GLOBALS['hoje']) OR
 		 (somarDatas($obj['datas'][$semana]['inicio']," +1") == $GLOBALS['hoje']) OR 
-		 (somarDatas($obj['datas'][$semana]['inicio']," +3") == $GLOBALS['hoje']) 
-		 AND (count($obj['datas'][$semana]['desafios']) == 0) AND ($user->ID == '8' OR $user->ID == '9' OR $user->ID == '10')){
+		 (somarDatas($obj['datas'][$semana]['inicio']," +2") == $GLOBALS['hoje']) 
+		 AND (count($obj['datas'][$semana]['desafios']) == 0) AND $user->ID == '8' OR $user->ID == '9' OR $user->ID == '10'){
 			 return TRUE;
 		}else{
 			return FALSE;
