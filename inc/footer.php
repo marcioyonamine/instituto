@@ -1,6 +1,7 @@
 ﻿      <!-- Site footer -->
       <footer class="footer text-center">
-        <p>&copy; <?php echo date('Y') ?> Instituto de Alta Performance</p>
+        <p>&copy;  <?php echo date('Y') ?> Instituto de Alta Performance</p>
+		
 <?php
 $level = get_currentuserinfo();
 if($level->user_level == 10){
