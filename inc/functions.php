@@ -73,7 +73,7 @@ function somarDatas($data,$dias){
 }
 
 function nextMonday($data){
-	$user = get_currentuserinfo();
+	$user = wp_get_current_user();
 	$diasemana_numero = date('w', strtotime($data)); //data em sql Y-m-d
 	switch($diasemana_numero){
 		case 0:
@@ -258,6 +258,7 @@ function desFas($objetivo,$desafios,$fase,$ajax = NULL){
 		$i++;
 	}
 	$t = count(array_intersect($caixa_fase_anterior,$desafios)); //retorna uma array com elementos iguais do desafio e da caixa_fase_anterior
+	echo "Aqui é o t:" . $t;
 	
 	if($ajax == 1){
 		//trata com explode
@@ -281,20 +282,23 @@ function desFas($objetivo,$desafios,$fase,$ajax = NULL){
 			}else{ // caso esteja, é verificado se há um novo
 				if($t == 1){							
 						$f['bool_des'] = 1;	
-					}else{
-						$f['bool_des'] = 0;
-						$f['err_men'] = "Você deve manter 1 desafio da fase anterior (nível 1) e pegar um novo desafio do nível do seu objetivo.";//Foram mantidos $t";
-						$f['dump'] = $e;
-					}
+						
+						if(!verificaRelFase($objetivo, 1)){
+							$f['bool_des'] = 0;
+							$f['err_men'] = "Você ainda não enviou o relatório da fase anterior.<br /><br /> <a class=\"btn btn-warning\" href=\"relatorios.php\" title=\"Enviar relatório\">Enviar relatório</a>;";
+							$f['dump'] = $e;
+						}else{
+							$f['bool_des'] = 1;
+						}
+						
+				}else{
+					$f['bool_des'] = 0;
+					$f['err_men'] = "Você deve manter 1 desafio da fase anterior (nível 1) e pegar um novo desafio do nível do seu objetivo.";//Foram mantidos $t";
+					$f['dump'] = $e;
+				}
 				}
 			
-			if(!verificaRelFase($objetivo, 1)){
-				$f['bool_des'] = 0;
-				$f['err_men'] = "Você ainda não enviou o relatório da fase anterior.<br /><br /> <a class=\"btn btn-warning\" href=\"relatorios.php\" title=\"Enviar relatório\">Enviar relatório</a>;";
-				$f['dump'] = $e;
-			}else{
-				$f['bool_des'] = 1;
-			}
+			
 			
 		break;		
 
@@ -304,21 +308,24 @@ function desFas($objetivo,$desafios,$fase,$ajax = NULL){
 				$f['bool_des'] = 0;
 				$f['err_men'] = "Foram enviados ".count($y)." desafios. Na fase 3 são permitidos 3 desafios.";
 			}else{ // caso esteja, é verificado se há duas novas
-				if($t == 1){ //se dois forem iguais, passa na condição
+				if($t == 1){ //se um for igual, passa na condição
 					$f['bool_des'] = 1;
+					
+					if(!verificaRelFase($objetivo, 2)){
+						$f['bool_des'] = 0;
+						$f['err_men'] = "Você ainda não enviou o relatório da fase anterior.<br /><br /> <a class=\"btn btn-warning\" href=\"relatorios.php\" title=\"Enviar relatório\">Enviar relatório</a>;";
+						$f['dump'] = $e;
+					}else{
+						$f['bool_des'] = 1;
+					}
+									
 				}else{
 					$f['bool_des'] = 0;
 					$f['err_men'] = "Você deve manter 1 desafio da fase anteior. Foram mantidos $t";
 				}
 			}
 			
-			if(!verificaRelFase($objetivo, 2)){
-				$f['bool_des'] = 0;
-				$f['err_men'] = "Você ainda não enviou o relatório da fase anterior.<br /><br /> <a class=\"btn btn-warning\" href=\"relatorios.php\" title=\"Enviar relatório\">Enviar relatório</a>;";
-				$f['dump'] = $e;
-			}else{
-				$f['bool_des'] = 1;
-			}
+			
 
 		
 		break;
@@ -331,19 +338,22 @@ function desFas($objetivo,$desafios,$fase,$ajax = NULL){
 			}else{ // caso esteja, é verificado se há duas novas
 				if($t == 2){ //se numero de mantidos forem iguais, passa na condição
 					$f['bool_des'] = 1;
+					
+					if(!verificaRelFase($objetivo, 3)){
+						$f['bool_des'] = 0;
+						$f['err_men'] = "Você ainda não enviou o relatório da fase anterior.<br /><br /> <a class=\"btn btn-warning\" href=\"relatorios.php\" title=\"Enviar relatório\">Enviar relatório</a>;";
+						$f['dump'] = $e;
+					}else{
+						$f['bool_des'] = 1;
+					}
+					
 				}else{
 					$f['bool_des'] = 0;
 					$f['err_men'] = /*count($y).*/"Você deve manter 2 desafios da fase anterior. Foram mantidos $t";
 				}
 			}
 			
-			if(!verificaRelFase($objetivo, 3)){
-				$f['bool_des'] = 0;
-				$f['err_men'] = "Você ainda não enviou o relatório da fase anterior.<br /><br /> <a class=\"btn btn-warning\" href=\"relatorios.php\" title=\"Enviar relatório\">Enviar relatório</a>;";
-				$f['dump'] = $e;
-			}else{
-				$f['bool_des'] = 1;
-			}	
+				
 		
 		break;
 
@@ -356,19 +366,22 @@ function desFas($objetivo,$desafios,$fase,$ajax = NULL){
 			}else{ // caso esteja, é verificado se há duas novas
 				if($t == 3){ //se numero de mantidos forem iguais, passa na condição
 					$f['bool_des'] = 1;
+					
+					if(!verificaRelFase($objetivo, 4)){
+						$f['bool_des'] = 0;
+						$f['err_men'] = "Você ainda não enviou o relatório da fase anterior.<br /><br /> <a class=\"btn btn-warning\" href=\"relatorios.php\" title=\"Enviar relatório\">Enviar relatório</a>;";
+						$f['dump'] = $e;
+					}else{
+						$f['bool_des'] = 1;
+					}
+					
 				}else{
 					$f['bool_des'] = 0;
 					$f['err_men'] = "Você deve manter 3 desafios da fase anterior. Foram mantidos $t";
 				}
 			}
 			
-			if(!verificaRelFase($objetivo, 4)){
-				$f['bool_des'] = 0;
-				$f['err_men'] = "Você ainda não enviou o relatório da fase anterior.<br /><br /> <a class=\"btn btn-warning\" href=\"relatorios.php\" title=\"Enviar relatório\">Enviar relatório</a>;";
-				$f['dump'] = $e;
-			}else{
-				$f['bool_des'] = 1;
-			}
+			
 		
 		break;
 
@@ -379,7 +392,8 @@ function desFas($objetivo,$desafios,$fase,$ajax = NULL){
 				$f['bool_des'] = 0;
 				$f['err_men'] = "Foram enviados ".count($y)." desafios. Na fase 6 são permitidos 13 desafios.";
 			}else{ // caso esteja, é verificado se há duas novas
-				if($t == 5){ //se numero de mantidos forem iguais, passa na condição
+				if($t == 5){ //se numero de mantidos forem iguais, passa na condição	
+				
 					//verifica se tem um cada nível
 					$caixa2 = array(); //cria um array para inserir todos os niveis das opções selecionadas
 					for($i = 0; $i < count($y); $i++){
@@ -391,6 +405,15 @@ function desFas($objetivo,$desafios,$fase,$ajax = NULL){
 					$dif =  array_diff($tudo, $caixa2); // compara as duas arrays
 					if(count($dif) == 0){ //se não houver diferença é porque todos os níveis foram escolhidos
 						$f['bool_des'] = 1;
+						
+						if(!verificaRelFase($objetivo, 5)){
+							$f['bool_des'] = 0;
+							$f['err_men'] = "Você ainda não enviou o relatório da fase anterior.<br /><br /> <a class=\"btn btn-warning\" href=\"relatorios.php\" title=\"Enviar relatório\">Enviar relatório</a>;";
+							$f['dump'] = $e;
+						}else{
+							$f['bool_des'] = 1;
+						}
+						
 					}else{ //caso não
 						
 						$f['bool_des'] = 0;
@@ -404,13 +427,7 @@ function desFas($objetivo,$desafios,$fase,$ajax = NULL){
 				}
 			}		
 		
-			if(!verificaRelFase($objetivo, 5)){
-				$f['bool_des'] = 0;
-				$f['err_men'] = "Você ainda não enviou o relatório da fase anterior.<br /><br /> <a class=\"btn btn-warning\" href=\"relatorios.php\" title=\"Enviar relatório\">Enviar relatório</a>;";
-				$f['dump'] = $e;
-			}else{
-				$f['bool_des'] = 1;
-			}
+			
 		
 		break;
 
@@ -436,10 +453,18 @@ function desFas($objetivo,$desafios,$fase,$ajax = NULL){
 					$dif =  array_diff($tudo, $caixa2); // compara as duas arrays
 					if(count($dif) == 0){ //se não houver diferença é porque todos os níveis foram escolhidos
 						$f['bool_des'] = 1;
+						
+						if(!verificaRelFase($objetivo, 6)){
+							$f['bool_des'] = 0;
+							$f['err_men'] = "Você ainda não enviou o relatório da fase anterior.<br /><br /> <a class=\"btn btn-warning\" href=\"relatorios.php\" title=\"Enviar relatório\">Enviar relatório</a>;";
+							$f['dump'] = $e;
+						}else{
+							$f['bool_des'] = 1;
+						}
+						
 					}else{ //caso não
 						$f['bool_des'] = 0;
 						$f['err_men'] = "Deve ser escolhido pelo menos 1 desafio de cada nível. <br>Lembre-se que o equilíbrio dos níveis são fundamentais para evolução.";
-
 					}
 					//$f['bool_des'] = 1;
 				}else{
@@ -448,13 +473,7 @@ function desFas($objetivo,$desafios,$fase,$ajax = NULL){
 				}
 			}		
 		
-			if(!verificaRelFase($objetivo, 6)){
-				$f['bool_des'] = 0;
-				$f['err_men'] = "Você ainda não enviou o relatório da fase anterior.<br /><br /> <a class=\"btn btn-warning\" href=\"relatorios.php\" title=\"Enviar relatório\">Enviar relatório</a>;";
-				$f['dump'] = $e;
-			}else{
-				$f['bool_des'] = 1;
-			}
+			
 		
 
 		
@@ -481,6 +500,15 @@ function desFas($objetivo,$desafios,$fase,$ajax = NULL){
 					$dif =  array_diff($tudo, $caixa2); // compara as duas arrays
 					if(count($dif) == 0){ //se não houver diferença é porque todos os níveis foram escolhidos
 						$f['bool_des'] = 1;
+						
+						if(!verificaRelFase($objetivo, 7)){
+							$f['bool_des'] = 0;
+							$f['err_men'] = "Você ainda não enviou o relatório da fase anterior.<br /><br /> <a class=\"btn btn-warning\" href=\"relatorios.php\" title=\"Enviar relatório\">Enviar relatório</a>;";
+							$f['dump'] = $e;
+						}else{
+							$f['bool_des'] = 1;
+						}
+						
 					}else{ //caso não
 						$f['bool_des'] = 0;
 						$f['err_men'] = "Deve ser escolhido pelo menos 1 desafio de cada nível. <br>Lembre-se que o equilíbrio dos níveis são fundamentais para evolução.";
@@ -492,13 +520,7 @@ function desFas($objetivo,$desafios,$fase,$ajax = NULL){
 				}
 			}		
 		
-			if(!verificaRelFase($objetivo, 7)){
-				$f['bool_des'] = 0;
-				$f['err_men'] = "Você ainda não enviou o relatório da fase anterior.<br /><br /> <a class=\"btn btn-warning\" href=\"relatorios.php\" title=\"Enviar relatório\">Enviar relatório</a>;";
-				$f['dump'] = $e;
-			}else{
-				$f['bool_des'] = 1;
-			}		
+					
 		
 		break;
 
@@ -697,6 +719,8 @@ Da mesma forma cada desafios tem um objetivo de levar o participante a ser mais 
             <tbody>';
 			while($list = mysqli_fetch_array($query_01)){
 				
+				if(!in_array($list['id'], $checado)){
+						
    				 echo '         <tr>
                 <td style="text-align:left;">'.$list['titulo'].' <div class="tooltip-explica"><img src="../assets/img/tooltip_des.png" width="15" /><span class="tooltiptext-explica">' . $list['tooltip_des'] . '</span></div></td>
                 <td style="text-align:center;">'. recTermo($list['yy']).'</td>
@@ -706,6 +730,7 @@ Da mesma forma cada desafios tem um objetivo de levar o participante a ser mais 
            			 
         			</td>
              	 </tr>';
+				}
 			 }	
 		
 		//VALIDA ESCOLHA DOS DESAFIOS ANTES DO SUBMIT
@@ -828,13 +853,18 @@ function verificaRelFase($objetivo,$semana){
 	$sql = "SELECT iap_rel_id FROM relatorio_semanal WHERE objetivo = '$objetivo' AND fase = '$semana'";
 	$query = mysqli_query($con,$sql);
 	$num = mysqli_num_rows($query);
+	
 	if($num > 0){
 		return TRUE;
 	
-	}else{
-		return FALSE;
+	}else{	
+		if($semana == 0 || $semana == null){
+			return TRUE;
+			
+		}else{
+			return FALSE;
+		} 
 	}
-		
 }
 
 
@@ -921,18 +951,22 @@ function verificaSegunda($objetivo,$semana){
 function verificaSegunda($objetivo,$semana){
 	$obj = objetivo($objetivo);
 	$diasemana_numero = date('w', strtotime($GLOBALS['hoje']));
-
+	//echo "Contagem matriz: " . count($obj['datas'][$semana]['desafios']);
+	//echo $GLOBALS['hoje'];
+	
 	switch($semana){
 
+	/*
 	case 0:
 	case NULL:
 		if(($obj['datas'][1]['inicio'] == $GLOBALS['hoje'] OR
-		 somarDatas($obj['datas'][1]['inicio']," +1") == $GLOBALS['hoje']) ){
+		 somarDatas($obj['datas'][1]['inicio']," +1") == $GLOBALS['hoje'])
+		 ){
 			 return TRUE;
 		}else{
 			return FALSE;
 		}
-
+		*/
 	
 			
 	case 1:
@@ -950,10 +984,12 @@ function verificaSegunda($objetivo,$semana){
 	case 13:
 	//case 14:
 	case 15:
-		if(($obj['datas'][$semana]['inicio'] == $GLOBALS['hoje']) OR
-		 (somarDatas($obj['datas'][$semana]['inicio'],"+1") == $GLOBALS['hoje']) /*OR 
-		 (somarDatas($obj['datas'][$semana]['inicio'],"+2") == $GLOBALS['hoje'])*/ 
-		 AND (count($obj['datas'][$semana]['desafios']) == 0)){
+		if(
+		(($obj['datas'][$semana]['inicio'] == $GLOBALS['hoje']) OR
+		 (somarDatas($obj['datas'][$semana]['inicio'],"+1") == $GLOBALS['hoje'])) 
+		 AND (count($obj['datas'][$semana]['desafios']) == 0)
+		 )
+		 {
 			 return TRUE;
 		}else{
 			return FALSE;
@@ -1058,9 +1094,9 @@ function retornaNota($id, $obj){
 	$sql = "SELECT * FROM relatorio_semanal WHERE user_id = '$id'";
 	$query = mysqli_query($con, $sql);
 		
-	$num_linhas = mysqli_num_rows($query);
+	$num_linhas = mysqli_num_rows($query);	
 	
-	if(!$num_linhas){
+	if(!$query){
 		echo "<p class=\"lead bg-primary\">Você ainda não enviou relatório com nota de avaliação</p>";
 	}else{
 		//echo $id . " " . $obj . "<br><br><br>";
@@ -1332,7 +1368,7 @@ function geraDesafiosOutras($tabelas,$checados){
 	       
         <div class="table-responsive" style="overflow:unset;">';
           
-       	echo '<table class="table table-striped tbl-des-nvl1">';
+       	echo '<table class="table">'; //class="table table-striped tbl-des-nvl1">';
 		  
 		echo '
             <thead>
@@ -1381,19 +1417,19 @@ Da mesma forma cada desafios tem um objetivo de levar o participante a ser mais 
 			for($k = 0; $k < $i; $k++){ 
 				$list = recuperaDados("iap_desafio",$des[$k],"id");
 				//echo $des[$k];
-				if(in_array($list['nivel'],$dif)){
+				//if(in_array($list['nivel'],$dif)){
 				
    				 echo '         <tr>
-                <td style="text-align:left;">'.$list['titulo'].' <div class="tooltip-explica"><img src="../assets/img/tooltip_des.png" width="15" /><span class="tooltiptext-explica">' . $list['tooltip_des'] . '</span></div></td>
+                <td style="text-align:left;">'.$list['titulo'].' (Nível:' . $list['nivel'] . ' ) <div class="tooltip-explica"><img src="../assets/img/tooltip_des.png" width="15" /><span class="tooltiptext-explica">' . $list['tooltip_des'] . '</span></div></td>
                 <td style="text-align:center;">'. recTermo($list['yy']).'</td>
                 <td>
                 	<center>
-           			 <input onchange="validaEscolhaDesafio();" type="checkbox" name="'.$list['id'].'" checked="checked"></center>
+           			 <input onchange="return contaChkbox();" type="checkbox" name="'.$list['id'].'" checked="checked"></center>
            			 
         			</td>
              	 </tr>';
 			 }	
-			}
+			//}
 		
 		//VALIDA ESCOLHA DOS DESAFIOS ANTES DO SUBMIT
 		//Fase 1

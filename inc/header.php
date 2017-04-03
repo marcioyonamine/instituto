@@ -12,6 +12,20 @@ if(!is_user_logged_in()):
    
   
 include "../inc/functions.php";
+
+if($user->ID == 2){
+	
+	if(isset($_GET['hoje'])){
+			$hoje = $_GET['hoje'];
+		}else{
+			$hoje = '2017-04-24';
+		}
+	
+	//$hoje = '2017-04-04';
+	echo $hoje;
+	//echo $user->ID;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -33,7 +47,7 @@ include "../inc/functions.php";
     <!-- Custom styles for this template -->
     <link href="../user/justified-nav.css" rel="stylesheet">
     
-
+<div class="container">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -44,8 +58,6 @@ include "../inc/functions.php";
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-   
-
 
 <script type='text/javascript'>
 /* <![CDATA[ */
@@ -54,9 +66,6 @@ var twentyseventeenScreenReaderText = {"quote":"<svg class=\"icon icon-quote-rig
 </script>
 
 
-
-	
-	<!--[if gte IE 9]><!-->
 		<script type="text/javascript">
 			(function() {
 				var request, b = document.body, c = 'className', cs = 'customize-support', rcs = new RegExp('(^|\\s+)(no-)?'+cs+'(\\s+|$)');

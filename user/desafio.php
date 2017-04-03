@@ -20,8 +20,8 @@
 		$p = "inicio";
 		//echo $objetivo['id'];
 		//echo " - ";
-		//echo retornaSemana($objetivo['id']);
-		//echo verificaSegunda($objetivo['id'], retornaSemana($user -> ID));
+		//echo retornaSemana($objetivo['id']) . "<br><br>";
+		//var_dump(verificaSegunda($objetivo['id'], retornaSemana($objetivo['id'])));
 		
 		
 		if (verificaSegunda($objetivo['id'], retornaSemana($objetivo['id'])) == TRUE) {
@@ -30,6 +30,7 @@
 	}
 ?>
      <?php 
+	 //echo $p;
 	  switch ($p){
 	  case "inicio":
 	  
@@ -801,7 +802,11 @@
 <?php
 	
 	if(!verificaRelFase($objetivo['id'], $fase_atual)){
-		echo "Você ainda não enviou o relatório da fase $fase_atual.<br /><br /> <a class=\"btn btn-warning\" href=\"relatorios.php\" title=\"Enviar relatório\">Enviar relatório</a>";
+		echo "Você ainda não enviou o relatório da fase $fase_atual. Para liberar a escolha de desafios, por favor nos envie o seu relatório de fase.<br /><br /> <a class=\"btn btn-warning\" href=\"relatorios.php\" title=\"Enviar relatório\">Enviar relatório</a>";
+		//echo $objetivo['id'];
+		//echo "<br>" . $fase_atual;
+		//echo "<br>";
+		//var_dump(verificaRelFase($objetivo['id'],$fase_atual));
 	}else{
 	
 	switch($fase) {
@@ -869,6 +874,8 @@
 			}else{
 				$tabelas = array($objetivo['nivel'],$objetivo['nivel'] - 1);
 			}
+			
+			geraDesafiosOutras($tabelas,$checados);
 
 			geraDesafios($objetivo['nivel'], $checados);
 			if ($objetivo['nivel'] == 1) {
@@ -884,30 +891,40 @@
 			break;
 		case 5 :
 			//vai para fase 6
+			$tabelas = array();
+			geraDesafiosOutras($tabelas,$checados);
 			for ($i = 1; $i <= 7; $i++) {
 				geraDesafios($i, $checados);
 			}
 			break;
 		case 6 :
 			//vai para fase 7
+			$tabelas = array();
+			geraDesafiosOutras($tabelas,$checados);
 			for ($i = 1; $i <= 7; $i++) {
 				geraDesafios($i, $checados);
 			}
 			break;
 		case 7 :
 			//vai para fase 8
+			$tabelas = array();
+			geraDesafiosOutras($tabelas,$checados);
 			for ($i = 1; $i <= 7; $i++) {
 				geraDesafios($i, $checados);
 			}
 			break;
 		case 8 :
 			//vai para fase 9
+			$tabelas = array();
+			geraDesafiosOutras($tabelas,$checados);
 			for ($i = 1; $i <= 7; $i++) {
 				geraDesafios($i, $checados);
 			}
 			break;
 		case 9 :
 			//vai para fase 10
+			$tabelas = array();
+			geraDesafiosOutras($tabelas,$checados);
 			for ($i = 1; $i <= 7; $i++) {
 				geraDesafios($i, $checados);
 			}
