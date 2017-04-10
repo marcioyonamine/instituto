@@ -69,7 +69,7 @@ switch($diasemana){
 		$num_relatorio = mysqli_num_rows($query_realorio);
 		if($num_relatorio == 0){ 		//se não tiver relatório na quarta-feira, inputa a advertencia no banco
 			//echo "A semana $sem do objetivo $obj_id NÃO possui relatório.<br />";
-			$insere_adv = "INSERT INTO iap_advertencia ('id', 'usuario', 'fase', 'objetivo', 'semana', 'advertencia', 'publicado') VALUES (NULL, '$user->ID', '$fase_atual', '$obj_id', '$sem', '1', '1')";
+			$insere_adv = "INSERT INTO iap_advertencia ('id', 'usuario', 'fase', 'objetivo', 'semana', 'advertencia', 'publicado') VALUES (NULL, '$user->ID', '$fase_atual', '$obj_id', '$sem', '$id_adv', '1')";
 			$exec_adv = mysqli_query($con, $insere_adv);
 			emailTreinador("advertencia",$user->user_firstname,$user->user_email);
 			$sql_verifica_adv = "SELECT id FROM iap_advertencia WHERE usuario = '".$x['usuario']."' AND publicado = '1' AND advertendia = '$id_adv' ";
