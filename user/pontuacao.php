@@ -1,6 +1,8 @@
 <?php $page_title = "iAP | Pontuação"; ?>
 <?php include '../inc/header.php'; ?>
 
+<?php //$user = $user -> ID; echo $user; ?>
+
 <div class="container">
 	<?php
 	include '../inc/fixed-navbar-user.php';

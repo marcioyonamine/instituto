@@ -473,6 +473,7 @@ $datas = retornaSemanas($objetivo['data_inicio']);
                 
 				$rel = verificaRelatorio($objetivo['id'],$i);				
 				$current_date = $GLOBALS['hoje'];
+				//echo $current_date;
 				$dias = '+1';				
 				$data_final_fase = $datas[$i]['fim'];
 				
