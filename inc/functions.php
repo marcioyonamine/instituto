@@ -984,9 +984,9 @@ function verificaSegunda($objetivo,$semana){
 	case 13:
 	//case 14:
 	case 15:
-		if(
-		(($obj['datas'][$semana]['inicio'] == $GLOBALS['hoje']) OR
-		 (somarDatas($obj['datas'][$semana]['inicio'],"+1") == $GLOBALS['hoje'])) 
+		
+		if(($obj['datas'][$semana]['inicio'] == $GLOBALS['hoje'] OR
+		 somarDatas($obj['datas'][$semana]['inicio'],"+1") == $GLOBALS['hoje']) 
 		 AND (count($obj['datas'][$semana]['desafios']) == 0)
 		 )
 		 {
@@ -994,7 +994,6 @@ function verificaSegunda($objetivo,$semana){
 		}else{
 			return FALSE;
 		}
-
 	break;
 	
 	//Exceção da regra - possibilidade de implementação
@@ -1006,10 +1005,10 @@ function verificaSegunda($objetivo,$semana){
 		$user = get_currentuserinfo();
 		//echo $user->ID;
 		
-		if(($obj['datas'][$semana]['inicio'] == $GLOBALS['hoje']) OR
-		 (somarDatas($obj['datas'][$semana]['inicio']," +1") == $GLOBALS['hoje']) OR 
-		 (somarDatas($obj['datas'][$semana]['inicio']," +2") == $GLOBALS['hoje']) 
-		 AND (count($obj['datas'][$semana]['desafios']) == 0) AND $user->ID == '8' OR $user->ID == '9' OR $user->ID == '10'){
+		if(($obj['datas'][$semana]['inicio'] == $GLOBALS['hoje'] OR
+		 somarDatas($obj['datas'][$semana]['inicio']," +1") == $GLOBALS['hoje'] OR 
+		 somarDatas($obj['datas'][$semana]['inicio']," +2") == $GLOBALS['hoje']) 
+		 AND (count($obj['datas'][$semana]['desafios']) == 0) AND ($user->ID == '8' OR $user->ID == '9' OR $user->ID == '10')){
 			 return TRUE;
 		}else{
 			return FALSE;
