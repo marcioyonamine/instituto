@@ -773,12 +773,22 @@
 		case 1 :
 			//vai para fase 2
 			
-			geraDesafios(1, $checados);
+			//geraDesafios(1, $checados);
+			echo "<p>Por favor, mantenha o desafio de nível 1</p>";
+			geraDesafiosOutras($tabelas,$checados);
 			geraDesafios($objetivo['nivel'], $checados);
 			break;
 
 		case 2 :
 			//vai para fase 3
+			if($objetivo['nivel'] == 1) {
+				$tabelas = array($objetivo['nivel'],7);
+			}
+			elseif($objetivo['nivel'] == 7){
+				$tabelas = array($objetivo['nivel'],1);
+			}else{
+				$tabelas = array($objetivo['nivel'],$objetivo['nivel'] - 1);
+			}
 			geraDesafios(1, $checados);
 			geraDesafios($objetivo['nivel'], $checados);
 			geraDesafios($objetivo['nivel'] - 1, $checados);
