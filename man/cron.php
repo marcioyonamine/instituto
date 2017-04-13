@@ -22,10 +22,10 @@ $relatorio = "<h1>Relatório do Sistema</h1>
 
 //includes
 
-//include "relatorios.php";
+include "relatorios.php";
 include "advertencias.php";
-//include "dump.php";
-//include "email_segunda.php";
+include "dump.php";
+include "email_segunda.php";
 
 
 
