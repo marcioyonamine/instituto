@@ -72,22 +72,26 @@ function somarDatas($data,$dias){
 	return $data_final;
 }
 
-function nextMonday($data){
-	$user = wp_get_current_user();
+function nextMonday($data, $usuario = null){
+	if($usuario == null){
+		$user = wp_get_current_user();
+		$usuario = $user->ID;
+	}
+	
 	$diasemana_numero = date('w', strtotime($data)); //data em sql Y-m-d
 	switch($diasemana_numero){
 		case 0:
 			return somarDatas($data,"+ 1");
 		break;		
 		case 1:
-			if($user->ID > 60){
+			if($usuario > 60){
 				return $data;
 			}else{
 				return somarDatas($data,"+ 7");
 			}			
 		break;		
 		case 2:
-			if($user->ID > 60){
+			if($usuario > 60){
 				return somarDatas($data,"- 1");
 			}else{
 				return somarDatas($data,"+ 6");
@@ -1168,6 +1172,14 @@ function emailTreinador($funcao, $nome, $email = null){//ENVIA EMAIL DE NOVO REL
 		case "segunda":
 			$subject = utf8_decode("Não se esqueça de mandar seu relatório de fase.");
 			$txt = "Acesse o sistema para visualizar:http://ialtaperformance.com/login";
+		break;
+		case "advertencia":
+			$subject = utf8_decode("$nome recebeu uma advertência.");
+			$txt = "O trainee $user->user_firstname recebeu uma advertência por não enviar o relatório de fase.<br>Acesse o sistema para visualizar:http://ialtaperformance.com/login";
+		break;
+		case "advertencia_trainee":
+			$subject = utf8_decode("$nome, você recebeu uma advertência.");
+			$txt = "$user->user_firstname, você recebeu uma advertência por não enviar o relatório de fase através do sistema do Instituto de Alta Performance.<br>Fale com seu treinador.";
 		break;
 		}
 		$x = mail($to,$subject,nl2br($txt),$headers);

@@ -15,17 +15,17 @@ $con = bancoMysqli(); //abre conexão com o banco
 set_time_limit(0); //estabelece o tempo máximo para execução do cron / 0 para sem limites
 
 $mensagem = "";
-$data = date('d/m/Y H:i:s');
+$data = date('Y-m-d H:i:s');
 $relatorio = "<h1>Relatório do Sistema</h1>
 <p>Gerado em $data</p>
 <br />";
 
 //includes
 
-include "relatorios.php";
+//include "relatorios.php";
 include "advertencias.php";
-include "dump.php";
-include "email_segunda.php";
+//include "dump.php";
+//include "email_segunda.php";
 
 
 
