@@ -66,34 +66,21 @@ switch($diasemana){
 		$sem = retornaSemana($obj_id);
 		$fase_atual = verificaFase($obj['id']);
 		
-		$user = get_userdata($user_id);
-		echo "O objetivo $obj_id não possui relatorio na fase $fase_atual <br>";						
-		echo "<pre>";
-		var_dump($user);
-		echo "</pre>";
-		
-		//echo "<br><br>user id" . $user_id . "<br><br>";
-		//echo "obj id" . $obj;
-		//var_dump($obj);
-		//echo "<br><br>sem " . $sem;
-		//echo "<br><br>fase" . $fase_atual;
-		
-		//verifica se a fase em que a pessoa estava (fase - 1) possuí um relatório
-		//$sql_relatorio = "SELECT iap_rel_id FROM relatorio_semanal WHERE objetivo = '$obj_id' AND semana = '$sem'";
-		//$query_realorio = mysqli_query($con,$sql_relatorio);
-		//$num_relatorio = mysqli_num_rows($query_realorio);
-		
-		//echo "$sql_relatorio";
-		
 		$verifica_rel = verificaRelFase($obj_id,$fase_atual);
 		
 		if($verifica_rel == FALSE){
 			$semana = retornaSemanas($obj['data_inicio']);
 			$hoje = $GLOBALS['hoje'];
-			for($i = 2; $i <= 16; $i++){
+			$repete = 0;
+			for($i = 1; $i <= 16; $i++){
 				if($semana[$i]['fase'] == $fase_atual && $repete == 0){
 					if(strtotime($semana[$i]['inicio']) <= strtotime($hoje) AND strtotime($semana[$i]['fim']) >= strtotime($hoje)){
 						echo "O objetivo $obj_id tá rodando a fase <br>";
+							if($i == 1 || $i == 2 || $i == 3 || $i == 4){
+								$repete = 0;
+							}else{
+								$repete = 1;
+							}
 						$repete = 1;
 					}else{
 						$user = get_userdata($user_id);
